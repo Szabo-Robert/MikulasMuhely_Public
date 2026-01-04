@@ -5,7 +5,5 @@ namespace SantaFactory.Models
     public class FeladatTipusokhozKotodoLista
     {
         public List<UsersUnisol> FeladatokLista { get; set; }
-
-
     }
 }
