@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(KoltsegekMetadata))]
     public partial class Koltsegek
     {
-        //public int MunkalapID { get; set; }
-
         public int FeladatID { get; set; }
 
         public Feladatok feladatItem { get; set; }
@@ -23,7 +18,6 @@ namespace Unisol_2020.Models
 
     public class KoltsegekMetadata
     {
-
         public int ID { get; set; }
 
         [Display(Name = "Megnevezés:")]
@@ -40,6 +34,5 @@ namespace Unisol_2020.Models
         public string KoltsegLeirasa { get; set; }
 
         public Nullable<int> MunkalapID { get; set; }
-
     }
 }

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(FeladatokMetadata))]
     public partial class Feladatok
     {
-
         public List<FeladatTipusok> FeladatTipusokLista { get; set; }
         public List<Viszony> ViszonyLista { get; set; }
         public List<UsersUnisol> UsersLista { get; set; }
@@ -23,9 +20,6 @@ namespace Unisol_2020.Models
         [Required(ErrorMessage = "A mező megadása kötelező")]
         public string KezdesiIdo { get; set; }
 
-        //public string FeladatIDProjektID { get; set; }
-
-
         //Raktari eszkozokhoz szukseges listak
 
         public List<ElvittEszkozok> ElvihetoEszkozokLista { get; set; }
@@ -34,10 +28,9 @@ namespace Unisol_2020.Models
         public List<ElvittEszkozokFeladatokOsszefugges> KiirniEszkozokLista { get; set; }
 
         public List<Feladat_ElvittEszkoz_ID> FeladatokElvittEszkozokIDjaLista { get; set; }
-        
 
         [Display(Name = "Résztvevő(k):")]
-       public List<FeladatokUsersOsszefugges> feladatokUsersLista { get; set; }
+        public List<FeladatokUsersOsszefugges> feladatokUsersLista { get; set; }
 
 
         //MUNKALAPOK listaja a feladathoz
@@ -47,8 +40,6 @@ namespace Unisol_2020.Models
 
     public class FeladatokMetadata
     {
-
-
         public int ID { get; set; }
 
         [Display(Name = "Megnevezés:")]

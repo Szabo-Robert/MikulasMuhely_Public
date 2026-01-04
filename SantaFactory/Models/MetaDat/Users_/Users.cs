@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
 
     [MetadataType(typeof(UsersUnisolMetadata))]
@@ -12,7 +10,6 @@ namespace Unisol_2020.Models
     {
         public string JelszoMegerosites { get; set; }
 
-        //Unisol_2018-bol athozva
         //eltaroljuk azokat az ID-kat, ahonnan torolni kell majd UsersFeladatokhoz rendelt resztvevok modositasa eseten.
         public int UsersFeladatokID { get; set; }
 
@@ -31,7 +28,6 @@ namespace Unisol_2020.Models
 
     public class UsersUnisolMetadata
     {
-
         public int UserID { get; set; }
 
         [Display(Name = "Vezeték név:")]

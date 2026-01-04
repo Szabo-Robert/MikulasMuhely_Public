@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     public class FeladatTipusokhozKotodoLista
     {
-
         public List<UsersUnisol> FeladatokLista { get; set; }
 
-        //public List<Feladatok> FeladatokLista { get; set; }
 
     }
 }

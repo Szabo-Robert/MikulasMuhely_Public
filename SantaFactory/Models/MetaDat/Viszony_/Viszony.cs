@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(ViszonyMetadata))]
     public partial class Viszony
@@ -12,9 +8,8 @@ namespace Unisol_2020.Models
 
     }
 
-    public  class ViszonyMetadata
+    public class ViszonyMetadata
     {
-
         public int ID { get; set; }
 
         [Display(Name = "Állapot:")]

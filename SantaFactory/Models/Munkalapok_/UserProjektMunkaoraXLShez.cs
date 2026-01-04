@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
-namespace Unisol_2020.Models.Munkalapok_
+namespace SantaFactory.Models.Munkalapok_
 {
     /// <summary>
     /// 2022.02.24 - Munkalap bovitese PROJEKT-el
@@ -27,7 +24,7 @@ namespace Unisol_2020.Models.Munkalapok_
     /// <summary>
     /// Projekt adatok
     /// </summary>
-    public class ProjektRow 
+    public class ProjektRow
     {
         /// <summary>
         /// Projektnek a kodja

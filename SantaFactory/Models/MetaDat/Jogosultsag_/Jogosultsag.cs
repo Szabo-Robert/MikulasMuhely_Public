@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(JogosultsagMetadata))]
     public partial class Jogosultsag
@@ -14,7 +10,6 @@ namespace Unisol_2020.Models
 
     public class JogosultsagMetadata
     {
-
         public int ID { get; set; }
 
         [Display(Name = "Jogosultság:")]

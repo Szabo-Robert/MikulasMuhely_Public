@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     public class JelszoReszetModel
     {
         [Key]
-        
+
         [Display(Name = "Új jelszó:")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Új jelszó megadása kötelező")]
         [MinLength(8, ErrorMessage = "Minimum 8 karakter szükséges!")]

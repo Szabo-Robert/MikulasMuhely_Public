@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(FelhasznaltAnyagokMetadata))]
     public partial class FelhasznaltAnyagok
@@ -19,7 +15,6 @@ namespace Unisol_2020.Models
 
     public class FelhasznaltAnyagokMetadata
     {
-
         public int ID { get; set; }
 
         [Display(Name = "Megnevezés:")]

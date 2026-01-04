@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(LoginModelMetadata))]
     public partial class LoginModel
     {
-        //public List<Feladatok> FeladatokLista{ get; set; }
 
-        //public int UsernekAzIDja { get; set; }
     }
 
     public class LoginModelMetadata

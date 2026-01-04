@@ -166,6 +166,31 @@
     <Compile Include="Models\Koltsegek.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MetaDat\CegAdatok_\CegAdatok.cs" />
+    <Compile Include="Models\MetaDat\Cimek_\Cimek.cs" />
+    <Compile Include="Models\MetaDat\Elerhetosegek_\Elerhetosegek.cs" />
+    <Compile Include="Models\MetaDat\ElvittEszkozok_\ElvittEszkozok.cs" />
+    <Compile Include="Models\MetaDat\ElvittEszkozok_\ElvittEszkozokKotodoLista.cs" />
+    <Compile Include="Models\MetaDat\Feladatok_\ElvittEszkozokFeladatokOsszefugges.cs" />
+    <Compile Include="Models\MetaDat\Feladatok_\Feladatok.cs" />
+    <Compile Include="Models\MetaDat\Feladatok_\FeladatokA.cs" />
+    <Compile Include="Models\MetaDat\Feladatok_\FeladatokUsersOsszefugges.cs" />
+    <Compile Include="Models\MetaDat\FeladatTipusok_\FeladatTipusok.cs" />
+    <Compile Include="Models\MetaDat\FeladatTipusok_\FeladatTipusokhozKotodoLista.cs" />
+    <Compile Include="Models\MetaDat\FelhasznaltAnyagok_\FelhasznaltAnyagA.cs" />
+    <Compile Include="Models\MetaDat\FelhasznaltAnyagok_\FelhasznaltAnyagok.cs" />
+    <Compile Include="Models\MetaDat\FelhasznaltAnyagok_\FelhasznaltAnyagokNeveLista.cs" />
+    <Compile Include="Models\MetaDat\Jogosultsag_\Jogosultsag.cs" />
+    <Compile Include="Models\MetaDat\Jogosultsag_\JogosultsagokhozKotodoLista.cs" />
+    <Compile Include="Models\MetaDat\Koltsegek_\Koltsegek.cs" />
+    <Compile Include="Models\MetaDat\Koltsegek_\KoltsegekhezKotodoLista.cs" />
+    <Compile Include="Models\MetaDat\Login_\LoginModel.cs" />
+    <Compile Include="Models\MetaDat\Projektek_\Projektek.cs" />
+    <Compile Include="Models\MetaDat\Projektek_\ProjektekA.cs" />
+    <Compile Include="Models\MetaDat\Projektek_\ProjektekhezKotodoLista.cs" />
+    <Compile Include="Models\MetaDat\Users_\Users.cs" />
+    <Compile Include="Models\MetaDat\Viszony_\Viszony.cs" />
+    <Compile Include="Models\MetaDat\Viszony_\ViszonyokhozKotodoLista.cs" />
     <Compile Include="Models\Models.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,6 +212,9 @@
     <Compile Include="Models\MunkalapokA.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Munkalapok_\Munkalapok.cs" />
+    <Compile Include="Models\Munkalapok_\MunkalapokA.cs" />
+    <Compile Include="Models\Munkalapok_\UserProjektMunkaoraXLShez.cs" />
     <Compile Include="Models\Munkalap_Koltseg_ID.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -205,6 +233,8 @@
     <Compile Include="Models\Viszony.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WEB\JelszoReszetModel.cs" />
+    <Compile Include="Models\WEB\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

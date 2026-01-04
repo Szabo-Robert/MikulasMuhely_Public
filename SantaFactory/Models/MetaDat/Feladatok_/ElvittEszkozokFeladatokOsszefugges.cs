@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     public class ElvittEszkozokFeladatokOsszefugges
     {
-        //Unisol 2018-bol athozva 
         public int EszkozID { get; set; }
 
         public string EszkozNeve { get; set; }

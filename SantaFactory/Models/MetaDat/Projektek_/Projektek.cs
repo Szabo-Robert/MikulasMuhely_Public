@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(ProjektekMetadata))]
     public partial class Projektek
@@ -15,9 +13,8 @@ namespace Unisol_2020.Models
         public bool archivumCB { get; set; }
     }
 
-    public  class ProjektekMetadata
+    public class ProjektekMetadata
     {
-
         public int ID { get; set; }
 
         [Display(Name = "Proj. neve:")]

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Unisol_2020.Models
+namespace SantaFactory.Models
 {
     [MetadataType(typeof(MunkalapokAMetadata))]
     public partial class MunkalapokA
@@ -13,9 +11,6 @@ namespace Unisol_2020.Models
         public List<UsersUnisol> MunkasokLista { get; set; }
 
         public List<Koltsegek> KoltsegekLista { get; set; }
-
-        //public List<int> OrakLista { get; set; }
-        //public List<int> PercekLista { get; set; }
 
         [Required(ErrorMessage = "A mező megadása kötelező")]
         public string KezdesiIdo { get; set; }
@@ -45,7 +40,6 @@ namespace Unisol_2020.Models
 
     public class MunkalapokAMetadata
     {
-
         public int ID { get; set; }
 
         public int UserID { get; set; }
