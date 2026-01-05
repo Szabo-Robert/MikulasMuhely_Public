@@ -27,14 +27,14 @@
         <EntityTypeShape EntityType="SantaFactory.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SantaFactory.Users" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="SantaFactory.Viszony" Width="1.5" PointX="0.75" PointY="21" IsExpanded="true" />
-        <AssociationConnector Association="SantaFactory.FK_Users_CegAdatok" ManuallyRouted="false" />
+        <AssociationConnector Association="SantaFactory.FK_UsersCegAdatok" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Feladatok_Cimek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_FeladatokA_Cimek" ManuallyRouted="false" />
-        <AssociationConnector Association="SantaFactory.FK_Users_Cimek" ManuallyRouted="false" />
+        <AssociationConnector Association="SantaFactory.FK_UsersCimek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_ErtSzemelyElerh_Elerhetosegek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Feladatok_Elerhetosegek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_FeladatokA_Elerhetosegek" ManuallyRouted="false" />
-        <AssociationConnector Association="SantaFactory.FK_Users_Elerhetosegek" ManuallyRouted="false" />
+        <AssociationConnector Association="SantaFactory.FK_UsersElerhetosegek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Feladat_ElvittEszkoz_ID_ElvittEszkozok1" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Feladat_ElvittEszkoz_ID_Feladatok1" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Feladat_FelhaszAnyag_ID_Feladatok1" ManuallyRouted="false" />
@@ -53,13 +53,13 @@
         <AssociationConnector Association="SantaFactory.FK_FeladatokA_Viszony" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_FelhasznaltAnyagA_FeladatokA" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_MunkalapokA_FeladatokA" ManuallyRouted="false" />
-        <AssociationConnector Association="SantaFactory.FK_Users_Jogosultsag" ManuallyRouted="false" />
+        <AssociationConnector Association="SantaFactory.FK_UsersJogosultsag" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Koltsegek_Munkalapok" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Munkalap_Koltseg_ID_Koltsegek" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Munkalap_Koltseg_ID_Munkalapok" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_Munkalapok_Users" ManuallyRouted="false" />
         <AssociationConnector Association="SantaFactory.FK_MunkalapokA_Users" ManuallyRouted="false" />
-        <AssociationConnector Association="SantaFactory.FK_Users_Viszony" ManuallyRouted="false" />
+        <AssociationConnector Association="SantaFactory.FK_UsersViszony" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

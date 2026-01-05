@@ -28,7 +28,7 @@
 @*@if (Request.IsAuthenticated)
     {
 
-        using (Html.BeginForm("Kijelentkezes", "Users_", FormMethod.Post, new { id = "logoutForm" }))
+        using (Html.BeginForm("Kijelentkezes", "Users", FormMethod.Post, new { id = "logoutForm" }))
         {
             <a href="javascript:document.getElementById('logoutForm').submit()">Kijelentkezés</a>
 

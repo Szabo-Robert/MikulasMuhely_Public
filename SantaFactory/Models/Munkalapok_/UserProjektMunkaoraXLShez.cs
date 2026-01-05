@@ -3,7 +3,7 @@
 namespace SantaFactory.Models.Munkalapok_
 {
     /// <summary>
-    /// 2022.02.24 - Munkalap bovitese PROJEKT-el
+    /// Munkalap bovitese PROJEKT-el
     /// </summary>
     public class UserProjektMunkaoraXLShez
     {

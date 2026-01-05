@@ -283,10 +283,10 @@
 
             if (!(Model.ViewerUser.JogosultsagID > Model.JogosultsagID) || Model.ViewerUser.Jogosultsag.Nev == "ADMIN")
             {
-                <input type="submit" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Users_", new { id = Model.UserID })'" />
+                <input type="submit" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Users", new { id = Model.UserID })'" />
             }
         }
-        <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Users_")'" />
+        <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Users")'" />
     </div>
 </div>
 

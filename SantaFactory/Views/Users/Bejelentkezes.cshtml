@@ -70,16 +70,6 @@ else
 
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.BelepveMarad, htmlAttributes: new { @class = "control-label col-md-3" })
-                <div class="col-md-9">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.BelepveMarad)
-                        @Html.ValidationMessageFor(model => model.BelepveMarad, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>*@
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Bejelentkezés" class="btn btn-default" />
@@ -88,12 +78,8 @@ else
     </div>
 }
 
-@*<div>
-        @Html.ActionLink("Új fiók", "Registration", "Users_")
-    </div>*@
-
 <div>
-    @Html.ActionLink("Elfelejtett jelszó?", "JelszoModositas", "Users_")
+    @Html.ActionLink("Elfelejtett jelszó?", "JelszoModositas", "Users")
 </div>
 
 @section Scripts{

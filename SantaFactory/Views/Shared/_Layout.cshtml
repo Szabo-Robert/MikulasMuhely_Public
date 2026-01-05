@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Unisol Installációs KFT.</title>
+    <title>@ViewBag.Title Mikulás műhely</title>
 
-    @* UNISOL 2018-bol *@
     <link href="~/Content/PrivatStyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico" />
@@ -29,7 +28,7 @@
                 @if (Request.IsAuthenticated)
                 {
 
-                    using (Html.BeginForm("Kijelentkezes", "Users_", FormMethod.Post, new { id = "logoutForm" }))
+                    using (Html.BeginForm("Kijelentkezes", "Users", FormMethod.Post, new { id = "logoutForm" }))
                     {
                         @*<a href="javascript:document.getElementById('logoutForm').submit()">Kijelentkezés</a>*@
                     }
@@ -47,7 +46,6 @@
                 if (TempData["Users"] != null)
                 {
                     tempJogosultsag = TempData["Users"].ToString();
-                    //TempData.Keep();
                 }
 
                 if (tempJogosultsag == "ADMIN" && logedIn)
@@ -104,7 +102,7 @@
                                 <a href="#" class="dropdown-toggle" id="UsersGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felhasználók<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
 
-                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users_")</li>
+                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users")</li>
                                     <li id="FelhasznaloiSzerepkorok">@Html.ActionLink("Felhasználók szerepköre", "Index", "Jogosultsag")</li>
 
                                 </ul>
@@ -135,8 +133,6 @@
 
                                 </ul>
 
-                                @*<a href="@Url.Action("Index", "Projekt")" role="button"
-                                    aria-haspopup="true" aria-expanded="true"><span>Projektek</span></a>*@
                             </li>
 
                             <li class="dropdown">
@@ -176,7 +172,7 @@
                                 <a href="#" class="dropdown-toggle" id="UsersGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felhasználók<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
 
-                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users_")</li>
+                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users")</li>
                                     <li id="FelhasznaloiSzerepkorok">@Html.ActionLink("Felhasználók szerepköre", "Index", "Jogosultsag")</li>
 
                                 </ul>
@@ -220,7 +216,7 @@
                             </li>
 
                             <li class="dropdown">
-                                <a href="@Url.Action("Index", "Users_")" role="button"
+                                <a href="@Url.Action("Index", "Users")" role="button"
                                    aria-haspopup="true" aria-expanded="true"><span>Profilom</span></a>
                             </li>
 
@@ -244,7 +240,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Unisol Installációs KFT. </p>
+            <p>&copy; @DateTime.Now.Year - Mikulás műhely </p>
             <p>Vers.BETA 3.0</p>
         </footer>
     </div>

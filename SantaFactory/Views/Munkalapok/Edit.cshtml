@@ -29,30 +29,6 @@
     <div class="form-horizontal">
 
         <hr />
-        @*<div class="form-group required">
-                    @Html.LabelFor(model => model.FeladatID, "Feladat", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.FeladatID, new SelectList(Model.FeladatokLista, "ID", "Nev"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.FeladatID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                @{
-                if (!(Model.Megtekintve))
-                {
-                    <div class="form-group required">
-                        @Html.LabelFor(model => model.UserID, "Alkalmazott", htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.UserID, new SelectList(Model.MunkasokLista, "UserID", "Nev"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                }
-            }*@
-
-        @*@Html.HiddenFor(model => model.KezdesiIdo, new { @Value = Model.KIdo.ToString() })
-            @Html.HiddenFor(model => model.BefejezesiIdo, new { @Value = Model.BIdo.ToString() })*@
-
 
         <div class="form-group required">
             @Html.LabelFor(model => model.MunkaDatuma, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
@@ -72,15 +48,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.MunkaDatuma, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MunkaDatuma, new { htmlAttributes = new { @class = "form-control datetimepicker3" } })
-                    @Html.ValidationMessageFor(model => model.MunkaDatuma, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
         <div class="form-group required">
             @Html.LabelFor(model => model.KezdesiIdo, "K. idő / B. idő", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-1">
@@ -95,14 +62,6 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.MunkaOra, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MunkaOra, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MunkaOra, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.MegtettKM, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -111,54 +70,22 @@
             </div>
         </div>
 
-
-        @* meg nem biztos hogy lesz ra szukseg *@
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Megtekintve, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        <label> @Html.EditorFor(model => model.Megtekintve) </label>
-                        @Html.ValidationMessageFor(model => model.Megtekintve, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>*@
-
-
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Magyjegyzes, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Magyjegyzes, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Magyjegyzes, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-
         <div class="form-group">
             <div>
                 <p class="text-danger">* A mező kitöltése kötelező!</p>
 
                 @{
-
                     if (Model.Atiranyitott != 0)
                     {
                         <input type="submit" value="Mentés" class="btn btn-default" onClick='return confirmSubmit()' />
                         <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
-
                     }
                     else
                     {
                         <input type="submit" value="Mentés" class="btn btn-default" onClick='return confirmSubmit()' />
                         <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
-
                     }
-
                 }
-
-
-                @*<input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat_")'" />*@
             </div>
         </div>
     </div>
@@ -171,7 +98,6 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-
 
     <script type="text/javascript">
 
@@ -187,11 +113,6 @@
             });
         });
 
-
-        //$(function () {
-        //    $(".datetimepicker3").datetimepicker({ format: 'YYYY-mm-DD' });
-        //});
-
     </script>
 
     <script>
@@ -201,10 +122,8 @@
             var KIdo = $('.datetimepicker1').val();
             var BIdo = $('.datetimepicker2').val();
 
-            var startDate = new Date("2021.01.01 " + KIdo + ":00");
-            var endDate = new Date("2021.01.01 " + BIdo + ":00");
-
-            //var agree = confirm("Munka kezdés: " + KIdo + " befejezés: " + BIdo + ". Helyes a megadott időintervellum (MÁSNAP FEJEZŐDIK BE)?");
+            var startDate = new Date("2025.01.01 " + KIdo + ":00");
+            var endDate = new Date("2025.01.01 " + BIdo + ":00");
 
             if (startDate < endDate) {
 
@@ -222,18 +141,4 @@
         }
 
     </script>
-
-    @*<script type="text/javascript">
-            $(function () {
-                $(".datetimepicker3").datepicker({ dateFormat: 'yy.mm.dd' });
-
-                $("#from").datepicker({ dateFormat: 'yy.mm.dd' }).bind("change", function () {
-                    var minValue = $(this).val();
-                    minValue = $.datepicker.parseDate("yy.mm.dd", minValue);
-                    minValue.setDate(minValue.getDate() + 1);
-                    $("#to").datepicker("option", "minDate", minValue);
-                })
-            });
-        </script>*@
-
 }

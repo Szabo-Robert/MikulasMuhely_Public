@@ -25,27 +25,27 @@ namespace SantaFactory.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CegAdatok> CegAdatoks { get; set; }
-        public virtual DbSet<Cimek> Cimeks { get; set; }
-        public virtual DbSet<Elerhetosegek> Elerhetosegeks { get; set; }
-        public virtual DbSet<ElvittEszkozok> ElvittEszkozoks { get; set; }
+        public virtual DbSet<CegAdatok> CegAdatok { get; set; }
+        public virtual DbSet<Cimek> Cimek { get; set; }
+        public virtual DbSet<Elerhetosegek> Elerhetosegek { get; set; }
+        public virtual DbSet<ElvittEszkozok> ElvittEszkozok { get; set; }
         public virtual DbSet<Feladat_ElvittEszkoz_ID> Feladat_ElvittEszkoz_ID { get; set; }
         public virtual DbSet<Feladat_FelhaszAnyag_ID> Feladat_FelhaszAnyag_ID { get; set; }
         public virtual DbSet<Feladat_User_ID> Feladat_User_ID { get; set; }
-        public virtual DbSet<Feladatok> Feladatoks { get; set; }
-        public virtual DbSet<FeladatokA> FeladatokAs { get; set; }
-        public virtual DbSet<FeladatTipusok> FeladatTipusoks { get; set; }
-        public virtual DbSet<FelhasznaltAnyagA> FelhasznaltAnyagAs { get; set; }
-        public virtual DbSet<FelhasznaltAnyagok> FelhasznaltAnyagoks { get; set; }
-        public virtual DbSet<Jogosultsag> Jogosultsags { get; set; }
-        public virtual DbSet<Koltsegek> Koltsegeks { get; set; }
+        public virtual DbSet<Feladatok> Feladatok { get; set; }
+        public virtual DbSet<FeladatokA> FeladatokA { get; set; }
+        public virtual DbSet<FeladatTipusok> FeladatTipusok { get; set; }
+        public virtual DbSet<FelhasznaltAnyagA> FelhasznaltAnyagA { get; set; }
+        public virtual DbSet<FelhasznaltAnyagok> FelhasznaltAnyagok { get; set; }
+        public virtual DbSet<Jogosultsag> Jogosultsag { get; set; }
+        public virtual DbSet<Koltsegek> Koltsegek { get; set; }
         public virtual DbSet<Munkalap_Koltseg_ID> Munkalap_Koltseg_ID { get; set; }
-        public virtual DbSet<Munkalapok> Munkalapoks { get; set; }
-        public virtual DbSet<MunkalapokA> MunkalapokAs { get; set; }
-        public virtual DbSet<Projektek> Projekteks { get; set; }
-        public virtual DbSet<ProjektekA> ProjektekAs { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Users> Users1 { get; set; }
-        public virtual DbSet<Viszony> Viszonies { get; set; }
+        public virtual DbSet<Munkalapok> Munkalapok { get; set; }
+        public virtual DbSet<MunkalapokA> MunkalapokA { get; set; }
+        public virtual DbSet<Projektek> Projektek { get; set; }
+        public virtual DbSet<ProjektekA> ProjektekA { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagram { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Viszony> Viszony { get; set; }
     }
 }

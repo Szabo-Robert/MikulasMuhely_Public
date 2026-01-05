@@ -32,21 +32,7 @@
 
         @Html.HiddenFor(model => model.Atiranyitott)
 
-        @*@Html.HiddenFor(model => model.UserID)*@
-
         @Html.HiddenFor(model => model.FeladatID)
-
-        @*nem szukseges,  mivel a beloggolt USER maganak hozza letre a munkalapot es automatikusan adjuk hozza a FELADATOT
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.FeladatID, "Feladat", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.FeladatID, new SelectList(Model.FeladatokLista, "ID", "Nev"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.FeladatID, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
 
         <div class="form-group required">
             @Html.LabelFor(model => model.UserID, "Alkalmazott", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -55,15 +41,6 @@
                 @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-        @*<div class="form-group required">
-                @Html.LabelFor(model => model.MunkaDatuma, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MunkaDatuma, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.MunkaDatuma, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
 
         <div class="form-group required">
             @Html.LabelFor(model => model.MunkaDatuma, htmlAttributes: new { @class = "control-label col-md-2 col-lg-2" })
@@ -90,7 +67,6 @@
                 @Html.ValidationMessageFor(model => model.KezdesiIdo, "", new { @class = "text-danger" })
             </div>
 
-            @*@Html.LabelFor(model => model.BefejezesiIdo, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-1">
                 @Html.EditorFor(model => model.BefejezesiIdo, new { htmlAttributes = new { @class = "form-control datetimepicker2" } })
                 @Html.ValidationMessageFor(model => model.BefejezesiIdo, "", new { @class = "text-danger" })
@@ -106,17 +82,6 @@
             </div>
         </div>
 
-
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.Magyjegyzes, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Magyjegyzes, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Magyjegyzes, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-
-
         <div class="form-group">
             <div>
                 <p class="text-danger">* A mező kitöltése kötelező!</p>
@@ -128,35 +93,14 @@
 
                 </div>
 
-                @*
-                        @{
-                            if (Model.Atiranyitott == 0)
-                    {
-                        <input type="submit" value="Létrehoz" class="btn btn-default" />
-                        <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
-                    }
-                    else
-                    {
-                            <input type="submit" value="Létrehoz" class="btn btn-default" />
-                            <input type="button" value="Mégse" class="btn btn-default"
-                                   onclick="location.href='@Url.Action("Details", "Feladatok", routeValues: new { id = Model.FeladatID })'" />
-                            }
-
-                    }*@
-
-
-                @*<input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat_")'" />*@
             </div>
         </div>
     </div>
 }
 
 @section Scripts {
-    @*<script src="~/Scripts/jquery-3.5.1.min.js"></script>*@
-    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
-
 
     <script type="text/javascript">
 
@@ -172,7 +116,6 @@
             });
         });
 
-
     </script>
 
     <script>
@@ -182,10 +125,8 @@
             var KIdo = $('.datetimepicker1').val();
             var BIdo = $('.datetimepicker2').val();
 
-            var startDate = new Date("2021.01.01 " + KIdo + ":00");
-            var endDate = new Date("2021.01.01 " + BIdo + ":00");
-
-            //var agree = confirm("Munka kezdés: " + KIdo + " befejezés: " + BIdo + ". Helyes a megadott időintervellum (MÁSNAP FEJEZŐDIK BE)?");
+            var startDate = new Date("2025.01.01 " + KIdo + ":00");
+            var endDate = new Date("2025.01.01 " + BIdo + ":00");
 
             if (startDate < endDate) {
 
@@ -203,5 +144,4 @@
         }
 
     </script>
-
 }

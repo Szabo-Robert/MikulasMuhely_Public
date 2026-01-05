@@ -30,10 +30,6 @@
 
         <hr />
 
-        @*@Html.HiddenFor(model => model.ProjektekLista)
-            @Html.HiddenFor(model => model.FeladatTipusokLista)
-            @Html.HiddenFor(model => model.feladatokUsersLista)
-            @Html.HiddenFor(model => model.KiirniEszkozokLista)*@
         @Html.HiddenFor(model => model.ViszonyID, new { @Value = 2 })
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -116,51 +112,13 @@
                         </div>
                     </div>
 
-                    @* MODOSITVA 2021.06.08 - bekerult az ido megadasa javitva -> a felso resz *@
-                    @*<div class="form-group required">
-                            @Html.LabelFor(model => model.VarhatoKezdes, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.VarhatoKezdes, new { htmlAttributes = new { @type = "date", @class = "form-control", @min = "2000-01-01", @max = "2050-12-31" } })
-                                @Html.ValidationMessageFor(model => model.VarhatoKezdes, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group required">
-                            @Html.LabelFor(model => model.VarhatoBefejezes, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.VarhatoBefejezes, new { htmlAttributes = new { @type = "date", @class = "form-control", @min = "2000-01-01", @max = "2050-12-31" } })
-                                @Html.ValidationMessageFor(model => model.VarhatoBefejezes, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group required">
-                            @Html.LabelFor(model => model.ViszonyID, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                            <div class="col-md-9">
-                                @Html.DropDownListFor(model => model.ViszonyID, new SelectList(Model.ViszonyLista, "ID", "Nev"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-
-                                @Html.ValidationMessageFor(model => model.ViszonyID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.KifizetesiArany, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.KifizetesiArany, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.KifizetesiArany, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
                     <div class="form-group required">
                         @Html.LabelFor(model => model.KezdesiIdo,@*"K. idő / B. idő",*@htmlAttributes: new { @class = "control-label col-md-3" })
                         <div class="col-md-9">
                             @Html.EditorFor(model => model.KezdesiIdo, new { htmlAttributes = new { @class = "form-control datetimepicker1" } })
                             @Html.ValidationMessageFor(model => model.KezdesiIdo, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<div class="col-md-1">
-                                @Html.EditorFor(model => model.BefejezesiIdo, new { htmlAttributes = new { @class = "form-control datetimepicker2" } })
-                                @Html.ValidationMessageFor(model => model.BefejezesiIdo, "", new { @class = "text-danger" })
-                            </div>*@
+                       
                     </div>
 
                     <div class="form-group required">
@@ -170,45 +128,11 @@
                             @Html.ValidationMessageFor(model => model.BecsultMunkaOra, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
-                    @* // Ezt majd szerkesztik, akik leadjak a munkalapot
-
-                            <div class="form-group">
-                            @Html.LabelFor(model => model.MunkaLeirasa, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.MunkaLeirasa, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.MunkaLeirasa, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
+                    
                 </div>
 
                 @* JOBB oszlop*@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-
-
-                    @*<div class="form-group">
-
-                            @*Alkalmazottak nevsoranak kinyerese
-                            @Html.LabelFor(model => model.feladatokUsersLista, "Személyek", htmlAttributes: new { @class = "control-label col-xs-3 col-sm-3 col-md-2 col-lg-2" })
-
-                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-
-                                @Html.ValidationMessageFor(model => model.feladatokUsersLista, "", new { @class = "text-danger" })
-                                @for (int i = 0; i < Model.feladatokUsersLista.Count; i++)
-                                {
-                                    <div>
-
-                                        @Html.CheckBoxFor(modelItem => Model.feladatokUsersLista[i].UserKivalasztva)
-                                        @Html.DisplayFor(modelItem => Model.feladatokUsersLista[i].UsersNeve)
-                                        @Html.HiddenFor(modelItem => Model.feladatokUsersLista[i].UsersID)
-                                    </div>
-
-                                }
-
-                            </div>
-
-                        </div>*@
 
                     <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
 
@@ -272,35 +196,7 @@
                         </div>
 
                     </content>
-
-                    @*
-                        <div class="form-group">
-                            <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
-
-                                <p>
-                                    <b>
-                                        Eszközök lista:*@
-                    @* @Html.DisplayNameFor(model => model.feladatokUsersLista)*@
-                    @*   </b>
-                        </p>
-
-                        <p>
-                            @Html.ActionLink("Új eszköz hozzáadása", "Create", "Eszkoz_", routeValues: new { id = Model.TempFeladatID }, htmlAttributes: null)
-                        </p>
-
-                        <div>
-                            @foreach (var item in Model.feladatokUsersLista.OrderBy(x => x.UsersNeve))
-                            {
-                                <div>*@
-                    @* @Html.CheckBoxFor(modelItem => item.UserKivalasztva)
-                        @Html.DisplayFor(modelItem => item.UsersNeve)
-                        @* @Html.HiddenFor(modelItem => item.UsersID)*@
-                    @*</div> - Megjegyzest TOROLNI
-                                    }
-                                </div>
-
-                            </content>
-                        </div>*@
+                    
                 </div>
 
             </table>
@@ -371,7 +267,6 @@
                     </div>
                 </div>
 
-
                 @*Elérhetőségek*@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -401,7 +296,6 @@
                         <div class="col-md-9">
                             @Html.EditorFor(model => model.Elerhetosegek.Email, new { htmlAttributes = new { @Value = @HttpContext.Current.User.Identity.Name, @id = "Email", @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Elerhetosegek.Email, "", new { @class = "text-danger" })
-                            @*@Html.ValidationMessage("EmailMarLetezik", new { @class = "text-danger" })*@
                         </div>
                     </div>
 
@@ -430,19 +324,8 @@
                 <div>
                     <p class="text-danger">* A mező kitöltése kötelező!</p>
 
-                    @*@{
-                        if (Model.ProjektID == null)
-                        {*@
                     <input type="submit" value="Létrehoz" class="btn btn-default" />
                     <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat")'" />
-                    @*}
-                            else
-                                {
-                                    <input type="submit" value="Létrehoz" class="btn btn-default" />
-                                    <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Details", "Projekt_", routeValues: new { id = Model.ProjektID })'" />
-                                }
-
-                        }*@
 
                 </div>
             </div>
@@ -452,13 +335,9 @@
 }
 
 @section Scripts {
-    @*<script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-            JAVITAS a date time nem megfelelo formatuma miatt SAFARI-ban*@
     <script src="/Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
@@ -484,7 +363,7 @@
             });
             $('#datetimepickerEND').datetimepicker({
                 format: 'YYYY.MM.DD',
-                useCurrent: false //Important! See issue #1075
+                useCurrent: false
             });
 
             $("#datetimepickerSTART").on("dp.change", function (e) {
@@ -505,9 +384,5 @@
                 $(this).attr("autocomplete", "off");
             });
         });
-
-       
-
     </script>
-
 }

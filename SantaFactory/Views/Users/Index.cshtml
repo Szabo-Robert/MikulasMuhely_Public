@@ -37,7 +37,7 @@
 
             if (Model.First().logUserJogosultsaga == "Vezetőség" || Model.First().logUserJogosultsaga == "ADMIN")
             {
-                <a href="@Url.Action("Registration", "Users_")">
+                <a href="@Url.Action("Registration", "Users")">
                     @* text space *@
                     <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új felhasználó hozzáadása"></span>
                 </a>
@@ -143,5 +143,5 @@
 
 @* LAPOZO *@
 
-@Html.PagedListPager(Model, pn => Url.Action("Index", "Users_",
+@Html.PagedListPager(Model, pn => Url.Action("Index", "Users",
     new { pn, searcs = Request.QueryString["search"] }))
