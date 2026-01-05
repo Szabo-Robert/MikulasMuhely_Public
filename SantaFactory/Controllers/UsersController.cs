@@ -831,10 +831,7 @@ namespace SantaFactory.Controllers
             var verifyUrl = "/Users/" + emailCimzett + "/" + aktivaloKod;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var felado = new MailAddress("valtoztatni.akarok@gmail.com", "Mikulás műhely", System.Text.Encoding.UTF8);
-
-            //var felado = new MailAddress("valtoztatni.akarok@gmail.com", "Mikulás műhely");
-
+            var felado = new MailAddress("valtoztatni.akarok@gmail.com", "Miki csapata", System.Text.Encoding.UTF8);
             var cimzett = new MailAddress(emailCim);
 
             string tema = "";
@@ -870,7 +867,6 @@ namespace SantaFactory.Controllers
                 Port = 587,
                 EnableSsl = true, // Ez fontos a Gmailhez!
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                DeliveryFormat = SmtpDeliveryFormat.International,
                 UseDefaultCredentials = false,
                 // Itt a jelszó helyére a generált 16 jegyű kódot írd!
                 Credentials = new NetworkCredential(felado.Address, "sfhtlonxftezntsr")
