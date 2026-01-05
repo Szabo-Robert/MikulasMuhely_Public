@@ -1,0 +1,569 @@
+﻿@model SantaFactory.Models.Feladatok
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Feladat részletek</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        @* FELADAT informaciok - BAL OLDALA *@
+        <table class="table">
+            <content class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nev)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nev)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Projektek.AzonositoKod)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Projektek.AzonositoKod)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FeladatLeirasa)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FeladatLeirasa)
+                </dd>
+
+
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.Viszony.Nev)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Viszony.Nev)
+                    </dd>*@
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VarhatoKezdes)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VarhatoKezdes)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Kido)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Kido)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VarhatoBefejezes)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VarhatoBefejezes)
+                </dd>
+
+                @*<dt>
+                        @Html.DisplayNameFor(model => model.BecsultMunkaOra)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.BecsultMunkaOra)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Atiranyitott)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Atiranyitott)
+                    </dd>*@
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FeladatTipusok.Nev)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FeladatTipusok.Nev)
+                </dd>
+
+            </content>
+
+            @* FELADAT resztvevok - JOBB oldal *@
+
+            <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+
+                @*<p>
+                    <b>*@
+                <dt>
+                    Feladat résztvevői
+                </dt>
+                @*</b>
+                    </p>*@
+
+                @* A feladatba resztvevok neveinek listaja *@
+                @*<div>*@
+                <dd>
+
+
+
+                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.Users.VezetekNev))
+                    {
+
+                        <p>
+                            - @Html.DisplayFor(modelItem => item.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                        </p>
+                    }
+                </dd>
+                @*</div>*@
+
+            </content>
+
+            @* FELADAT eszkozei + jovahagyva CB - JOBB oldal *@
+
+            <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+
+                <dt>
+                    Feladat eszközei
+                </dt>
+
+                @* A feladatba resztvevok neveinek listaja *@
+
+                <dd>
+
+                    @foreach (var item in Model.ElvihetoEszkozokLista.OrderBy(x => x.Nev))
+                    {
+
+                        if (item.EszkozModositva)
+                        {
+                            <p>
+                                <del>
+                                    @Html.DisplayFor(modelItem => item.EszkozKivalasztva)
+                                    @Html.DisplayFor(modelItem => item.Nev)
+                                </del>
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                @Html.DisplayFor(modelItem => item.EszkozKivalasztva)
+                                @Html.DisplayFor(modelItem => item.Nev)
+                            </p>
+                        }
+                    }
+
+
+                </dd>
+
+                <br />
+
+                <dt>
+                    Jóváhagyva
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => modelItem.JovahagyvaCB)
+                </dd>
+
+            </content>
+
+            @* Feladat ELERHETOSEGEK - BAL oldal *@
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+
+                        @* ELERHETOSEGEK + CIM *@
+                        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <dt>
+                                Elérhetőségek
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
+                            </dd>
+
+
+                            <dt>
+                                Cím
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.Cimek.Orszag),&nbsp;
+                                @Html.DisplayFor(modelItem => Model.Cimek.Varos)<br />
+                                @Html.DisplayFor(modelItem => Model.Cimek.Utca) u.,&nbsp;
+                                @Html.DisplayFor(modelItem => Model.Cimek.Szam) sz.
+                                @Html.DisplayFor(modelItem => Model.Cimek.Egyeb)<br />
+                                @Html.DisplayFor(modelItem => Model.Cimek.Megjegyzes)
+                            </dd>
+
+                        </content>
+
+                    </table>
+                </div>
+
+
+                @* MUNKALAPOK listaja *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Munkalapok listája</h3>
+                            </p>
+
+                            @if (!(Model.JovahagyvaCB))
+                            {
+                                <a href="@Url.Action("Create", "Munkalapok", routeValues: new { id = Model.ID })">
+                                    @* text space *@
+                                    <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új munkalap"></span>
+                                </a>
+                            }
+
+
+                            <tr>
+
+                                <th>
+                                    Munka dátuma
+                                </th>
+
+                                <th>
+                                    Kezdési idő
+                                </th>
+
+                                <th>
+                                    Munka óra
+                                </th>
+
+                                <th>
+                                    KM.
+                                </th>
+
+                                @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
+                                @{
+                                    string tempJogosultsag = "";
+
+                                    if (TempData["Users"] != null)
+                                    {
+                                        tempJogosultsag = TempData["Users"].ToString();
+                                        //TempData.Keep();
+                                    }
+
+                                    if (tempJogosultsag != "Alkalmazott")
+                                    {
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.UserNev)
+                                        </th>
+                                    }
+                                }
+
+
+                                @*<th>
+                                        Megtekintve
+                                    </th>*@
+
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model.MunkalapokListaja)
+                            {
+                                string textColor = "limegreen";
+
+                                if (item.Megtekintve)
+                                {
+                                    textColor = "red";
+                                }
+
+                                <tr style="color:@textColor; font-weight: bold">
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MunkaDatuma)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KIdo)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MunkaOra) óra
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MegtettKM)
+                                    </td>
+
+                                    @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
+
+                                    @{
+                                        tempJogosultsag = "";
+
+                                        if (TempData["Users"] != null)
+                                        {
+                                            tempJogosultsag = TempData["Users"].ToString();
+                                            //TempData.Keep();
+                                        }
+
+                                        if (tempJogosultsag != "Alkalmazott")
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                                            </td>
+                                        }
+                                    }
+
+
+
+                                    @*<td>
+                                            @Html.DisplayFor(modelItem => item.Megtekintve)
+                                        </td>*@
+
+
+                                    @* ATADNI A FELADAT ID-ja *@
+
+                                    @{
+                                        string MunkalapIDFeladatID = $"{item.ID}_{Model.ID}";
+                                    }
+
+                                    <td>
+
+                                        @if (!(Model.JovahagyvaCB) &&
+                                            (!(item.Megtekintve) || item.Users.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name))
+                                        {
+
+                                            <a href="@Url.Action("Edit", "Munkalapok", routeValues: new { id = MunkalapIDFeladatID })">
+                                                @* text space *@
+                                                <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
+                                            </a>
+                                        }
+
+                                        &nbsp;
+
+                                        <a href="@Url.Action("Details", "Munkalapok", routeValues: new { id = MunkalapIDFeladatID })">
+                                            @* text space *@
+                                            <span class="glyphicon glyphicon-list" style="font-size:25px;" title="Részletek" aria-hidden="true"></span>
+                                        </a>
+
+                                        &nbsp;
+
+                                        @if (!(Model.JovahagyvaCB) &&
+                                            (!(item.Megtekintve) || item.Users.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name
+                                            || tempJogosultsag == "ADMIN"))
+                                        {
+
+
+                                            <a href="@Url.Action("Delete", "Munkalapok", routeValues: new { id = MunkalapIDFeladatID })">
+                                                @* text space *@
+                                                <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
+                                            </a>
+                                        }
+
+                                        @*@Html.ActionLink(linkText: "Módosít", actionName: "Edit", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null) |
+                                            @Html.ActionLink(linkText: "Részletek", actionName: "Details", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null) |
+                                            @Html.ActionLink(linkText: "Töröl", actionName: "Delete", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null)*@
+
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </table>
+
+                    </div>
+                </div>
+
+
+                @* FELHASZNALT ANYAGOK listaja *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Felhasznált anyagok</h3>
+                            </p>
+
+                            @if (!(Model.JovahagyvaCB))
+                            {
+                                <a href="@Url.Action("Create", "FelhasznaltAnyagok", routeValues: new { id = Model.ID })">
+                                    @* text space *@
+                                    <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új eszköz hozzáadása"></span>
+                                </a>
+                            }
+                            @* ICON-ra cserelve *@
+                            @*<p>
+                                    @Html.ActionLink("Új munkalap létrehozása", "Create", "Munkalap_", routeValues: new { id = Model.ID }, htmlAttributes: null)
+                                </p>*@
+
+                            <tr>
+
+                                <th>
+                                    Felhasznált anyag
+                                </th>
+
+                                <th>
+                                    Létrehozó
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model.FelhasznaltAnyagokLista)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nev)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserNev)
+                                    </td>
+
+
+                                    @* ATADNI A FELADAT ID-ja *@
+
+                                    @{
+                                        string FelhasznaltAnyagFeladatID = $"{item.ID}_{Model.ID}";
+                                    }
+
+                                    @if (!(Model.JovahagyvaCB))
+                                    {
+                                        <td>
+
+                                            <a href="@Url.Action("Edit", "FelhasznaltAnyagok", routeValues: new { id = FelhasznaltAnyagFeladatID })">
+                                                @* text space *@
+                                                <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
+                                            </a>
+
+                                            &nbsp;
+
+                                            <a href="@Url.Action("Delete", "FelhasznaltAnyagok", routeValues: new { id = FelhasznaltAnyagFeladatID })">
+                                                @* text space *@
+                                                <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
+                                            </a>
+
+
+                                            @*@Html.ActionLink(linkText: "Módosít", actionName: "Edit", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null) |
+                                                @Html.ActionLink(linkText: "Részletek", actionName: "Details", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null) |
+                                                @Html.ActionLink(linkText: "Töröl", actionName: "Delete", controllerName: "Munkalap_", routeValues: new { id = item.ID }, htmlAttributes: null)*@
+
+                                        </td>
+                                    }
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+
+                @* Munka LEIRASA *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Munka leírása</h3>
+                            </p>
+
+                            @if (!(Model.JovahagyvaCB))
+                            {
+                                <a href="@Url.Action("EditML", "Feladat", routeValues: new { id = Model.ID })">
+                                    @* text space *@
+                                    <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Leírás hozzáadása/módosítása"></span>
+                                </a>
+                            }
+                            @* ICON-ra cserelve *@
+                            @*<p>
+                                    @Html.ActionLink("Új munkalap létrehozása", "Create", "Munkalap_", routeValues: new { id = Model.ID }, htmlAttributes: null)
+                                </p>*@
+
+                            <tr>
+
+                                <th>
+                                    <h4>@Html.DisplayFor(model => model.MunkaLeirasa)</h4>
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                        </table>
+                    </div>
+                    @*</div>*@
+
+
+
+                    @*</div>*@
+
+        </table>
+
+
+    </dl>
+
+</div>
+<div class="form-group ">
+    <div>
+        @{
+
+            tempJogosultsag = "";
+
+            if (TempData["Users"] != null)
+            {
+                tempJogosultsag = TempData["Users"].ToString();
+                //TempData.Keep();
+            }
+
+            if (tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség")
+            {
+                <input type="button" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Feladat", routeValues: new { id = Model.ID })'" />
+                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat")'" />
+            }
+            else
+            {
+                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Home")'" />
+            }
+
+        }
+
+
+    </div>
+</div>
+

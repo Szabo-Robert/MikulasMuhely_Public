@@ -1,0 +1,133 @@
+﻿@model SantaFactory.Models.Munkalapok
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Munkalapok</h2>
+
+        <p>
+            <h3 id="red">Törlés</h3>
+        </p>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+
+    <hr />
+
+    <div class="form-group">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-danger" id="red">
+
+            <h4>Biztosan szeretné törölni a következő elemet?</h4>
+
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Feladat
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feladatok.Nev)
+        </dd>
+
+        @*<dt>
+                Alkalmazott
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => Model.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => Model.Users.KeresztNev)
+            </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MunkaDatuma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MunkaDatuma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KIdo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KIdo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BIdo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BIdo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MunkaOra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MunkaOra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MegtettKM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MegtettKM)
+        </dd>
+
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Magyjegyzes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Magyjegyzes)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JovahagyvaCB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JovahagyvaCB)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Feladatok.MunkaLeirasa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Feladatok.MunkaLeirasa)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Töröl" class="btn btn-default" />
+            <input type="button" value="Vissza" class="btn btn-default"
+                   onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
+
+        </div>
+    }
+</div>

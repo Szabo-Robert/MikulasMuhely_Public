@@ -1,0 +1,83 @@
+﻿@model SantaFactory.Models.JelszoReszetModel
+
+@{
+    ViewBag.Title = "JelszoReszet";
+}
+
+<h2>Jelszó módosítás</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <p id="red">@TempData["ErrorMessage"]</p>
+    </div>
+}
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            <strong>@ViewBag.Message</strong>
+        </div>
+    }
+}
+else
+{
+
+    if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger">
+            <strong>@ViewBag.Message</strong>
+        </div>
+    }
+
+
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+
+            @*<div class="alert-success text-success">
+                    @ViewBag.Message
+                </div>*@
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UjJelszo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UjJelszo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UjJelszo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JelszoMegerosites, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.JelszoMegerosites, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JelszoMegerosites, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                @Html.HiddenFor(a => a.JelszoReszetKod)
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Módosít" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div>
+    @Html.ActionLink("Bejelentkezés", "Bejelentkezes", "Users_")
+</div>

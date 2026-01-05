@@ -51,8 +51,8 @@ namespace SantaFactory.Models
         public virtual ICollection<Feladat_User_ID> Feladat_User_ID { get; set; }
         public virtual FeladatTipusok FeladatTipusok { get; set; }
         public virtual Projektek Projektek { get; set; }
-        public virtual User User { get; set; }
-        public virtual User User1 { get; set; }
+        public virtual Users User { get; set; }
+        public virtual Users User1 { get; set; }
         public virtual Viszony Viszony { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Munkalapok> Munkalapoks { get; set; }

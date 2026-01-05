@@ -41,6 +41,6 @@ namespace SantaFactory.Models
         public virtual ICollection<Koltsegek> Koltsegeks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Munkalap_Koltseg_ID> Munkalap_Koltseg_ID { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

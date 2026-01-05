@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations;
 namespace SantaFactory.Models
 {
 
-    [MetadataType(typeof(UsersUnisolMetadata))]
-    public partial class UsersUnisol
+    [MetadataType(typeof(UsersMetadata))]
+    public partial class Users
     {
         public string JelszoMegerosites { get; set; }
 
@@ -18,7 +18,7 @@ namespace SantaFactory.Models
 
         public List<Jogosultsag> JogosultsagLista { get; set; }
 
-        public UsersUnisol ViewerUser { get; set; }
+        public Users ViewerUser { get; set; }
 
         public string Nev { get; set; }
 
@@ -26,7 +26,7 @@ namespace SantaFactory.Models
         public int logUserID { get; set; }
     }
 
-    public class UsersUnisolMetadata
+    public class UsersMetadata
     {
         public int UserID { get; set; }
 

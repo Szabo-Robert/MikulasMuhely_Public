@@ -1,0 +1,72 @@
+﻿@model IPagedList<SantaFactory.Models.ProjektekA>
+
+@{
+    ViewBag.Title = "IndexA";
+}
+
+
+@using PagedList.Mvc;
+@using PagedList;
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Projektek ARCHÍVUM</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AzonositoKod)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Nev)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AzonositoKod)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
+
+
+            <td>
+
+                @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID }, new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
+                @Html.ActionLink(" ", "DetailsA", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+                
+
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@* LAPOZO *@
+
+@Html.PagedListPager(Model, pn => Url.Action("IndexA", "Projekt",
+    new { pn, searcs = Request.QueryString["search"] }))
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

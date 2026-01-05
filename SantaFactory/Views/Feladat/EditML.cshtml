@@ -1,0 +1,127 @@
+﻿@model SantaFactory.Models.Feladatok
+
+@{
+    ViewBag.Title = "EditML";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Munka leírása</h2>
+
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @*@Html.HiddenFor(model => model)*@
+
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <div class="form-group">
+
+                <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+                    @Html.LabelFor(model => model.MunkaLeirasa, htmlAttributes: new { @class = "control-label" })
+                </div>
+
+                <div class="col-xs-8 col-sm-8 col-md-10 col-lg-11">
+                    @Html.EditorFor(model => model.MunkaLeirasa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MunkaLeirasa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            @* RAKTARI DOLGOK listaja - Megjegyzest TOROLNI *@
+            <div class="form-group">
+                @* RAKTARI DOLGOK listaja - Megjegyzest TOROLNI *@
+
+                <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+
+                    <p>
+                        <b>
+                            @Html.DisplayNameFor(model => model.KiirniEszkozokLista)
+                        </b>
+                    </p>
+
+                    @* A feladatba resztvevo eszkozok listaja *@
+
+
+                    <div>
+
+                        @Html.ValidationMessageFor(model => model.KiirniEszkozokLista, "", new { @class = "text-danger" })
+                        @for (int i = 0; i < Model.KiirniEszkozokLista.Count; i++)
+                        {
+                            <div>
+
+                                @Html.CheckBoxFor(modelItem => Model.KiirniEszkozokLista[i].EszkozKivalasztva)
+                                @{
+                                    if (Model.KiirniEszkozokLista[i].EszkozModositva)
+                                    {
+                                        <del> @Html.DisplayFor(modelItem => Model.KiirniEszkozokLista[i].EszkozNeve)</del>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => Model.KiirniEszkozokLista[i].EszkozNeve)
+                                    }
+                                }
+
+                                @*@Html.DisplayFor(modelItem => Model.KiirniEszkozokLista[i].EszkozNeve)*@
+                                @Html.HiddenFor(modelItem => Model.KiirniEszkozokLista[i].EszkozID)
+                                @Html.HiddenFor(modelItem => Model.KiirniEszkozokLista[i].ExEszkozFeladatID)
+                                @Html.HiddenFor(modelItem => Model.KiirniEszkozokLista[i].EszkozModositva)
+
+                            </div>
+
+                        }
+
+                    </div>
+
+                </content>
+            </div>
+
+
+            <div class="form-group">
+                <div>
+                    @*<p class="text-danger">* A mező kitöltése kötelező!</p>*@
+
+                    @*@{
+                        if (Model.Atiranyitott == null)
+                        {
+                            <input type="submit" value="Módosít" class="btn btn-default" />
+                            <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat")'" />
+                        }
+                        else
+                        {*@
+                    <input type="submit" value="Mentés" class="btn btn-default" />
+                    <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.ID })'" />
+                    @*}
+
+                        }*@
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

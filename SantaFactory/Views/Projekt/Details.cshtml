@@ -1,0 +1,103 @@
+﻿@model SantaFactory.Models.Projektek
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Projekt részletek</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                ID.
+            </th>
+
+            <th>
+                Projekt kód
+            </th>
+
+            <th>
+                Feladat Neve
+            </th>
+
+            <th>
+                Feladat típusa
+            </th>
+
+            <th>
+                V.Befejezés
+            </th>
+
+            <th>
+                Lezárva
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.feladatokLista)
+        {
+            string textColor = "red";
+
+            if (item.JovahagyvaCB)
+            {
+                textColor = "limegreen";
+            }
+
+    <tr style="color:@textColor; font-weight: bold">
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Nev)
+        </td>
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.JovahagyvaCB)
+        </td>
+
+        <td>
+            <a href="@Url.Action("Details", "Feladat", routeValues: new { id = item.ID })">
+                @* text space *@
+                <span class="glyphicon glyphicon-list" style="font-size:25px;" title="Részletek" aria-hidden="true"></span>
+            </a>
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>
+
+<div class="form-group">
+    <div>
+
+        <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Projekt")'" />
+    </div>
+</div>

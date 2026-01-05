@@ -1,0 +1,147 @@
+﻿@model IPagedList<SantaFactory.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Felhasználók</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+
+        @{
+            //string tempUser = User.Identity.Name;
+
+            //var tempJogosultsag = Model.FirstOrDefault(x => x.Elerhetosegek.Email == tempUser);
+
+            //foreach (var item in Model)
+            //{
+            //    if (item.Elerhetosegek.Email == tempUser)
+            //    {
+            //        tempJogosultsag = item;
+            //        break;
+            //    }
+
+            //}
+
+            if (Model.First().logUserJogosultsaga == "Vezetőség" || Model.First().logUserJogosultsaga == "ADMIN")
+            {
+                <a href="@Url.Action("Registration", "Users_")">
+                    @* text space *@
+                    <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új felhasználó hozzáadása"></span>
+                </a>
+            }
+        }
+
+
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Vezeték név
+        </th>
+
+        <th>
+            Kereszt név
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Elerhetosegek.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Elerhetosegek.Telszam1)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.First().Jogosultsag.Nev)
+        </th>
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.Viszony.Nev)
+            </th>*@
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VezetekNev)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.KeresztNev)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Elerhetosegek.Telszam1)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Jogosultsag.Nev)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Viszony.Nev)
+                </td>*@
+
+            <td>
+                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
+
+                @{
+                    @*//ha nem ADMIN, akkor ne tudjon torolni es modositani ADMIN-t!*@
+
+                    //string tempUser = User.Identity.Name;
+
+                    //var tempJogosultsag = Model.FirstOrDefault(x => x.Elerhetosegek.Email == tempUser);
+
+                    if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+                        @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
+                    }
+                }&nbsp;
+
+                @Html.ActionLink(" ", "Details", new { id = item.UserID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+                @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
+
+                @{
+                    if (Model.First().logUserJogosultsaga == "ADMIN")
+                    {
+                        @Html.ActionLink(" ", "Delete", new { id = item.UserID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                        @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
+                    }
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@* LAPOZO *@
+
+@Html.PagedListPager(Model, pn => Url.Action("Index", "Users_",
+    new { pn, searcs = Request.QueryString["search"] }))

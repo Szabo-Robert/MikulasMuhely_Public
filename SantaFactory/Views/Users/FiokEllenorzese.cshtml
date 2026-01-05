@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "FiokEllenorzese";
+}
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+
+    <div class="alert alert-success">
+
+        <strong>Sikeres befejezés!</strong>
+        Az Ön fiókja sikeresen aktiválódott. A bejelentkezéshez kattintson
+        @Html.ActionLink("ide.", "Bejelentkezes", "Users_")
+
+    </div>
+
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Hiba!</strong> @ViewBag.Message
+    </div>
+
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <p id="red">@TempData["ErrorMessage"]</p>
+    </div>
+}

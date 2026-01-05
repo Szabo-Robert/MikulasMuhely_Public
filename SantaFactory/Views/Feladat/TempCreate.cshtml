@@ -1,0 +1,358 @@
+﻿@model SantaFactory.Models.Feladatok
+
+@{
+    ViewBag.Title = "TempCreate";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Feladatok</h2>
+
+        <p>
+            <h3 id="red">Új IDEIGLENES feladat</h3>
+        </p>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @*@Html.HiddenFor(model => model.ProjektekLista)
+            @Html.HiddenFor(model => model.FeladatTipusokLista)
+            @Html.HiddenFor(model => model.feladatokUsersLista)
+            @Html.HiddenFor(model => model.KiirniEszkozokLista)*@
+        @Html.HiddenFor(model => model.ViszonyID, new { @Value = 2 })
+
+        @* Automatikusan azt a feladatTipusID-kapja, aminek az erteke TEMP *@
+        @Html.HiddenFor(model => model.FeladatTipusaID, new { @Value = Model.FeladatTipusokLista.FirstOrDefault(x => x.Nev.ToUpper() == "IDEIGLENES").ID })
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+            <table class="table">
+
+                @* Bal oszlop *@
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.Nev, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Nev, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Nev, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FeladatLeirasa, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.FeladatLeirasa, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FeladatLeirasa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.ProjektID, "Projekt", htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.DropDownListFor(model => model.ProjektID, new SelectList(Model.ProjektekLista, "ID", "AzonositoKod"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.ProjektID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.VarhatoKezdes, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.VarhatoKezdes, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @type = "text",
+                               @id = "datetimepickerSTART",
+                               @class = "form-control",
+                               @style = "font-size:15px;",
+                               @min = "2000-01-01",
+                               @max = "2050-12-31"
+                           }
+                       })
+                            @Html.ValidationMessageFor(model => model.VarhatoKezdes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.VarhatoBefejezes, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.VarhatoBefejezes, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @type = "text",
+                               @id = "datetimepickerEND",
+                               @class = "form-control",
+                               @style = "font-size:15px;",
+                               @min = "2000-01-01",
+                               @max = "2050-12-31"
+                           }
+                       })
+                            @Html.ValidationMessageFor(model => model.VarhatoBefejezes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.KezdesiIdo,@*"K. idő / B. idő",*@htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.KezdesiIdo, new { htmlAttributes = new { @class = "form-control datetimepicker1" } })
+                            @Html.ValidationMessageFor(model => model.KezdesiIdo, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.BecsultMunkaOra, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.BecsultMunkaOra, new { htmlAttributes = new { @class = "form-control", @min = "1", @max = "24" } })
+                            @Html.ValidationMessageFor(model => model.BecsultMunkaOra, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                @* JOBB oszlop*@
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                    @* RAKTARI DOLGOK listaja - Megjegyzest TOROLNI *@
+
+                    <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+
+                        <p>
+                            <b>
+                                @Html.DisplayNameFor(model => model.KiirniEszkozokLista)
+                            </b>
+                        </p>
+
+                        @* A feladatba resztvevok neveinek listaja *@
+
+
+                        <div>
+
+                            @Html.ValidationMessageFor(model => model.KiirniEszkozokLista, "", new { @class = "text-danger" })
+                            @for (int i = 0; i < Model.KiirniEszkozokLista.Count; i++)
+                            {
+                                <div>
+
+                                    @Html.CheckBoxFor(modelItem => Model.KiirniEszkozokLista[i].EszkozKivalasztva)
+                                    @Html.DisplayFor(modelItem => Model.KiirniEszkozokLista[i].EszkozNeve)
+                                    @Html.HiddenFor(modelItem => Model.KiirniEszkozokLista[i].EszkozID)
+                                    @Html.HiddenFor(modelItem => Model.KiirniEszkozokLista[i].ExEszkozFeladatID)
+
+                                </div>
+
+                            }
+
+                        </div>
+
+                    </content>
+
+                </div>
+
+            </table>
+
+            <table class="table">
+                @*Cim adatok*@
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                    <p>
+                        <h5 id="red">Feladat címe</h5>
+                    </p>
+                    <hr />
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.Cimek.Orszag, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Orszag, new { htmlAttributes = new { @Value = "Magyarország", @id = "Orszag", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Orszag, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.Cimek.Varos, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Varos, new { htmlAttributes = new { @Value = "Nagytarcsa", @id = "Varos", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Varos, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Cimek.PostaKod, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.PostaKod, new { htmlAttributes = new { @id = "Szam", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.PostaKod, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Cimek.Utca, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Utca, new { htmlAttributes = new { @id = "Utca", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Utca, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Cimek.Szam, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Szam, new { htmlAttributes = new { @id = "Szam", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Szam, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Cimek.Egyeb, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Egyeb, new { htmlAttributes = new { @id = "Egyeb", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Egyeb, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.Cimek.Megjegyzes, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Cimek.Megjegyzes, new { htmlAttributes = new { @id = "Egyeb", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cimek.Megjegyzes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                @*Elérhetőségek*@
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+
+                    <p>
+                        <h5 id="red">Kontakt elérhetőségei</h5>
+                    </p>
+                    <hr />
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.Elerhetosegek.Telszam1, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Elerhetosegek.Telszam1, new { htmlAttributes = new { @Value = "+36 / ...", @id = "Telszam1", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Elerhetosegek.Telszam1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Elerhetosegek.Telszam2, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Elerhetosegek.Telszam2, new { htmlAttributes = new { @id = "Telszam2", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Elerhetosegek.Telszam2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group required">
+                        @Html.LabelFor(model => model.Elerhetosegek.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Elerhetosegek.Email, new { htmlAttributes = new { @Value = @HttpContext.Current.User.Identity.Name, @id = "Email", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Elerhetosegek.Email, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessage("EmailMarLetezik", new { @class = "text-danger" })*@
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Elerhetosegek.WEB, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Elerhetosegek.WEB, new { htmlAttributes = new { @id = "Web", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Elerhetosegek.WEB, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Elerhetosegek.Megjegyzes, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Elerhetosegek.Megjegyzes, new { htmlAttributes = new { @id = "Megjegyzes_Kontakt", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Elerhetosegek.Megjegyzes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+            </table>
+
+            @* Beiras vege *@
+
+            <div class="form-group">
+                <div>
+                    <p class="text-danger">* A mező kitöltése kötelező!</p>
+
+                    @*@{
+                        if (Model.ProjektID == null)
+                        {*@
+                    <input type="submit" value="Létrehoz" class="btn btn-default" />
+                    <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("TempIndex", "Feladat")'" />
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('.datetimepicker1').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+
+        $(function () {
+            $('.datetimepicker2').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+
+
+        $(function () {
+            $('#datetimepickerSTART').datetimepicker({
+                format: 'YYYY.MM.DD'
+            });
+            $('#datetimepickerEND').datetimepicker({
+                format: 'YYYY.MM.DD',
+                useCurrent: false //Important! See issue #1075
+            });
+
+            $("#datetimepickerSTART").on("dp.change", function (e) {
+                $('#datetimepickerEND').data("DateTimePicker").minDate(e.date);
+            });
+
+            $("#datetimepickerEND").on("dp.change", function (e) {
+                $('#datetimepickerSTART').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+
+
+    </script>
+
+
+
+}

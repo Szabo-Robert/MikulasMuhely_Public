@@ -3,37 +3,258 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>@ViewBag.Title Unisol Installációs KFT.</title>
+
+    @* UNISOL 2018-bol *@
+    <link href="~/Content/PrivatStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/Content/favicon.ico" />
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @if (Request.IsAuthenticated)
+                {
+
+                    using (Html.BeginForm("Kijelentkezes", "Users_", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @*<a href="javascript:document.getElementById('logoutForm').submit()">Kijelentkezés</a>*@
+                    }
+                }
+
+                @Html.ActionLink("FŐOLDAL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
+
+            @{
+                bool logedIn = User.Identity.IsAuthenticated;
+
+                string tempJogosultsag = "";
+
+                if (TempData["Users"] != null)
+                {
+                    tempJogosultsag = TempData["Users"].ToString();
+                    //TempData.Keep();
+                }
+
+                if (tempJogosultsag == "ADMIN" && logedIn)
+                {
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="ProjektekGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Projektek<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Projektek">@Html.ActionLink("Projektek", "Index", "Projekt")</li>
+                                    <li id="Projektek">@Html.ActionLink("Projektek ARCHIV", "IndexA", "Projekt")</li>
+
+                                </ul>
+
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Feladatok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Feladatok">@Html.ActionLink("Feladatok listája", "Index", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("IDEIGLENES Feladatok", "TempIndex", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Jóváhagyott", "Jovahagyott", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Nem jóváhagyott", "Nemjovahagyott", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Feladat tipusok", "Index", "FeladatTipusok")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Folyamat státuszok", "Index", "Viszonyok")</li>
+                                    @*<li id="Feladatok">@Html.ActionLink("Feladatok ARCHIV", "IndexA", "Feladat")</li>*@
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Munkalapok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Munkalap">@Html.ActionLink("Munkalapok listája", "Index", "Munkalapok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
+                                    @*<li id="Munkalap">@Html.ActionLink("Munkalapok ARCHIV", "IndexA", "Munkalapok")</li>*@
+
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="@Url.Action("Index", "ElvittEszkozok")" role="button"
+                                   aria-haspopup="true" aria-expanded="true"><span>Eszközök</span></a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="UsersGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felhasználók<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users_")</li>
+                                    <li id="FelhasznaloiSzerepkorok">@Html.ActionLink("Felhasználók szerepköre", "Index", "Jogosultsag")</li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+
+                                <a href="javascript:document.getElementById('logoutForm').submit()" role="button"
+                                   aria-haspopup="true" aria-expanded="true" style="color:indianred">Kijelentkezés</a>
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                }
+                else if (tempJogosultsag == "Vezetőség" && logedIn)
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="ProjektekGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Projektek<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Projektek">@Html.ActionLink("Projektek", "Index", "Projekt")</li>
+                                    <li id="Projektek">@Html.ActionLink("Projektek ARCHIV", "IndexA", "Projekt")</li>
+
+                                </ul>
+
+                                @*<a href="@Url.Action("Index", "Projekt")" role="button"
+                                    aria-haspopup="true" aria-expanded="true"><span>Projektek</span></a>*@
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Feladatok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Feladatok">@Html.ActionLink("Feladatok listája", "Index", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("IDEIGLENES Feladatok", "TempIndex", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Jóváhagyott", "Jovahagyott", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Nem jóváhagyott", "Nemjovahagyott", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Feladat tipusok", "Index", "FeladatTipusok")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Folyamat státuszok", "Index", "Viszonyok")</li>
+                                    @*<li id="Feladatok">@Html.ActionLink("Feladatok ARCHIV", "IndexA", "Feladat")</li>*@
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Munkalapok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Munkalap">@Html.ActionLink("Munkalapok listája", "Index", "Munkalapok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
+                                    @*<li id="Munkalap">@Html.ActionLink("Munkalapok ARCHIV", "IndexA", "Munkalapok")</li>*@
+
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="@Url.Action("Index", "ElvittEszkozok")" role="button"
+                                   aria-haspopup="true" aria-expanded="true"><span>Eszközök</span></a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="UsersGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Felhasználók<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Felhasznalok">@Html.ActionLink("Felhasználók listája", "Index", "Users_")</li>
+                                    <li id="FelhasznaloiSzerepkorok">@Html.ActionLink("Felhasználók szerepköre", "Index", "Jogosultsag")</li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="javascript:document.getElementById('logoutForm').submit()" role="button"
+                                   aria-haspopup="true" aria-expanded="true" style="color:indianred">Kijelentkezés</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                }
+                else if (tempJogosultsag == "Alkalmazott" && logedIn) /*(logedIn)*/
+                {
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Feladatok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Feladatok">@Html.ActionLink("IDEIGLENES Feladatok", "TempIndex", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Jóváhagyott", "Jovahagyott", "Feladat")</li>
+                                    <li id="Feladatok">@Html.ActionLink("Nem jóváhagyott", "Nemjovahagyott", "Feladat")</li>
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" id="FeladatokGomb" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Munkalapok<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li id="Munkalap">@Html.ActionLink("Munkalapok listája", "Index", "Munkalapok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
+                                    <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
+
+
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="@Url.Action("Index", "Users_")" role="button"
+                                   aria-haspopup="true" aria-expanded="true"><span>Profilom</span></a>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="javascript:document.getElementById('logoutForm').submit()" role="button"
+                                   aria-haspopup="true" aria-expanded="true" style="color:indianred">Kijelentkezés</a>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+                }
+            }
+
         </div>
-    </nav>
+    </div>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Unisol Installációs KFT. </p>
+            <p>Vers.BETA 3.0</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
 </body>
 </html>

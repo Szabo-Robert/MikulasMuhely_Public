@@ -1,0 +1,308 @@
+﻿@model SantaFactory.Models.FeladatokA
+
+@{
+    ViewBag.Title = "DetailsA";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>ARCHÍV Feladat részletek</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        @* FELADAT informaciok - BAL OLDALA *@
+        <table class="table">
+            <content class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nev)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nev)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ProjektekA.AzonositoKod)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ProjektekA.AzonositoKod)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FeladatLeirasa)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FeladatLeirasa)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VarhatoKezdes)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VarhatoKezdes)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Kido)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Kido)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.VarhatoBefejezes)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VarhatoBefejezes)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FeladatTipusok.Nev)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FeladatTipusok.Nev)
+                </dd>
+
+            </content>
+
+            @* Feladat ELERHETOSEGEK - BAL oldal *@
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="table-responsive">
+                    <table class="table">
+
+                        @* ELERHETOSEGEK + CIM *@
+                        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <dt>
+                                Elérhetőségek
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
+                            </dd>
+
+
+                            <dt>
+                                Cím
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.Cimek.Orszag),&nbsp;
+                                @Html.DisplayFor(modelItem => Model.Cimek.Varos)<br />
+                                @Html.DisplayFor(modelItem => Model.Cimek.Utca) u.,&nbsp;
+                                @Html.DisplayFor(modelItem => Model.Cimek.Szam) sz.
+                                @Html.DisplayFor(modelItem => Model.Cimek.Egyeb)
+                                @Html.DisplayFor(modelItem => Model.Cimek.Megjegyzes)
+                            </dd>
+
+                        </content>
+
+                    </table>
+                </div>
+
+
+                @* MUNKALAPOK listaja *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Munkalapok listája</h3>
+                            </p>
+
+                            <tr>
+
+                                <th>
+                                    Munka dátuma
+                                </th>
+
+                                <th>
+                                    Kezdési idő
+                                </th>
+
+                                <th>
+                                    Munka óra
+                                </th>
+
+                                <th>
+                                    KM.
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserNev)
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model.MunkalapokListaja)
+                            {
+                                string textColor = "limegreen";
+
+                                if (item.Megtekintve)
+                                {
+                                    textColor = "red";
+                                }
+
+                                <tr style="color:@textColor; font-weight: bold">
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MunkaDatuma)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.KIdo)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MunkaOra) óra
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MegtettKM)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                                    </td>
+
+                                    @* ATADNI A FELADAT ID-ja *@
+
+                                    @{
+                                        string MunkalapIDFeladatID = $"{item.ID}_{Model.ID}";
+                                    }
+
+                                    <td>
+
+                                        <a href="@Url.Action("DetailsA", "Munkalapok", routeValues: new { id = MunkalapIDFeladatID })">
+                                            @* text space *@
+                                            <span class="glyphicon glyphicon-list" style="font-size:25px;" title="Részletek" aria-hidden="true"></span>
+                                        </a>
+
+                                    </td>
+                                </tr>
+                            }
+
+
+
+                        </table>
+
+                    </div>
+                </div>
+
+
+                @* FELHASZNALT ANYAGOK listaja *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Felhasznált anyagok</h3>
+                            </p>
+
+                            <tr>
+
+                                <th>
+                                    Felhasznált anyag
+                                </th>
+
+                                <th>
+                                    Létrehozó
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model.FelhasznaltAnyagALista)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nev)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserNev)
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </table>
+
+                    </div>
+                </div>
+
+                @* Munka LEIRASA *@
+                @* A feladathoz letrehozott munkalapok listaja *@
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="table-responsive">
+                        <table class="table">
+
+                            <p>
+                                <h3 id="red">Munka leírása</h3>
+                            </p>
+
+                            <tr>
+
+                                <th>
+                                    <h4>@Html.DisplayFor(model => model.MunkaLeirasa)</h4>
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                </th>
+
+                                <th></th>
+                            </tr>
+
+                        </table>
+                    </div>
+                    @*</div>
+                        </div>*@
+
+        </table>
+
+
+    </dl>
+
+</div>
+<div class="form-group ">
+    <div>
+
+        <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("DetailsA", "Projekt", routeValues: new { id = Model.ProjektAID })'" />
+        @*<input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("IndexA", "Feladat")'" />*@
+
+    </div>
+</div>
+

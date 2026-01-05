@@ -8,7 +8,7 @@ namespace SantaFactory.Models
     public partial class MunkalapokA
     {
         public List<FeladatokA> FeladatokLista { get; set; }
-        public List<UsersUnisol> MunkasokLista { get; set; }
+        public List<Users> MunkasokLista { get; set; }
 
         public List<Koltsegek> KoltsegekLista { get; set; }
 

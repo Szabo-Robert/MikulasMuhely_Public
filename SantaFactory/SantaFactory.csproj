@@ -227,7 +227,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Models\Users.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Viszony.cs">
@@ -305,6 +305,66 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ElvittEszkozok\Create.cshtml" />
+    <Content Include="Views\ElvittEszkozok\Delete.cshtml" />
+    <Content Include="Views\ElvittEszkozok\Edit.cshtml" />
+    <Content Include="Views\ElvittEszkozok\Index.cshtml" />
+    <Content Include="Views\Feladat\Create.cshtml" />
+    <Content Include="Views\Feladat\Delete.cshtml" />
+    <Content Include="Views\Feladat\Details.cshtml" />
+    <Content Include="Views\Feladat\DetailsA.cshtml" />
+    <Content Include="Views\Feladat\Edit.cshtml" />
+    <Content Include="Views\Feladat\EditML.cshtml" />
+    <Content Include="Views\Feladat\Index.cshtml" />
+    <Content Include="Views\Feladat\IndexA.cshtml" />
+    <Content Include="Views\Feladat\Jovahagyott.cshtml" />
+    <Content Include="Views\Feladat\Nemjovahagyott.cshtml" />
+    <Content Include="Views\Feladat\TempCreate.cshtml" />
+    <Content Include="Views\Feladat\TempDelete.cshtml" />
+    <Content Include="Views\Feladat\TempIndex.cshtml" />
+    <Content Include="Views\FeladatTipusok\Create.cshtml" />
+    <Content Include="Views\FeladatTipusok\Delete.cshtml" />
+    <Content Include="Views\FeladatTipusok\Edit.cshtml" />
+    <Content Include="Views\FeladatTipusok\Index.cshtml" />
+    <Content Include="Views\FelhasznaltAnyagok\Create.cshtml" />
+    <Content Include="Views\FelhasznaltAnyagok\Delete.cshtml" />
+    <Content Include="Views\FelhasznaltAnyagok\Edit.cshtml" />
+    <Content Include="Views\FelhasznaltAnyagok\Index.cshtml" />
+    <Content Include="Views\Jogosultsag\Create.cshtml" />
+    <Content Include="Views\Jogosultsag\Delete.cshtml" />
+    <Content Include="Views\Jogosultsag\Edit.cshtml" />
+    <Content Include="Views\Jogosultsag\Index.cshtml" />
+    <Content Include="Views\Koltsegek\Create.cshtml" />
+    <Content Include="Views\Koltsegek\Delete.cshtml" />
+    <Content Include="Views\Koltsegek\Edit.cshtml" />
+    <Content Include="Views\Koltsegek\Index.cshtml" />
+    <Content Include="Views\Munkalapok\Create.cshtml" />
+    <Content Include="Views\Munkalapok\Delete.cshtml" />
+    <Content Include="Views\Munkalapok\Details.cshtml" />
+    <Content Include="Views\Munkalapok\DetailsA.cshtml" />
+    <Content Include="Views\Munkalapok\Edit.cshtml" />
+    <Content Include="Views\Munkalapok\Index.cshtml" />
+    <Content Include="Views\Munkalapok\IndexA.cshtml" />
+    <Content Include="Views\Projekt\Create.cshtml" />
+    <Content Include="Views\Projekt\Delete.cshtml" />
+    <Content Include="Views\Projekt\Details.cshtml" />
+    <Content Include="Views\Projekt\DetailsA.cshtml" />
+    <Content Include="Views\Projekt\Edit.cshtml" />
+    <Content Include="Views\Projekt\Index.cshtml" />
+    <Content Include="Views\Projekt\IndexA.cshtml" />
+    <Content Include="Views\Users\Bejelentkezes.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\FiokEllenorzese.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\JelszoModositas.cshtml" />
+    <Content Include="Views\Users\JelszoReszet.cshtml" />
+    <Content Include="Views\Users\Registration.cshtml" />
+    <Content Include="Views\Viszonyok\Create.cshtml" />
+    <Content Include="Views\Viszonyok\Delete.cshtml" />
+    <Content Include="Views\Viszonyok\Edit.cshtml" />
+    <Content Include="Views\Viszonyok\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

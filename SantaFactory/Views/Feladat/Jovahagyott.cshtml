@@ -1,0 +1,100 @@
+﻿@model IPagedList<SantaFactory.Models.Feladatok>
+
+@{
+    ViewBag.Title = "Jovahagyott";
+}
+
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Jóváhagyott feladatok</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                ID.
+            </th>
+
+            <th>
+                Projekt kód
+            </th>
+
+            <th>
+                Feladat Neve
+            </th>
+
+            <th>
+                Feladat típusa
+            </th>
+
+            <th>
+                V.Befejezés
+            </th>
+
+
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+                </td>
+
+                <td>
+                    @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
+
+                    @*@Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;*@
+                    @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
+
+                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+                    @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
+
+                    @*@Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })*@
+                    @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+    @* LAPOZO *@
+
+    @Html.PagedListPager(Model, pn => Url.Action("Jovahagyott", "Feladat",
+        new { pn, searcs = Request.QueryString["search"] }))
+
+</div>

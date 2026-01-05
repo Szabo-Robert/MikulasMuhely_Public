@@ -1,0 +1,289 @@
+﻿@model SantaFactory.Models.Users
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Felhasználó</h2>
+
+        <p>
+            <h3 id="red">Törlés</h3>
+        </p>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div>
+
+    <hr />
+
+    <div class="form-group">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-danger" id="red">
+
+            <h4>Biztosan szeretné törölni a következő elemet?</h4>
+
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+
+        <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <dt>
+                    Név
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.VezetekNev) @Html.DisplayFor(model => model.KeresztNev)
+                </dd>
+
+                <dt>
+                    Szerepkör
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Jogosultsag.Nev)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SzuletesiDatum)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SzuletesiDatum)
+                </dd>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AnyjaNeve)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.SzemIgSzam)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SzemIgSzam)
+                </dd>
+
+                <dt>
+                    Személyi szám:
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AdoSzam)
+                </dd>
+
+                @*
+        <dt>
+            @Html.DisplayNameFor(model => model.SzamlaSzam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SzamlaSzam)
+        </dd>
+
+        <dt>
+            Állapot
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Viszony.Nev)
+        </dd>*@
+
+                <br />
+
+            </content>
+
+            <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                <dt>
+                    Elérhetőségek
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
+                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
+                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
+                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB) <br />
+                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Megjegyzes)
+                </dd>
+
+
+                @*
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Berezes)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Berezes)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GKRendszam)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GKRendszam)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UzemanyagAr)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UzemanyagAr)
+                    </dd>*@
+
+            </content>
+
+            <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+                <dt>
+                    Cím
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(modelItem => Model.Cimek.Orszag)<br />
+                    @Html.DisplayFor(modelItem => Model.Cimek.PostaKod)&nbsp;
+                    @Html.DisplayFor(modelItem => Model.Cimek.Varos)<br />
+                    @Html.DisplayFor(modelItem => Model.Cimek.Utca) u.,&nbsp;
+                    @Html.DisplayFor(modelItem => Model.Cimek.Szam) sz.<br />
+                    @Html.DisplayFor(modelItem => Model.Cimek.Egyeb)<br />
+                    @Html.DisplayFor(modelItem => Model.Cimek.Megjegyzes)
+                </dd>
+
+            </content>
+
+            @*<table class="col-xs-12 col-sm-12 col-md-12 col-lg-12">*@
+
+
+
+            @*<hr />
+                <dt>
+                    Értesítendő személy
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ErtSzemelyNev)<br />
+                    @Html.DisplayFor(model => model.ErtSzemelyEmail)<br />
+                    @Html.DisplayFor(model => model.ErtSzemelyTel1) <br />
+                    @Html.DisplayFor(model => model.ErtSzemelyTel2)
+                </dd>*@
+
+            @*
+
+                @if (!(Model.Megegyezik))
+                {
+                    <div class="table-responsive">
+                        <p>
+                            <h3 id="red"> Számlázási információ</h3>
+                        </p>
+                        <hr />
+
+                        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CegAdatok.Nev)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CegAdatok.Nev)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CegAdatok.AdoSzam)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CegAdatok.AdoSzam)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CegAdatok.SzamlaSzam)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CegAdatok.SzamlaSzam)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.CegAdatok.Meghatalmazott)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.CegAdatok.Meghatalmazott)
+                            </dd>
+                        </content>
+
+                        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <dt>
+                                Cím
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Orszag), <br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Varos), <br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Utca) u.<br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Szam) sz.
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Egyeb)
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Cimek.Megjegyzes)
+                            </dd>
+
+                        </content>
+
+                        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <dt>
+                                Elérhetőségek
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Elerhetosegek.Telszam1) <br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Elerhetosegek.Telszam2) <br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Elerhetosegek.Email) <br />
+                                @Html.DisplayFor(modelItem => Model.CegAdatok.Elerhetosegek.WEB)
+                            </dd>
+
+
+                        </content>
+                    </div>
+
+                } ceg info vege *@
+            @*</table>*@
+            <table>
+                <dt>
+
+                </dt>
+
+                <dd>
+
+                </dd>
+
+                <br />
+
+                <hr />
+            </table>
+        </table>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Töröl" class="btn btn-default" />
+            <input type="button" value="Vissza" class="btn btn-default"
+                   onclick="location.href='@Url.Action("Index", "Users_", routeValues: new { id = Model.UserID })'" />
+
+        </div>
+    }
+</div>

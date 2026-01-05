@@ -840,7 +840,7 @@
           <Property Name="SzamlaSzam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Meghatalmazott" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsUser" Type="Boolean" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UsersUnisol_CegAdatok" FromRole="CegAdatok" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_CegAdatok" FromRole="CegAdatok" ToRole="Users" />
         </EntityType>
         <EntityType Name="Cimek">
           <Key>
@@ -856,7 +856,7 @@
           <Property Name="Megjegyzes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Feladatoks" Relationship="Self.FK_Feladatok_Cimek" FromRole="Cimek" ToRole="Feladatok" />
           <NavigationProperty Name="FeladatokAs" Relationship="Self.FK_FeladatokA_Cimek" FromRole="Cimek" ToRole="FeladatokA" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UsersUnisol_Cimek" FromRole="Cimek" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Cimek" FromRole="Cimek" ToRole="Users" />
         </EntityType>
         <EntityType Name="Elerhetosegek">
           <Key>
@@ -871,7 +871,7 @@
           <NavigationProperty Name="Users" Relationship="Self.FK_ErtSzemelyElerh_Elerhetosegek" FromRole="Elerhetosegek" ToRole="Users" />
           <NavigationProperty Name="Feladatoks" Relationship="Self.FK_Feladatok_Elerhetosegek" FromRole="Elerhetosegek" ToRole="Feladatok" />
           <NavigationProperty Name="FeladatokAs" Relationship="Self.FK_FeladatokA_Elerhetosegek" FromRole="Elerhetosegek" ToRole="FeladatokA" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK_UsersUnisol_Elerhetosegek" FromRole="Elerhetosegek" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Users_Elerhetosegek" FromRole="Elerhetosegek" ToRole="Users" />
         </EntityType>
         <EntityType Name="ElvittEszkozok">
           <Key>
@@ -911,7 +911,7 @@
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <Property Name="FeladatID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Feladatok" Relationship="Self.FK_Feladat_User_ID_Feladatok" FromRole="Feladat_User_ID" ToRole="Feladatok" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Feladat_User_ID_UsersUnisol" FromRole="Feladat_User_ID" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Feladat_User_ID_Users" FromRole="Feladat_User_ID" ToRole="Users" />
         </EntityType>
         <EntityType Name="Feladatok">
           <Key>
@@ -941,8 +941,8 @@
           <NavigationProperty Name="Feladat_User_ID" Relationship="Self.FK_Feladat_User_ID_Feladatok" FromRole="Feladatok" ToRole="Feladat_User_ID" />
           <NavigationProperty Name="FeladatTipusok" Relationship="Self.FK_Feladatok_FeladatTipusok" FromRole="Feladatok" ToRole="FeladatTipusok" />
           <NavigationProperty Name="Projektek" Relationship="Self.FK_Feladatok_Projektek1" FromRole="Feladatok" ToRole="Projektek" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Feladatok_UsersUnisol" FromRole="Feladatok" ToRole="Users" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Feladatok_UsersUnisol1" FromRole="Feladatok" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Feladatok_Users" FromRole="Feladatok" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Feladatok_Users1" FromRole="Feladatok" ToRole="Users" />
           <NavigationProperty Name="Viszony" Relationship="Self.FK_Feladatok_Viszony" FromRole="Feladatok" ToRole="Viszony" />
           <NavigationProperty Name="Munkalapoks" Relationship="Self.FK_Munkalapok_Feladatok" FromRole="Feladatok" ToRole="Munkalapok" />
         </EntityType>
@@ -971,7 +971,7 @@
           <NavigationProperty Name="Elerhetosegek" Relationship="Self.FK_FeladatokA_Elerhetosegek" FromRole="FeladatokA" ToRole="Elerhetosegek" />
           <NavigationProperty Name="FeladatTipusok" Relationship="Self.FK_FeladatokA_FeladatTipusok" FromRole="FeladatokA" ToRole="FeladatTipusok" />
           <NavigationProperty Name="ProjektekA" Relationship="Self.FK_FeladatokA_ProjektekA" FromRole="FeladatokA" ToRole="ProjektekA" />
-          <NavigationProperty Name="User" Relationship="Self.FK_FeladatokA_UsersUnisol" FromRole="FeladatokA" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FeladatokA_Users" FromRole="FeladatokA" ToRole="Users" />
           <NavigationProperty Name="Viszony" Relationship="Self.FK_FeladatokA_Viszony" FromRole="FeladatokA" ToRole="Viszony" />
           <NavigationProperty Name="FelhasznaltAnyagAs" Relationship="Self.FK_FelhasznaltAnyagA_FeladatokA" FromRole="FeladatokA" ToRole="FelhasznaltAnyagA" />
           <NavigationProperty Name="MunkalapokAs" Relationship="Self.FK_MunkalapokA_FeladatokA" FromRole="FeladatokA" ToRole="MunkalapokA" />
@@ -1010,7 +1010,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nev" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UsersUnisol_Jogosultsag" FromRole="Jogosultsag" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Jogosultsag" FromRole="Jogosultsag" ToRole="Users" />
         </EntityType>
         <EntityType Name="Koltsegek">
           <Key>
@@ -1055,7 +1055,7 @@
           <NavigationProperty Name="Feladatok" Relationship="Self.FK_Munkalapok_Feladatok" FromRole="Munkalapok" ToRole="Feladatok" />
           <NavigationProperty Name="Koltsegeks" Relationship="Self.FK_Koltsegek_Munkalapok" FromRole="Munkalapok" ToRole="Koltsegek" />
           <NavigationProperty Name="Munkalap_Koltseg_ID" Relationship="Self.FK_Munkalap_Koltseg_ID_Munkalapok" FromRole="Munkalapok" ToRole="Munkalap_Koltseg_ID" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Munkalapok_UsersUnisol" FromRole="Munkalapok" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Munkalapok_Users" FromRole="Munkalapok" ToRole="Users" />
         </EntityType>
         <EntityType Name="MunkalapokA">
           <Key>
@@ -1076,7 +1076,7 @@
           <Property Name="BIdo" Type="Time" Nullable="false" Precision="7" />
           <Property Name="ArchiveCB" Type="Boolean" />
           <NavigationProperty Name="FeladatokA" Relationship="Self.FK_MunkalapokA_FeladatokA" FromRole="MunkalapokA" ToRole="FeladatokA" />
-          <NavigationProperty Name="User" Relationship="Self.FK_MunkalapokA_UsersUnisol" FromRole="MunkalapokA" ToRole="Users" />
+          <NavigationProperty Name="User" Relationship="Self.FK_MunkalapokA_Users" FromRole="MunkalapokA" ToRole="Users" />
         </EntityType>
         <EntityType Name="Projektek">
           <Key>
@@ -1108,7 +1108,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
@@ -1138,18 +1138,18 @@
           <Property Name="JelszoModositoKod" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="BejelentkezveMarad" Type="Boolean" />
           <Property Name="GDPR" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CegAdatok" Relationship="Self.FK_UsersUnisol_CegAdatok" FromRole="Users" ToRole="CegAdatok" />
-          <NavigationProperty Name="Cimek" Relationship="Self.FK_UsersUnisol_Cimek" FromRole="Users" ToRole="Cimek" />
+          <NavigationProperty Name="CegAdatok" Relationship="Self.FK_Users_CegAdatok" FromRole="Users" ToRole="CegAdatok" />
+          <NavigationProperty Name="Cimek" Relationship="Self.FK_Users_Cimek" FromRole="Users" ToRole="Cimek" />
           <NavigationProperty Name="Elerhetosegek" Relationship="Self.FK_ErtSzemelyElerh_Elerhetosegek" FromRole="Users" ToRole="Elerhetosegek" />
-          <NavigationProperty Name="Elerhetosegek1" Relationship="Self.FK_UsersUnisol_Elerhetosegek" FromRole="Users" ToRole="Elerhetosegek" />
-          <NavigationProperty Name="Feladat_User_ID" Relationship="Self.FK_Feladat_User_ID_UsersUnisol" FromRole="Users" ToRole="Feladat_User_ID" />
-          <NavigationProperty Name="Feladatoks" Relationship="Self.FK_Feladatok_UsersUnisol" FromRole="Users" ToRole="Feladatok" />
-          <NavigationProperty Name="Feladatoks1" Relationship="Self.FK_Feladatok_UsersUnisol1" FromRole="Users" ToRole="Feladatok" />
-          <NavigationProperty Name="FeladatokAs" Relationship="Self.FK_FeladatokA_UsersUnisol" FromRole="Users" ToRole="FeladatokA" />
-          <NavigationProperty Name="Jogosultsag" Relationship="Self.FK_UsersUnisol_Jogosultsag" FromRole="Users" ToRole="Jogosultsag" />
-          <NavigationProperty Name="Munkalapoks" Relationship="Self.FK_Munkalapok_UsersUnisol" FromRole="Users" ToRole="Munkalapok" />
-          <NavigationProperty Name="MunkalapokAs" Relationship="Self.FK_MunkalapokA_UsersUnisol" FromRole="Users" ToRole="MunkalapokA" />
-          <NavigationProperty Name="Viszony" Relationship="Self.FK_UsersUnisol_Viszony" FromRole="Users" ToRole="Viszony" />
+          <NavigationProperty Name="Elerhetosegek1" Relationship="Self.FK_Users_Elerhetosegek" FromRole="Users" ToRole="Elerhetosegek" />
+          <NavigationProperty Name="Feladat_User_ID" Relationship="Self.FK_Feladat_User_ID_Users" FromRole="Users" ToRole="Feladat_User_ID" />
+          <NavigationProperty Name="Feladatoks" Relationship="Self.FK_Feladatok_Users" FromRole="Users" ToRole="Feladatok" />
+          <NavigationProperty Name="Feladatoks1" Relationship="Self.FK_Feladatok_Users1" FromRole="Users" ToRole="Feladatok" />
+          <NavigationProperty Name="FeladatokAs" Relationship="Self.FK_FeladatokA_Users" FromRole="Users" ToRole="FeladatokA" />
+          <NavigationProperty Name="Jogosultsag" Relationship="Self.FK_Users_Jogosultsag" FromRole="Users" ToRole="Jogosultsag" />
+          <NavigationProperty Name="Munkalapoks" Relationship="Self.FK_Munkalapok_Users" FromRole="Users" ToRole="Munkalapok" />
+          <NavigationProperty Name="MunkalapokAs" Relationship="Self.FK_MunkalapokA_Users" FromRole="Users" ToRole="MunkalapokA" />
+          <NavigationProperty Name="Viszony" Relationship="Self.FK_Users_Viszony" FromRole="Users" ToRole="Viszony" />
         </EntityType>
         <EntityType Name="Viszony">
           <Key>
@@ -1159,11 +1159,11 @@
           <Property Name="Nev" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Feladatoks" Relationship="Self.FK_Feladatok_Viszony" FromRole="Viszony" ToRole="Feladatok" />
           <NavigationProperty Name="FeladatokAs" Relationship="Self.FK_FeladatokA_Viszony" FromRole="Viszony" ToRole="FeladatokA" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_UsersUnisol_Viszony" FromRole="Viszony" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Viszony" FromRole="Viszony" ToRole="Users" />
         </EntityType>
-        <Association Name="FK_UsersUnisol_CegAdatok">
+        <Association Name="FK_Users_CegAdatok">
           <End Role="CegAdatok" Type="Self.CegAdatok" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CegAdatok">
               <PropertyRef Name="ID" />
@@ -1197,9 +1197,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersUnisol_Cimek">
+        <Association Name="FK_Users_Cimek">
           <End Role="Cimek" Type="Self.Cimek" Multiplicity="1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cimek">
               <PropertyRef Name="ID" />
@@ -1211,7 +1211,7 @@
         </Association>
         <Association Name="FK_ErtSzemelyElerh_Elerhetosegek">
           <End Role="Elerhetosegek" Type="Self.Elerhetosegek" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Elerhetosegek">
               <PropertyRef Name="ID" />
@@ -1245,9 +1245,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersUnisol_Elerhetosegek">
+        <Association Name="FK_Users_Elerhetosegek">
           <End Role="Elerhetosegek" Type="Self.Elerhetosegek" Multiplicity="1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Elerhetosegek">
               <PropertyRef Name="ID" />
@@ -1317,8 +1317,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Feladat_User_ID_UsersUnisol">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Feladat_User_ID_Users">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="1" />
           <End Role="Feladat_User_ID" Type="Self.Feladat_User_ID" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1353,8 +1353,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Feladatok_UsersUnisol">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Feladatok_Users">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="0..1" />
           <End Role="Feladatok" Type="Self.Feladatok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1365,8 +1365,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Feladatok_UsersUnisol1">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_Feladatok_Users1">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="0..1" />
           <End Role="Feladatok" Type="Self.Feladatok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1425,8 +1425,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_FeladatokA_UsersUnisol">
-          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+        <Association Name="FK_FeladatokA_Users">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="0..1" />
           <End Role="FeladatokA" Type="Self.FeladatokA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1473,9 +1473,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersUnisol_Jogosultsag">
+        <Association Name="FK_Users_Jogosultsag">
           <End Role="Jogosultsag" Type="Self.Jogosultsag" Multiplicity="1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Jogosultsag">
               <PropertyRef Name="ID" />
@@ -1521,8 +1521,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Munkalapok_UsersUnisol">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_Munkalapok_Users">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="1" />
           <End Role="Munkalapok" Type="Self.Munkalapok" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1533,8 +1533,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MunkalapokA_UsersUnisol">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_MunkalapokA_Users">
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="1" />
           <End Role="MunkalapokA" Type="Self.MunkalapokA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -1545,9 +1545,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UsersUnisol_Viszony">
+        <Association Name="FK_Users_Viszony">
           <End Role="Viszony" Type="Self.Viszony" Multiplicity="1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <End Role="Users" Type="SantaFactory.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viszony">
               <PropertyRef Name="ID" />
@@ -1578,11 +1578,11 @@
           <EntitySet Name="Projekteks" EntityType="Self.Projektek" />
           <EntitySet Name="ProjektekAs" EntityType="Self.ProjektekA" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Users1" EntityType="SantaFactory.Users" />
           <EntitySet Name="Viszonies" EntityType="Self.Viszony" />
-          <AssociationSet Name="FK_UsersUnisol_CegAdatok" Association="Self.FK_UsersUnisol_CegAdatok">
+          <AssociationSet Name="FK_Users_CegAdatok" Association="Self.FK_Users_CegAdatok">
             <End Role="CegAdatok" EntitySet="CegAdatoks" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="FK_Feladatok_Cimek" Association="Self.FK_Feladatok_Cimek">
             <End Role="Cimek" EntitySet="Cimeks" />
@@ -1592,13 +1592,13 @@
             <End Role="Cimek" EntitySet="Cimeks" />
             <End Role="FeladatokA" EntitySet="FeladatokAs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersUnisol_Cimek" Association="Self.FK_UsersUnisol_Cimek">
+          <AssociationSet Name="FK_Users_Cimek" Association="Self.FK_Users_Cimek">
             <End Role="Cimek" EntitySet="Cimeks" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="FK_ErtSzemelyElerh_Elerhetosegek" Association="Self.FK_ErtSzemelyElerh_Elerhetosegek">
             <End Role="Elerhetosegek" EntitySet="Elerhetosegeks" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="FK_Feladatok_Elerhetosegek" Association="Self.FK_Feladatok_Elerhetosegek">
             <End Role="Elerhetosegek" EntitySet="Elerhetosegeks" />
@@ -1608,9 +1608,9 @@
             <End Role="Elerhetosegek" EntitySet="Elerhetosegeks" />
             <End Role="FeladatokA" EntitySet="FeladatokAs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersUnisol_Elerhetosegek" Association="Self.FK_UsersUnisol_Elerhetosegek">
+          <AssociationSet Name="FK_Users_Elerhetosegek" Association="Self.FK_Users_Elerhetosegek">
             <End Role="Elerhetosegek" EntitySet="Elerhetosegeks" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="FK_Feladat_ElvittEszkoz_ID_ElvittEszkozok1" Association="Self.FK_Feladat_ElvittEszkoz_ID_ElvittEszkozok1">
             <End Role="ElvittEszkozok" EntitySet="ElvittEszkozoks" />
@@ -1632,8 +1632,8 @@
             <End Role="Feladatok" EntitySet="Feladatoks" />
             <End Role="Feladat_User_ID" EntitySet="Feladat_User_ID" />
           </AssociationSet>
-          <AssociationSet Name="FK_Feladat_User_ID_UsersUnisol" Association="Self.FK_Feladat_User_ID_UsersUnisol">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_Feladat_User_ID_Users" Association="Self.FK_Feladat_User_ID_Users">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="Feladat_User_ID" EntitySet="Feladat_User_ID" />
           </AssociationSet>
           <AssociationSet Name="FK_Feladatok_FeladatTipusok" Association="Self.FK_Feladatok_FeladatTipusok">
@@ -1644,12 +1644,12 @@
             <End Role="Projektek" EntitySet="Projekteks" />
             <End Role="Feladatok" EntitySet="Feladatoks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Feladatok_UsersUnisol" Association="Self.FK_Feladatok_UsersUnisol">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_Feladatok_Users" Association="Self.FK_Feladatok_Users">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="Feladatok" EntitySet="Feladatoks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Feladatok_UsersUnisol1" Association="Self.FK_Feladatok_UsersUnisol1">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_Feladatok_Users1" Association="Self.FK_Feladatok_Users1">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="Feladatok" EntitySet="Feladatoks" />
           </AssociationSet>
           <AssociationSet Name="FK_Feladatok_Viszony" Association="Self.FK_Feladatok_Viszony">
@@ -1668,8 +1668,8 @@
             <End Role="ProjektekA" EntitySet="ProjektekAs" />
             <End Role="FeladatokA" EntitySet="FeladatokAs" />
           </AssociationSet>
-          <AssociationSet Name="FK_FeladatokA_UsersUnisol" Association="Self.FK_FeladatokA_UsersUnisol">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_FeladatokA_Users" Association="Self.FK_FeladatokA_Users">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="FeladatokA" EntitySet="FeladatokAs" />
           </AssociationSet>
           <AssociationSet Name="FK_FeladatokA_Viszony" Association="Self.FK_FeladatokA_Viszony">
@@ -1684,9 +1684,9 @@
             <End Role="FeladatokA" EntitySet="FeladatokAs" />
             <End Role="MunkalapokA" EntitySet="MunkalapokAs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersUnisol_Jogosultsag" Association="Self.FK_UsersUnisol_Jogosultsag">
+          <AssociationSet Name="FK_Users_Jogosultsag" Association="Self.FK_Users_Jogosultsag">
             <End Role="Jogosultsag" EntitySet="Jogosultsags" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
           <AssociationSet Name="FK_Koltsegek_Munkalapok" Association="Self.FK_Koltsegek_Munkalapok">
             <End Role="Munkalapok" EntitySet="Munkalapoks" />
@@ -1700,17 +1700,17 @@
             <End Role="Munkalapok" EntitySet="Munkalapoks" />
             <End Role="Munkalap_Koltseg_ID" EntitySet="Munkalap_Koltseg_ID" />
           </AssociationSet>
-          <AssociationSet Name="FK_Munkalapok_UsersUnisol" Association="Self.FK_Munkalapok_UsersUnisol">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_Munkalapok_Users" Association="Self.FK_Munkalapok_Users">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="Munkalapok" EntitySet="Munkalapoks" />
           </AssociationSet>
-          <AssociationSet Name="FK_MunkalapokA_UsersUnisol" Association="Self.FK_MunkalapokA_UsersUnisol">
-            <End Role="Users" EntitySet="Users" />
+          <AssociationSet Name="FK_MunkalapokA_Users" Association="Self.FK_MunkalapokA_Users">
+            <End Role="Users" EntitySet="Users1" />
             <End Role="MunkalapokA" EntitySet="MunkalapokAs" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersUnisol_Viszony" Association="Self.FK_UsersUnisol_Viszony">
+          <AssociationSet Name="FK_Users_Viszony" Association="Self.FK_Users_Viszony">
             <End Role="Viszony" EntitySet="Viszonies" />
-            <End Role="Users" EntitySet="Users" />
+            <End Role="Users" EntitySet="Users1" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1968,8 +1968,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SantaFactory.User">
+          <EntitySetMapping Name="Users1">
+            <EntityTypeMapping TypeName="SantaFactory.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="VezetekNev" ColumnName="VezetekNev" />

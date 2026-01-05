@@ -45,7 +45,7 @@ namespace SantaFactory.Models
         public virtual DbSet<Projektek> Projekteks { get; set; }
         public virtual DbSet<ProjektekA> ProjektekAs { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Users> Users1 { get; set; }
         public virtual DbSet<Viszony> Viszonies { get; set; }
     }
 }

@@ -30,6 +30,6 @@ namespace SantaFactory.Models
         public Nullable<bool> ArchiveCB { get; set; }
     
         public virtual FeladatokA FeladatokA { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

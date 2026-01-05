@@ -1,0 +1,156 @@
+﻿@model IPagedList<SantaFactory.Models.MunkalapokA>
+
+@{
+    ViewBag.Title = "IndexA";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>ARCHÍV Munkalapok listája</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        @{ string tempJogosultsag = "";
+
+            if (TempData["Users"] != null)
+            {
+                tempJogosultsag = TempData["Users"].ToString();
+                //TempData.Keep();
+            }
+        }
+    </div>
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                ID.
+            </th>
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.First().Feladatok.Projektek.AzonositoKod)*@
+                Proj.Kód
+            </th>
+
+            <th>
+                @*@Html.DisplayNameFor(model => model.First().MunkaDatuma)*@
+                M. dátuma
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().KIdo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.First().MunkaOra)
+            </th>
+
+            @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
+            @{
+                tempJogosultsag = "";
+
+                if (TempData["Users"] != null)
+                {
+                    tempJogosultsag = TempData["Users"].ToString();
+                    //TempData.Keep();
+                }
+
+                if (tempJogosultsag != "Alkalmazott")
+                {
+                    <th>
+                        Alk. Neve
+                    </th>
+                }
+            }
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeladatokA.ProjektekA.AzonositoKod)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MunkaDatuma)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KIdo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MunkaOra) óra
+                </td>
+
+                @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
+
+                @{
+                    tempJogosultsag = "";
+
+                    if (TempData["Users"] != null)
+                    {
+                        tempJogosultsag = TempData["Users"].ToString();
+                        //TempData.Keep();
+                    }
+
+                    if (tempJogosultsag != "Alkalmazott")
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                        </td>
+                    }
+                }
+                <td>
+                    @if (item.FeladatAID != 0)
+                    {
+                        {
+
+                            var kitIrokKi = item.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
+                            $"{item.Users.VezetekNev} {item.Users.KeresztNev}");
+
+                        }
+                    }
+                    &nbsp;
+
+                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+
+
+    @* LAPOZO *@
+
+    @Html.PagedListPager(Model, pn => Url.Action("IndexA", "Munkalapok",
+        new { pn, searcs = Request.QueryString["search"] }))
+
+</div>

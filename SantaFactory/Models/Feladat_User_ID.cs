@@ -19,6 +19,6 @@ namespace SantaFactory.Models
         public int FeladatID { get; set; }
     
         public virtual Feladatok Feladatok { get; set; }
-        public virtual User User { get; set; }
+        public virtual Users User { get; set; }
     }
 }

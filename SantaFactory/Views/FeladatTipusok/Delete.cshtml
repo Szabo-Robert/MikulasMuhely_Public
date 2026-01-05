@@ -1,0 +1,64 @@
+﻿@model SantaFactory.Models.FeladatTipusok
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Feladat típusok</h2>
+
+        <p>
+            <h3 id="red">Törlés</h3>
+        </p>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+<div>
+
+    <hr />
+
+    <div class="form-group">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-danger" id="red">
+
+            <h4>Biztosan szeretné törölni a következő elemet?</h4>
+
+        </div>
+    </div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nev)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nev)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Töröl" class="btn btn-default" />
+            <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "FeladatTipusok" )'" />
+
+        </div>
+    }
+</div>

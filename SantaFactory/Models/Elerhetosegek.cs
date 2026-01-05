@@ -17,10 +17,10 @@ namespace SantaFactory.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Elerhetosegek()
         {
-            this.Users = new HashSet<User>();
+            this.Users = new HashSet<Users>();
             this.Feladatoks = new HashSet<Feladatok>();
             this.FeladatokAs = new HashSet<FeladatokA>();
-            this.Users1 = new HashSet<User>();
+            this.Users1 = new HashSet<Users>();
         }
     
         public int ID { get; set; }
@@ -31,12 +31,12 @@ namespace SantaFactory.Models
         public string Megjegyzes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feladatok> Feladatoks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FeladatokA> FeladatokAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users1 { get; set; }
+        public virtual ICollection<Users> Users1 { get; set; }
     }
 }

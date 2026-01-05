@@ -9,7 +9,7 @@ namespace SantaFactory.Models
     {
         public List<FeladatTipusok> FeladatTipusokLista { get; set; }
         public List<Viszony> ViszonyLista { get; set; }
-        public List<UsersUnisol> UsersLista { get; set; }
+        public List<Users> UsersLista { get; set; }
 
         [Display(Name = "Alkalmazott")]
         public string UserNev { get; set; }

@@ -4,6 +4,6 @@ namespace SantaFactory.Models
 {
     public class ProjektekhezKotodoLista
     {
-        public List<UsersUnisol> FeladatokLista { get; set; }
+        public List<Users> FeladatokLista { get; set; }
     }
 }

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SantaFactory.Models.Jogosultsag>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xs-12">
+
+        <h2>Szerepkörök</h2>
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                <p id="red">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+    </div>
+</div>
+
+<a href="@Url.Action("Create", "Jogosultsag")">
+    @* text space *@
+    <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új szerepkör hozzáadása"></span>
+</a>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nev)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
+
+
+            <td>
+                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
+
+                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
+                @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
+
+                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+

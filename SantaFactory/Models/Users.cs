@@ -12,10 +12,10 @@ namespace SantaFactory.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Users()
         {
             this.Feladat_User_ID = new HashSet<Feladat_User_ID>();
             this.Feladatoks = new HashSet<Feladatok>();
