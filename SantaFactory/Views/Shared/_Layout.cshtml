@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-            <img src="~/Content/img/wide_header_img.jpg" alt="Santa factory"/>
+        <img src="~/Content/img/wide_header_img.jpg" alt="Santa factory" />
     </header>
 
     <div class="navbar navbar-inverse navbar-santa @*navbar-fixed-top*@">
@@ -38,7 +38,9 @@
                     }
                 }
 
-                @Html.ActionLink("FŐOLDAL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")" title="Főoldal">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                </a>
 
             </div>
 
@@ -112,6 +114,10 @@
                                 </ul>
                             </li>
 
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+
                             <li class="dropdown">
                                 <a href="javascript:document.getElementById('logoutForm').submit()"
                                    role="button"
@@ -123,6 +129,7 @@
                             </li>
 
                         </ul>
+
                     </div>
 
                 }
@@ -185,6 +192,10 @@
                                 </ul>
                             </li>
 
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+
                             <li class="dropdown">
                                 <a href="javascript:document.getElementById('logoutForm').submit()"
                                    role="button"
@@ -231,6 +242,10 @@
                                 <a href="@Url.Action("Index", "Users")" role="button"
                                    aria-haspopup="true" aria-expanded="true"><span>Profilom</span></a>
                             </li>
+
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
 
                             <li class="dropdown">
                                 <a href="javascript:document.getElementById('logoutForm').submit()"

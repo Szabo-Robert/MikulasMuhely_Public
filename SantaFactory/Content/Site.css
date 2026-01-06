@@ -47,6 +47,18 @@ header img {
 }
 
 /* A teljes felső menüsor */
+.navbar-brand .glyphicon-home {
+    font-size: 1.5em; /* Nagyobb ikon */
+    color: #FFD700;   /* Arany szín, hogy passzoljon az ünnepi hangulathoz */
+    vertical-align: middle;
+    margin-top: -4px;
+}
+
+.navbar-brand:hover .glyphicon-home {
+    color: white;     /* Rámutatáskor fehéren világítson */
+    transition: 0.3s;
+}
+
 .navbar-santa {
     background-color: #2D5A27; /* Fenyőzöld, ami kiemeli a kép színeit */
     border-bottom: 3px solid #FFD700; /* Vékony arany díszcsík az alján */
