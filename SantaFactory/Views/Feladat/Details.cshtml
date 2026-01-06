@@ -553,12 +553,12 @@
 
             if (tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség")
             {
-                <input type="button" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Feladat", routeValues: new { id = Model.ID })'" />
-                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Feladat")'" />
+                <input type="button" value="Módosít" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Edit", "Feladat", routeValues: new { id = Model.ID })'" />
+                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Feladat")'" />
             }
             else
             {
-                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Home")'" />
+                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Home")'" />
             }
 
         }

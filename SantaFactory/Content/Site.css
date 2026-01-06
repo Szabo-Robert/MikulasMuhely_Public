@@ -1,6 +1,135 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /* Fix width helyett max-width-et használunk */
+    max-width: 1200px; 
+    width: 100%;       /* Kisebb képernyőn kitölti a rendelkezésre álló helyet */
+    margin: 0 auto;    /* Középre igazítás */
+    overflow-x: hidden; /* Megakadályozza a vízszintes csúszkát */
+}
+
+header {
+    width: 100%;       /* Mindig alkalmazkodik a body szélességéhez */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header img {
+    width: 100%;
+    height: auto;      /* Megtartja a kép arányait átméretezéskor */
+    display: block;    /* Megszünteti a kép alatti felesleges hézagot */
+    border-radius: 10px 10px 0 0;
+}
+
+/*Mikulás színezés*/
+
+.login-container {
+    background: rgba(255, 255, 255, 0.9); /* Félig átlátszó fehér */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.btn-santa {
+    background-color: #A62424; /* Mikulás-piros */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-santa:hover {
+    background-color: #7D1B1B; /* Sötétebb piros */
+    color: #FFD700; /* Arany színű szöveg rámutatáskor */
+    cursor: pointer;
+}
+
+/* A teljes felső menüsor */
+.navbar-santa {
+    background-color: #2D5A27; /* Fenyőzöld, ami kiemeli a kép színeit */
+    border-bottom: 3px solid #FFD700; /* Vékony arany díszcsík az alján */
+    margin-bottom: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+/* A menüpontok szövege */
+.navbar-santa .navbar-nav > li > a {
+    color: #F9F5F0 !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Amikor az egérrel a menüpont fölé érsz */
+.navbar-santa .navbar-nav > li > a:hover {
+    color: #FFD700 !important; /* Arany színű kiemelés */
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* A legördülő menük (pl. Projektek) stílusa */
+.dropdown-menu {
+    background-color: #F9F5F0;
+    border: 2px solid #2D5A27;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #2D5A27;
+    color: white !important;
+}
+
+.table-santa {
+    width: 100%;
+    border-collapse: separate;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-spacing: 0;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden; /* Ez vágja le a belső sarkokat kerekre */
+}
+
+.table-santa th {
+    background-color: #A62424;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Növeljük a cellák belső margóját, hogy az ikonok ne lógjanak ki */
+.table-santa td {
+    padding: 10px 10px !important; /* Több helyet hagyunk függőlegesen */
+    vertical-align: middle !important; /* Középre igazítja az ikonokat a sorban */
+    line-height: 1;
+}
+
+/* Az ikonok méretének és elhelyezkedésének finomítása */
+.table-santa td a i, 
+.table-santa td a img {
+    display: inline-block;
+    margin-top: 0;
+    vertical-align: middle;
+}
+
+.table-santa tr:nth-child(odd) {
+    background-color: #f3e6d6; /* Halvány meleg háttér a soroknak */
+}
+
+.table-santa tr:hover {
+    background-color: #99e579
+}
+
+/* Speciális Kijelentkezés gomb stílus */
+.navbar-santa .navbar-nav > li > a.nav-logout-btn {
+    color: #f18e8e !important; /* Mikulás-piros */
+    font-weight: bold !important;
+}
+
+/* Hover állapotnál is tartsuk meg a piros tónust */
+.navbar-santa .navbar-nav > li > a.nav-logout-btn:hover {
+    color: #e64545 !important;
+    background-color: rgba(166, 36, 36, 0.1) !important;
+}
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,4 +151,3 @@ select,
 textarea {
     max-width: 280px;
 }
-

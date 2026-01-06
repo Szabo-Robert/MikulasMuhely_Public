@@ -260,17 +260,17 @@
             {
                 if (!(Model.JovahagyvaCB) && (kitIrokKiMunkalap.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsag == "ADMIN"))
                 {
-                    <input type="button" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
+                    <input type="button" value="Módosít" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
                 }
-                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
+                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
             }
             else
             {*@
                 if (!(Model.JovahagyvaCB) && (kitIrokKiMunkalap.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsag == "ADMIN"))
                 {
-                    <input type="button" value="Módosít" class="btn btn-default" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
+                    <input type="button" value="Módosít" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
                 }
-                <input type="button" value="Vissza" class="btn btn-default" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
+                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
             @*}*@
         }
 

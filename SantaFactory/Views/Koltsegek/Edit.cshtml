@@ -77,14 +77,14 @@
                 @{
                     if (Model.MunkalapID != 0)
                     {
-                        <input type="submit" value="Mentés" class="btn btn-default" />
-                        <input type="button" value="Mégse" class="btn btn-default"
+                        <input type="submit" value="Mentés" class="btn  btn-default btn-santa" />
+                        <input type="button" value="Mégse" class="btn  btn-default btn-santa"
                                onclick="location.href='@Url.Action("Details", "Munkalapok", routeValues: new { id = Model.MunkalapID })'" />
                     }
                     else
                     {
-                        <input type="submit" value="Mentés" class="btn btn-default" />
-                        <input type="button" value="Mégse" class="btn btn-default"
+                        <input type="submit" value="Mentés" class="btn  btn-default btn-santa" />
+                        <input type="button" value="Mégse" class="btn  btn-default btn-santa"
                                onclick="location.href='@Url.Action("Index", "Koltsegek", routeValues: new { id = Model.MunkalapID })'" />
                     }
                 }

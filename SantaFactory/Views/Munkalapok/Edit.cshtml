@@ -77,13 +77,13 @@
                 @{
                     if (Model.Atiranyitott != 0)
                     {
-                        <input type="submit" value="Mentés" class="btn btn-default" onClick='return confirmSubmit()' />
-                        <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
+                        <input type="submit" value="Mentés" class="btn  btn-default btn-santa" onClick='return confirmSubmit()' />
+                        <input type="button" value="Mégse" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
                     }
                     else
                     {
-                        <input type="submit" value="Mentés" class="btn btn-default" onClick='return confirmSubmit()' />
-                        <input type="button" value="Mégse" class="btn btn-default" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
+                        <input type="submit" value="Mentés" class="btn  btn-default btn-santa" onClick='return confirmSubmit()' />
+                        <input type="button" value="Mégse" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
                     }
                 }
             </div>

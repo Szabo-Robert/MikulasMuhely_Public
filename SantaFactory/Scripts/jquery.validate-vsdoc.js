@@ -1,10 +1,24 @@
-﻿/*
+﻿/* NUGET: BEGIN LICENSE TEXT
+ *
+ * Microsoft grants you the right to use these script files for the sole
+ * purpose of either: (i) interacting through your browser with the Microsoft
+ * website or online service, subject to the applicable licensing or use
+ * terms; or (ii) using the files as included with a Microsoft product subject
+ * to that product's license terms. Microsoft reserves all other rights to the
+ * files not expressly granted by Microsoft, whether by implication, estoppel
+ * or otherwise. Insofar as a script file is dual licensed under GPL,
+ * Microsoft neither took the code under GPL nor distributes it thereunder but
+ * under the terms set out in this paragraph. All notices and licenses
+ * below are for informational purposes only.
+ *
+ * NUGET: END LICENSE TEXT */
+/*
 * This file has been commented to support Visual Studio Intellisense.
 * You should not use this file at runtime inside the browser--it is only
 * intended to be used only for design-time IntelliSense.  Please use the
 * standard jQuery library for all production use.
-
-* Comment version: 1.20.1
+*
+* Comment version: 1.11.1
 */
 
 /*
@@ -15,7 +29,7 @@
 * for informational purposes only and are not the license terms under
 * which Microsoft distributed this file.
 *
-* jQuery Validation Plugin - v1.20.1 - 12/5/2016
+* jQuery Validation Plugin - v1.11.1 - 2/4/2013
 * https://github.com/jzaefferer/jquery-validation
 * Copyright (c) 2013 Jörn Zaefferer; Licensed MIT
 *
@@ -314,26 +328,26 @@ $.extend($.validator, {
 		$.extend( $.validator.defaults, settings );
 	},
 
-	messages: {
-		required: "This field is required.",
-		remote: "Please fix this field.",
-		email: "Please enter a valid email address.",
-		url: "Please enter a valid URL.",
-		date: "Please enter a valid date.",
-		dateISO: "Please enter a valid date (ISO).",
-		number: "Please enter a valid number.",
-		digits: "Please enter only digits.",
-		creditcard: "Please enter a valid credit card number.",
-		equalTo: "Please enter the same value again.",
-		accept: "Please enter a value with a valid extension.",
-		maxlength: $.validator.format("Please enter no more than {0} characters."),
-		minlength: $.validator.format("Please enter at least {0} characters."),
-		rangelength: $.validator.format("Please enter a value between {0} and {1} characters long."),
-		range: $.validator.format("Please enter a value between {0} and {1}."),
-		max: $.validator.format("Please enter a value less than or equal to {0}."),
-		min: $.validator.format("Please enter a value greater than or equal to {0}.")
-	},
-	
+    messages: {
+        required: "A mező kitöltése kötelező.",//"This field is required.",
+        remote: "Kérem javítsa ezt a mezőt.",//"Please fix this field.",
+        email: "Kérem adjon meg helyes e-mail címet.",//"Please enter a valid email address.",
+        url: "Kérem adjon meg helyes URL címet.",//"Please enter a valid URL.",
+        date: "Kérem adjon meg helyes dátumot.",//"Please enter a valid date.",
+        dateISO: "Kérem adjon meg helyes dátumot (ISO).",//"Please enter a valid date (ISO).",
+        number: "Kérem érvényes számot adjon meg.", //"Please enter a valid number.",
+        digits: "Please enter only digits.",//"Please enter only digits.",
+        creditcard: "Kérem érvényes hitel-/bankkátya számot adjon meg.",//"Please enter a valid credit card number.",
+        equalTo: "Kérem ismételje meg az előzőben megadottat.",//"Please enter the same value again.",
+        maxlength: $.validator.format("Kérem ne adjon meg {0} több karaktert."),//("Please enter no more than {0} characters."),
+        minlength: $.validator.format("Kérem ne adjon meg {0} kevesebb karaktert."),//("Please enter at least {0} characters."),
+        rangelength: $.validator.format("Kérem a megadott érték legyen {0} és {1} karakternyi."),//("Please enter a value between {0} and {1} characters long."),
+        range: $.validator.format("Kérem a megadott érték legyen {0} és {1} között"),//("Please enter a value between {0} and {1}."),
+        max: $.validator.format("Kérem a megadott érték legyen kisebb vagy egyenlő {0}-el."),//("Please enter a value less than or equal to {0}."),
+        min: $.validator.format("Kérem a megadott érték legyen nagyobb vagy egyenlő {0}-el.")//("Please enter a value greater than or equal to {0}.")
+    },
+
+		
 	autoCreateRanges: false,
 	
 	prototype: {
