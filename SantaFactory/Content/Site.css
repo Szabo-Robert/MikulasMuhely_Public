@@ -2,14 +2,14 @@
     /* Fix width helyett max-width-et használunk */
     max-width: 1200px; 
     width: 100%;       /* Kisebb képernyőn kitölti a rendelkezésre álló helyet */
-    margin: 0 auto;    /* Középre igazítás */
+    margin: auto;    /* Középre igazítás */
     overflow-x: hidden; /* Megakadályozza a vízszintes csúszkát */
 }
 
 header {
     width: 100%;       /* Mindig alkalmazkodik a body szélességéhez */
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
 }
 
 header img {
@@ -80,6 +80,78 @@ header img {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* A kijelentkezés gombot tartalmazó LI elem */
+.navbar-nav > li.nav-logout-wrapper {
+    height: 50px; /* Vagy amilyen magas a zöld sávod alapértelmezetten */
+    display: flex;
+    align-items: center; /* Függőleges középre igazítás */
+    padding-right: 15px; /* Kis távolság a jobb széltől */
+}
+
+/* A gomb pontos finomhangolása */
+.nav-logout-btn {
+    background-color: #A62424 !important; /* Mikulás-piros */
+    color: white !important;
+    font-weight: bold;
+    padding: 6px 15px !important;
+    font-size: 13px !important;
+    border-radius: 4px;
+    line-height: 1.428; /* Bootstrap alapérték a jó magassághoz */
+    text-decoration: none !important;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+/* A NAV-ban lévő űrlap elrendezése */
+.navbar-form-santa {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+}
+
+#nav-login-form {
+    border: none;
+    margin: 0;
+    padding: 8px 0;
+    display: flex;
+   
+}
+
+/* Az input mezők stílusa a NAV-ban */
+.nav-input {
+    height: 30px !important;
+    padding: 5px 10px !important;
+    font-size: 13px !important;
+    border-radius: 4px !important;
+    border: 1px solid #ccc;
+    width: 150px !important; /* Fix szélesség, hogy ne tolja szét a menüt */
+}
+
+/* A bejelentkezési rész tárolója */
+.login-inline-group {
+    margin-left: auto; /* Ez tolja ki teljesen jobbra */
+    display: flex;
+    
+}
+
+/* A kis piros belépés gomb */
+.btn-santa-nav {
+    background-color: #A62424 !important; /* Mikulás-piros */
+    color: white;
+    border: none !important;
+    padding: 4px 15px !important;
+    font-weight: bold;
+    border-radius: 4px;
+    height: 30px;
+    transition: 0.3s;
+}
+
+.btn-santa-nav:hover {
+    background-color: #7D1B1B !important;
+    color: #FFD700; /* Arany színű szöveg rámutatáskor */
+    cursor: pointer;
+}
+
 /* A legördülő menük (pl. Projektek) stílusa */
 .dropdown-menu {
     background-color: #F9F5F0;
@@ -131,19 +203,6 @@ header img {
     background-color: #99e579
 }
 
-/* Speciális Kijelentkezés gomb stílus */
-.navbar-santa .navbar-nav > li > a.nav-logout-btn {
-    color: #f18e8e !important; /* Mikulás-piros */
-    font-weight: bold !important;
-}
-
-/* Hover állapotnál is tartsuk meg a piros tónust */
-.navbar-santa .navbar-nav > li > a.nav-logout-btn:hover {
-    color: #e64545 !important;
-    background-color: rgba(166, 36, 36, 0.1) !important;
-}
-}
-
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -162,4 +221,53 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/* Alapbeállítás (Asztali gép) */
+#nav-login-form {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-login-row {
+    display: flex;
+    gap: 5px;
+}
+
+/* MOBIL NÉZET (767px alatt) */
+@media (max-width: 767px) {
+    #nav-login-form {
+        flex-direction: column; /* A két sor egymás alá kerül */
+        gap: 8px;
+        padding: 5px 0;
+        width: 100%;
+    }
+
+    .nav-login-row {
+        width: 100%;
+        justify-content: space-between; /* Kitölti a szélességet */
+    }
+
+    /* Az inputok és gombok méretezése, hogy kiférjenek */
+    .nav-input {
+        width: 60% !important; /* Az input kapja a több helyet */
+        height: 32px !important;
+        font-size: 12px !important;
+    }
+
+    .btn-santa-nav, .btn-forgot-nav {
+        width: 35% !important; /* A gomb fixen a maradék helyre megy */
+        height: 32px !important;
+        font-size: 11px !important;
+        padding: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-santa-nav:hover {
+        background-color: #7D1B1B; /* Sötétebb piros */
+        color: #FFD700; /* Arany színű szöveg rámutatáskor */
+        cursor: pointer;
+    }
 }
