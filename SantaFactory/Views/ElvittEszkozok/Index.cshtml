@@ -24,7 +24,6 @@
 
 
 <a href="@Url.Action("Create", "ElvittEszkozok")">
-    @* text space *@
     <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új eszköz hozzáadása"></span>
 </a>
 
@@ -46,13 +45,9 @@
 
 
             <td>
-                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
                 @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
-                @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
 
                 @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
             </td>
 
         </tr>

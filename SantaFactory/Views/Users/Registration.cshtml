@@ -24,15 +24,12 @@
 }
 else
 {
-
     if (ViewBag.Message != null)
     {
         <div class="alert alert-danger">
             <strong>Hiba!</strong> @ViewBag.Message
         </div>
     }
-
-
 
     using (Html.BeginForm())
     {
@@ -58,14 +55,29 @@ else
                 </div>
             </div>
 
-            @*<div class="form-group">
-                    @Html.LabelFor(model => model.JogosultsagID, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model => model.JogosultsagID, new SelectList(Model.JogosultsagLista, "ID", "Nev"),
-                                    "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.JogosultsagID, "", new { @class = "text-danger" })
+            @{
+                bool logedIn = User.Identity.IsAuthenticated;
+
+                string tempJogosultsag = "";
+
+                if (TempData["Users"] != null)
+                {
+                    tempJogosultsag = TempData["Users"].ToString();
+                }
+
+                //ellenőrizni, hogy ADMIN vagy vezetőségi alkalmazott a USER!!!
+                if ((tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség") && logedIn)
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.JogosultsagID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.JogosultsagID, new SelectList(Model.JogosultsagLista, "ID", "Nev"),
+                                              "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.JogosultsagID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>*@
+                }
+            }
 
             <div class="form-group required">
                 @Html.LabelFor(model => model.SzuletesiDatum, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,7 +87,7 @@ else
                         htmlAttributes = new
                         {
                             @type = "date",
-                   @class = "form-control",
+                            @class = "form-control",
                             @min = "1950-01-01",
                             @max = "2005-12-31"
                         }

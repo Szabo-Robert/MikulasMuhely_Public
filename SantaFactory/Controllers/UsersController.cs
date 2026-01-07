@@ -319,9 +319,23 @@ namespace SantaFactory.Controllers
         {
             try
             {
+                //Felhasznalo jogosultsaga
                 Users tempUser = felhasznaloAzonositas();
+                if (tempUser == null)
+                {
+                    return RedirectToAction("Bejelentkezes", "Users");
+                }
+
+
+                if (tempUser.Jogosultsag.Nev != "ADMIN" && tempUser.Jogosultsag.Nev != "Vezetőség")
+                {
+                    TempData["ErrorMessage"] = "Nincs megfelelő jogosúltsága az oldal eléréséhez!";
+                    return RedirectToAction("Index", "Home");
+                }
 
                 Users model = new Users();
+                model.JogosultsagLista = db.Jogosultsag.ToList();
+
                 return View(model);
             }
             catch (Exception e)
@@ -358,7 +372,6 @@ namespace SantaFactory.Controllers
 
                     if (!(felhasznalo.GDPR))
                     {
-
                         TempData["ErrorMessage"] = "Kötelezően el kell fogadni a GDPR feltételeket és írja be ismét a jelszót!";
                         return View(felhasznalo);
                     }
@@ -386,7 +399,7 @@ namespace SantaFactory.Controllers
                         {
                             #region Send Email to User
 
-                            felhasznalo.JogosultsagID = 5;
+                            felhasznalo.JogosultsagID = 19; //alkalmazott ID-ja
 
                             EllenorzoLinkKuldese(felhasznalo.Elerhetosegek.Email, felhasznalo.AktivaloKod.ToString());
                             message = "A regisztrálás sikeres volt! A fiókot aktiváló link" +
