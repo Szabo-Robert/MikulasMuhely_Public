@@ -21,7 +21,7 @@ namespace SantaFactory.Models
 
         [Display(Name = "Megnevezés:")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "A mező megadása kötelező")]
-        [MaxLength(20, ErrorMessage = "Nem lehet hosszabb 100 karakternél!")]
+        [MaxLength(100, ErrorMessage = "Nem lehet hosszabb 100 karakternél!")]
         public string Nev { get; set; }
     }
 }

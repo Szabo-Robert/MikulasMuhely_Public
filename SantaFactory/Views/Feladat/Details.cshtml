@@ -129,11 +129,11 @@
 
 
 
-                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.Users.VezetekNev))
+                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.User.VezetekNev))
                     {
 
                         <p>
-                            - @Html.DisplayFor(modelItem => item.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                            - @Html.DisplayFor(modelItem => item.User.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.User.KeresztNev)
                         </p>
                     }
                 </dd>
@@ -205,9 +205,11 @@
                                 @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
                                 @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
                                 @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
-                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB) <br />
+                                @Html.DisplayFor(modelItem => Model.Elerhetosegek.Megjegyzes)
                             </dd>
-
+                            
+                            <br />
 
                             <dt>
                                 Cím
@@ -333,7 +335,7 @@
                                         if (tempJogosultsag != "Alkalmazott")
                                         {
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                                                @Html.DisplayFor(modelItem => item.User.VezetekNev) @Html.DisplayFor(modelItem => item.User.KeresztNev)
                                             </td>
                                         }
                                     }
@@ -354,7 +356,7 @@
                                     <td>
 
                                         @if (!(Model.JovahagyvaCB) &&
-                                            (!(item.Megtekintve) || item.Users.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name))
+                                            (!(item.Megtekintve) || item.User.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name))
                                         {
 
                                             <a href="@Url.Action("Edit", "Munkalapok", routeValues: new { id = MunkalapIDFeladatID })">
@@ -373,7 +375,7 @@
                                         &nbsp;
 
                                         @if (!(Model.JovahagyvaCB) &&
-                                            (!(item.Megtekintve) || item.Users.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name
+                                            (!(item.Megtekintve) || item.User.Elerhetosegek1.Email == @HttpContext.Current.User.Identity.Name
                                             || tempJogosultsag == "ADMIN"))
                                         {
 

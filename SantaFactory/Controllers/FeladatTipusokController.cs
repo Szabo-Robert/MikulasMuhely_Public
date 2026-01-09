@@ -22,7 +22,7 @@ namespace SantaFactory.Controllers
 
             try
             {
-                var model = db.FeladatTipusok.ToList();
+                var model = db.FeladatTipusok.OrderBy(x => x.Nev).ToList();
 
                 return View(model.ToPagedList(pn ?? 1, 10));
 

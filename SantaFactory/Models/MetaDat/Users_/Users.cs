@@ -16,6 +16,20 @@ namespace SantaFactory.Models
         //Viszonyok listajana eltarolasa
         public List<Viszony> ViszonyokLista { get; set; }
 
+        //Ajandekok
+        [Display(Name = "Levél")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "A mező megadása kötelező")]
+        [MaxLength(500, ErrorMessage = "Nem lehet hosszabb 500 karakternél!")]
+        public string LevelUzenete { get; set; }
+        public List<FeladatTipusok> Ajandek1 { get; set; }
+        public List<FeladatTipusok> Ajandek2 { get; set; }
+        public List<FeladatTipusok> Ajandek3 { get; set; }
+
+        public int? KivalasztotAjandek1 { get; set; }
+        public int? KivalasztotAjandek2 { get; set; }
+        public int? KivalasztotAjandek3 { get; set; }
+
+
         public List<Jogosultsag> JogosultsagLista { get; set; }
 
         public Users ViewerUser { get; set; }
@@ -44,6 +58,7 @@ namespace SantaFactory.Models
 
         public int CimekID { get; set; }
 
+        [Display(Name = "Jogosultság:")]
         public int JogosultsagID { get; set; }
 
         public int ViszonyID { get; set; }

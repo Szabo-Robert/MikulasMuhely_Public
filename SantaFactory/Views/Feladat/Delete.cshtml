@@ -131,11 +131,11 @@
 
 
 
-                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.Users.VezetekNev))
+                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.User.VezetekNev))
                     {
 
                         <p>
-                            - @Html.DisplayFor(modelItem => item.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                            - @Html.DisplayFor(modelItem => item.User.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.User.KeresztNev)
                         </p>
                     }
                 </dd>

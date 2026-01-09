@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using OfficeOpenXml;
 using PagedList;
 using SantaFactory.Models;
@@ -944,15 +945,6 @@ namespace SantaFactory.Controllers
                     int befejezesiIdo = int.Parse(feladat.KezdesiIdo.Substring(0, 2)) + (int)feladat.BecsultMunkaOra;
                     TimeSpan feladatBIdo = new TimeSpan(befejezesiIdo, int.Parse(TimeArray[1]), 00);
 
-                    ///ellenorizzuk, hogy van e mar felhasznalo foglalkoztatva ebben az idoszakban
-
-                    var napKezdes = (DateTime)(feladat.VarhatoKezdes);
-                    var napVege = (DateTime)(feladat.VarhatoBefejezes);
-                    var feladatKezdesHonap = (DateTime)(feladat.VarhatoKezdes);
-                    var feladatBefejezesHonap = (DateTime)(feladat.VarhatoBefejezes);
-
-                    ///fölösleges elemek kitörölve lettek
-
                     db.Feladatok.Add(feladat);
                     db.SaveChanges();
 
@@ -975,8 +967,6 @@ namespace SantaFactory.Controllers
                         }
                     }
 
-                    ///fölösleges elemek kitörölve lettek
-
                     return RedirectToAction("TempIndex", "Feladat");
                 }
 
@@ -987,6 +977,85 @@ namespace SantaFactory.Controllers
             {
                 TempData["ErrorMessage"] = "Valami hiba történt, kérem ellenőrizze az adatokat!";
                 return View(feladat);
+            }
+        }
+
+        public ActionResult TempCreateFromLetter(Users bekuldottAdatok)
+        {
+            try
+            {
+                if (bekuldottAdatok.KivalasztotAjandek1 != null ||
+                    bekuldottAdatok.KivalasztotAjandek2 != null ||
+                    bekuldottAdatok.KivalasztotAjandek3 != null)
+                {
+                    var osszesAjandek = db.FeladatTipusok.ToList();
+                    var KivalasztotAjandekokNeve = new List<string>();
+
+                    // 1. Gyűjtsük össze a kiválasztott ajándék nevét, majd mindre szánunk 1 munkaórát
+                    if (bekuldottAdatok.KivalasztotAjandek1 != null)
+                        KivalasztotAjandekokNeve.Add(osszesAjandek.First(x => x.ID == bekuldottAdatok.KivalasztotAjandek1).Nev);
+
+                    if (bekuldottAdatok.KivalasztotAjandek2 != null)
+                        KivalasztotAjandekokNeve.Add(osszesAjandek.First(x => x.ID == bekuldottAdatok.KivalasztotAjandek2).Nev);
+
+                    if (bekuldottAdatok.KivalasztotAjandek3 != null)
+                        KivalasztotAjandekokNeve.Add(osszesAjandek.First(x => x.ID == bekuldottAdatok.KivalasztotAjandek3).Nev);
+
+                    // 2. Minden ajándékhoz hozzunk létre egy feladatot
+                    foreach (var kivalasztottAjandekNeve in KivalasztotAjandekokNeve)
+                    {
+
+                        //a viszony erteke a NEM JOVAHAGYOTT
+                        int tempViszonyID = db.Viszony.First(x => x.Nev.ToUpper() == "NEM JÓVÁHAGYOTT").ID;
+                        int feladatTipusID = db.FeladatTipusok.First(x => x.Nev.ToUpper() == "IDEIGLENES").ID;
+                        string projektAzonosito = $"{DateTime.Now.Year.ToString()}_Temp";
+                        int ideiglenesProjektId = db.Projektek.Where(x => x.AzonositoKod == projektAzonosito).FirstOrDefault().ID;
+                        DateTime AktualisNapMasnapja = new DateTime(DateTime.Now.Year,
+                                                                    DateTime.Now.Month,
+                                                                    DateTime.Now.Day + 1,
+                                                                    DateTime.Now.Hour,
+                                                                    DateTime.Now.Minute,
+                                                                    DateTime.Now.Second);
+
+                        var ujIdeiglenesfeladat = new Feladatok();
+
+                        ujIdeiglenesfeladat.Nev = kivalasztottAjandekNeve + " _levél";
+                        ujIdeiglenesfeladat.FeladatLeirasa = bekuldottAdatok.LevelUzenete;
+                        ujIdeiglenesfeladat.ProjektID = ideiglenesProjektId;
+                        ujIdeiglenesfeladat.VarhatoKezdes = AktualisNapMasnapja;
+                        ujIdeiglenesfeladat.VarhatoBefejezes = AktualisNapMasnapja;
+                        ujIdeiglenesfeladat.KezdesiIdo = $"{AktualisNapMasnapja.Hour}:{AktualisNapMasnapja.Minute}";
+                        ujIdeiglenesfeladat.Kido = new TimeSpan(AktualisNapMasnapja.Hour, AktualisNapMasnapja.Minute, 00);
+                        ujIdeiglenesfeladat.BecsultMunkaOra = 1;
+                        ujIdeiglenesfeladat.ViszonyID = tempViszonyID;
+                        ujIdeiglenesfeladat.FeladatTipusaID = feladatTipusID;
+
+                        //Cím
+                        ujIdeiglenesfeladat.Cimek = new Cimek()
+                        {
+                            Orszag = "Északi sark",
+                            Varos = "Lapföld",
+                            Megjegyzes = "Ideiglenes feladat létrehozása, levélből."
+                        };
+
+                        //Elérhetőség
+                        ujIdeiglenesfeladat.Elerhetosegek = new Elerhetosegek()
+                        {
+                            Telszam1 = "+0100000000",
+                            Email = "level@amikulasnak.com"
+                        };
+
+                        db.Feladatok.Add(ujIdeiglenesfeladat);
+                        db.SaveChanges();
+                    }
+                }
+                TempData["ErrorMessage"] = "Köszönjük a levelet! A mikulás műhely manói már dolgoznak az ajándékodon!";
+                return RedirectToAction("Bejelentkezes", "Users");
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = "Valami hiba történt, kérem ellenőrizze az adatokat!";
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -1308,7 +1377,7 @@ namespace SantaFactory.Controllers
                     }
 
 
-                    #region // Eszkozok
+                    #region Eszkozok
 
                     model.ElvihetoEszkozokLista = db.ElvittEszkozok.ToList();
 
@@ -1489,6 +1558,24 @@ namespace SantaFactory.Controllers
 
 
                     }
+
+                    #endregion
+
+                    #region Cim és elérhetőség
+
+                    model.Cimek.Orszag = feladatok.Cimek.Orszag;
+                    model.Cimek.Varos = feladatok.Cimek.Varos;
+                    model.Cimek.PostaKod = feladatok.Cimek.PostaKod;
+                    model.Cimek.Utca = feladatok.Cimek.Utca;
+                    model.Cimek.Szam = feladatok.Cimek.Szam;
+                    model.Cimek.Egyeb = feladatok.Cimek.Egyeb;
+                    model.Cimek.Megjegyzes = feladatok.Cimek.Megjegyzes;
+
+                    model.Elerhetosegek.Telszam1 = feladatok.Elerhetosegek.Telszam1;
+                    model.Elerhetosegek.Telszam2 = feladatok.Elerhetosegek.Telszam2;
+                    model.Elerhetosegek.Email = feladatok.Elerhetosegek.Email;
+                    model.Elerhetosegek.WEB = feladatok.Elerhetosegek.WEB;
+                    model.Elerhetosegek.Megjegyzes = feladatok.Elerhetosegek.Megjegyzes;
 
                     #endregion
 

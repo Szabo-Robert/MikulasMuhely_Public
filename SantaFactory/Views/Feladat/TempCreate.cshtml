@@ -34,7 +34,7 @@
             @Html.HiddenFor(model => model.FeladatTipusokLista)
             @Html.HiddenFor(model => model.feladatokUsersLista)
             @Html.HiddenFor(model => model.KiirniEszkozokLista)*@
-        @Html.HiddenFor(model => model.ViszonyID, new { @Value = 2 })
+        @Html.HiddenFor(model => model.ViszonyID, new { @Value = Model.ViszonyLista.First(x => x.Nev.ToUpper() == "NEM JÓVÁHAGYOTT").ID })
 
         @* Automatikusan azt a feladatTipusID-kapja, aminek az erteke TEMP *@
         @Html.HiddenFor(model => model.FeladatTipusaID, new { @Value = Model.FeladatTipusokLista.FirstOrDefault(x => x.Nev.ToUpper() == "IDEIGLENES").ID })

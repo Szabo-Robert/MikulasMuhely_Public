@@ -326,7 +326,6 @@ namespace SantaFactory.Controllers
                     return RedirectToAction("Bejelentkezes", "Users");
                 }
 
-
                 if (tempUser.Jogosultsag.Nev != "ADMIN" && tempUser.Jogosultsag.Nev != "Vezetőség")
                 {
                     TempData["ErrorMessage"] = "Nincs megfelelő jogosúltsága az oldal eléréséhez!";
@@ -492,7 +491,21 @@ namespace SantaFactory.Controllers
 
                 TempData["Users"] = "";
 
-                return View();
+                var osszesAjandek = db.FeladatTipusok.ToList();
+                int harmad = (int)Math.Ceiling(osszesAjandek.Count / 3.0);
+
+                Users model = new Users();
+
+                // Első harmad (pl. 1-10)
+                model.Ajandek1 = osszesAjandek.Skip(1).Take(harmad).ToList();
+
+                // Második harmad (pl. 11-20)
+                model.Ajandek2 = osszesAjandek.Skip(harmad).Take(harmad).ToList();
+
+                // Harmadik harmad (pl. 21-től a végéig)
+                model.Ajandek3 = osszesAjandek.Skip(2 * harmad).ToList();
+
+                return View(model);
             }
             catch (Exception e)
             {
@@ -584,7 +597,8 @@ namespace SantaFactory.Controllers
                         BelepettFelhasznalo.JogosultsagID = jogosultsagModel.ID;
 
                         //JOGOSULTSAG letrehozasa az jogosultsag tablaban
-                        Viszony viszonyModel = new Viszony();
+                        //SZERINTEM ERRE NINCS SZÜKSÉG
+                        /*Viszony viszonyModel = new Viszony();
 
                         viszonyModel.Nev = "SZUPER";
 
@@ -594,7 +608,7 @@ namespace SantaFactory.Controllers
                         BelepettFelhasznalo.ViszonyID = viszonyModel.ID;
 
                         db.Users.Add(BelepettFelhasznalo);
-                        db.SaveChanges();
+                        db.SaveChanges();*/
                     }
 
                     #endregion
