@@ -37,7 +37,7 @@
     </div>
 
 
-    <table class="table">
+    <table class="table-responsive table-santa">
         <tr>
 
             <th>
@@ -45,12 +45,10 @@
             </th>
 
             <th>
-                @*@Html.DisplayNameFor(model => model.First().Feladatok.Projektek.AzonositoKod)*@
                 Proj.Kód
             </th>
 
             <th>
-                @*@Html.DisplayNameFor(model => model.First().MunkaDatuma)*@
                 M. dátuma
             </th>
 
@@ -69,7 +67,6 @@
                 if (TempData["Users"] != null)
                 {
                     tempJogosultsag = TempData["Users"].ToString();
-                    //TempData.Keep();
                 }
 
                 if (tempJogosultsag != "Alkalmazott")
@@ -86,7 +83,6 @@
         @foreach (var item in Model)
         {
             <tr>
-
                 <td>
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
@@ -121,7 +117,7 @@
                     if (tempJogosultsag != "Alkalmazott")
                     {
                         <td>
-                            @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                            @Html.DisplayFor(modelItem => item.User.VezetekNev) @Html.DisplayFor(modelItem => item.User.KeresztNev)
                         </td>
                     }
                 }
@@ -129,28 +125,21 @@
                     @if (item.FeladatAID != 0)
                     {
                         {
-
                             var kitIrokKi = item.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-                            $"{item.Users.VezetekNev} {item.Users.KeresztNev}");
-
+                            $"{item.User.VezetekNev} {item.User.KeresztNev}");
                         }
                     }
                     &nbsp;
 
                     @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-
                 </td>
 
             </tr>
-
         }
-
     </table>
-
 
     @* LAPOZO *@
 
     @Html.PagedListPager(Model, pn => Url.Action("IndexA", "Munkalapok",
         new { pn, searcs = Request.QueryString["search"] }))
-
 </div>

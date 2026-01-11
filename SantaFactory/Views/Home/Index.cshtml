@@ -4,11 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-
 @using PagedList.Mvc;
 @using PagedList;
 
-<br/>
+<br />
 
 @if (TempData["ErrorMessage"] != null)
 {
@@ -17,159 +16,74 @@
     </div>
 }
 
-<br/>
+<br />
 - Üdv @HttpContext.Current.User.Identity.Name
-<br/>
+<br />
 @DateTime.Today.Year .@DateTime.Today.Month .@DateTime.Today.Day -ig nem jóváhagyott feladatok
+<br />
 
+<table class="table-responsive table-santa">
+    <tr>
+        <th>
+            ID.
+        </th>
 
+        <th>
+            Projekt kód
+        </th>
 
+        <th>
+            Feladat Neve
+        </th>
 
-@*@if (Request.IsAuthenticated)
+        <th>
+            Feladat típusa
+        </th>
+
+        <th>
+            V.Befejezés
+        </th>
+
+        <th></th>
+    </tr>
+
+    <br />
+
+    @foreach (var item in Model)
     {
-
-        using (Html.BeginForm("Kijelentkezes", "Users", FormMethod.Post, new { id = "logoutForm" }))
-        {
-            <a href="javascript:document.getElementById('logoutForm').submit()">Kijelentkezés</a>
-
-        }
-
-    }*@
-
-<div class="table-responsive">
-    <table class="table table-santa">
         <tr>
-            <th>
-                ID.
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
 
-            <th>
-                Projekt kód
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+            </td>
 
-            <th>
-                Feladat Neve
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
 
-            <th>
-                Feladat típusa
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+            </td>
 
-            <th>
-                V.Befejezés
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+            </td>
 
+            <td>
 
+                @Html.ActionLink(" ", "Details", "Feladat", new { id = item.ID }, 
+               new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
 
-            <th></th>
+            </td>
         </tr>
+    }
 
-        <br />
+</table>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
+@* LAPOZO *@
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nev)
-                </td>
-
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-                </td>
-
-
-                <td>
-                    @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
-                    @*@Html.ActionLink(" ", "Edit", "Feladat", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;*@
-                    @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
-
-                    @Html.ActionLink(" ", "Details", "Feladat", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                    @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
-
-                    @*@Html.ActionLink(" ", "Delete", "Feladat", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })*@
-                    @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
-                </td>
-            </tr>
-        }
-
-    </table>
-
-    <table class="table">
-        <br />
-
-        @* A filces tablanak a lemodellezese *@
-        @*
-            <tr>
-                <th>
-                    Projekt kód
-                </th>
-
-                <th>
-                    Feladat Neve
-                </th>
-
-                <th>
-                    Feladat típusa
-                </th>
-
-                <th>
-                    V.Befejezés
-                </th>
-
-
-
-                <th></th>
-            </tr>
-
-            @{ ///tablazat feltoltese adatkkal
-
-                var feladatokLista = Model.ToList(); ///
-
-                for (int w = 0; w < 2; w++)
-                {
-
-                    <tr>
-                        @for (int i = 0; i < 7; i++)
-                        {
-
-                            if (feladatokLista.Count() >i)
-                            {
-                                <td>
-                                    @Html.DisplayFor(modelItem => feladatokLista[i].Projektek.AzonositoKod)
-                                </td>
-                            }
-                            else
-                            {
-                                <td>
-                                </td>
-                            }
-
-
-                        }
-                    </tr>
-                }
-            }*@
-
-    </table>
-
-
-    @* LAPOZO *@
-
-    @Html.PagedListPager(Model, pn => Url.Action("Index", "Home",
-        new { pn, searcs = Request.QueryString["search"] }))
-
-</div>
+@Html.PagedListPager(Model, pn => Url.Action("Index", "Home",
+    new { pn, searcs = Request.QueryString["search"] }))

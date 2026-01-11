@@ -89,7 +89,7 @@ else
                             @type = "date",
                             @class = "form-control",
                             @min = "1950-01-01",
-                            @max = "2005-12-31"
+                            @max = "2025-12-31"
                         }
                     })
 
@@ -148,7 +148,6 @@ else
                     </div>
                 </div>
             </div>
-
 
             <table class="table">
                 @*Cim adatok*@
@@ -216,7 +215,6 @@ else
                     </div>
                 </div>
 
-
                 @*Elérhetőségek*@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 
@@ -265,9 +263,6 @@ else
                             @Html.ValidationMessageFor(model => model.Elerhetosegek.Megjegyzes, "", new { @class = "text-danger" })
                         </div>
                     </div>
-
-
-
                 </div>
             </table>
 
@@ -279,10 +274,7 @@ else
 
             @Html.HiddenFor(model => model.SzuletesiHely, new { @Value = "x" })
 
-            @*@Html.HiddenFor(model => model.SzemIgSzam, new { @Value = "000000AB" })*@
-
             @Html.HiddenFor(model => model.Megegyezik, new { @Value = false })
-
 
             <div class="form-group">
                 <div>
@@ -292,13 +284,13 @@ else
                 </div>
             </div>
         </div>
-
-
-
     }
-
 }
 
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
 
+}

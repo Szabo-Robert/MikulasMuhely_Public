@@ -19,6 +19,12 @@ header img {
     border-radius: 10px 10px 0 0;
 }
 
+footer {
+    font-weight: bold;
+    color: #A62424;
+    text-align: center;
+}
+
 /*Mikulás színezés*/
 
 .login-container {
@@ -203,20 +209,15 @@ header img {
     background-color: #99e579
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
@@ -275,16 +276,15 @@ textarea {
     border: 1px solid #2d5a27;
 }
 
-/* Mobilon a gomb teljes szélességű legyen */
+/* MOBIL NÉZET (767px alatt) */
+
 @media (max-width: 767px) {
+    /* Mobilon a gomb teljes szélességű legyen */
     .santa-letter-container {
         margin: 10px;
         padding: 15px;
     }
-}
 
-/* MOBIL NÉZET (767px alatt) */
-@media (max-width: 767px) {
     #nav-login-form {
         flex-direction: column; /* A két sor egymás alá kerül */
         gap: 8px;

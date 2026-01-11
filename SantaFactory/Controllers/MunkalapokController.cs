@@ -65,13 +65,19 @@ namespace SantaFactory.Controllers
                     tempModel = db.Munkalapok.Where(x => x.UserID == tempUser.UserID);
                 }
 
-                if (tempModel.Count() == 0)
+                if (!tempModel.Any())
                 {
                     TempData["ErrorMessage"] = "Nincs kilistázható munkalap!";
                     return RedirectToAction("Index", "Home");
                 }
 
                 model = tempModel.Where(x => x.JovahagyvaCB/*Megtekintve*/).OrderByDescending(x => x.MunkaDatuma).ToList();
+
+                if (!model.Any())
+                {
+                    TempData["ErrorMessage"] = "Nincs kilistázható munkalap!";
+                    return RedirectToAction("Index", "Home");
+                }
 
                 ///levalogatjuk a munkalapokon szereplo eveket
                 ///kezdjuk az elso munkalapnak az evevel, 

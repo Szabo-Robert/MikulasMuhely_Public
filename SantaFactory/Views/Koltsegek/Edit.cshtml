@@ -35,7 +35,6 @@
         @Html.HiddenFor(model => model.MunkalapID)
 
         <div class="form-group required">
-
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
                 @Html.LabelFor(model => model.KoltsegNeve, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
@@ -47,7 +46,6 @@
         </div>
 
         <div class="form-group required">
-
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
                 @Html.LabelFor(model => model.KoltsegErteke, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
@@ -59,7 +57,6 @@
         </div>
 
         <div class="form-group required">
-
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
                 @Html.LabelFor(model => model.KoltsegLeirasa, htmlAttributes: new { @class = "control-label col-md-2" })
             </div>
@@ -88,9 +85,6 @@
                                onclick="location.href='@Url.Action("Index", "Koltsegek", routeValues: new { id = Model.MunkalapID })'" />
                     }
                 }
-
-
-
             </div>
         </div>
     </div>

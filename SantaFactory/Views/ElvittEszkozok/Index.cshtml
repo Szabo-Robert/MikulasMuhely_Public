@@ -21,13 +21,11 @@
     </div>
 </div>
 
-
-
 <a href="@Url.Action("Create", "ElvittEszkozok")">
     <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új eszköz hozzáadása"></span>
 </a>
 
-<table class="table">
+<table class="table-responsive table-santa">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().Nev)
@@ -43,7 +41,6 @@
                 @Html.DisplayFor(modelItem => item.Nev)
             </td>
 
-
             <td>
                 @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
 
@@ -55,9 +52,7 @@
 
 </table>
 
-
 @* LAPOZO *@
-
 @Html.PagedListPager(Model, pn => Url.Action("Index", "ElvittEszkozok",
     new { pn, searcs = Request.QueryString["search"] }))
 

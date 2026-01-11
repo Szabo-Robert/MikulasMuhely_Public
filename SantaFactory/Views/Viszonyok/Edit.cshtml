@@ -30,7 +30,6 @@
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
         <div class="form-group required">
 
             <div class="col-xs-4 col-sm-2 col-md-2 col-lg-1">
@@ -47,7 +46,8 @@
             <div>
                 <p class="text-danger">* A mező kitöltése kötelező!</p>
                 <input type="submit" value="Mentés" class="btn  btn-default btn-santa" />
-                <input type="button" value="Mégse" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Viszonyok")'" />
+                <input type="button" value="Mégse" class="btn  btn-default btn-santa"
+                       onclick="location.href='@Url.Action("Index", "Viszonyok")'" />
             </div>
         </div>
     </div>

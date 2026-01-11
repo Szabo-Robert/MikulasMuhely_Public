@@ -18,9 +18,7 @@
     </div>
 </div>
 
-
 <div>
-
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -30,14 +28,6 @@
         <dd>
             @Html.DisplayFor(model => model.Feladatok.Nev)
         </dd>
-
-        @*<dt>
-                Alkalmazott
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(modelItem => Model.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => Model.Users.KeresztNev)
-            </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.MunkaDatuma)
@@ -87,192 +77,132 @@
             @Html.DisplayFor(model => model.JovahagyvaCB)
         </dd>
 
-        @*<dt>
-                @Html.DisplayNameFor(model => model.Magyjegyzes)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Magyjegyzes)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Feladatok.MunkaLeirasa)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Feladatok.MunkaLeirasa)
-            </dd>*@
-
-
-
         @* KOLTSEGEK listaja *@
         @* A feladathoz letrehozott munkalapok listaja *@
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="table-responsive">
-                <table class="table">
+        <div class="table-responsive">
+            <table class="table-responsive table-santa">
 
-                    <p>
-                        <h3 id="red">Költségek listája</h3>
-                    </p>
+                <p>
+                    <h3 id="red">Költségek listája</h3>
+                </p>
 
-                    @{
-                        string tempJogosultsagKoltseg = "";
+                @{
+                    string tempJogosultsagKoltseg = "";
 
-                        if (TempData["Users"] != null)
-                        {
-                            tempJogosultsagKoltseg = TempData["Users"].ToString();
-                            //TempData.Keep();
-                        }
-
-                        var temp = Model.FeladatokLista.FirstOrDefault(x => x.ID == Model.FeladatID);
-
-                        var kitIrokKiKoltseg = Model.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-                                        $"{Model.Users.VezetekNev} {Model.Users.KeresztNev}");
-
-                        if (!(temp.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
-                        {
-                            <a href="@Url.Action("Create", "Koltsegek", routeValues: new { id = Model.ID })">
-                                @* text space *@
-                                <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új költség hozzáadása"></span>
-                            </a>
-                        }
-                    }
-
-
-
-
-                    @*<a href="@Url.Action("Create", "Koltsegek", routeValues: new { id = Model.ID })">
-
-                            <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új költség hozzáadása"></span>
-                        </a>*@
-
-                    @* ICON-ra cserelve *@
-                    @*<p>
-                            @Html.ActionLink("Új munkalap létrehozása", "Create", "Munkalap_", routeValues: new { id = Model.ID }, htmlAttributes: null)
-                        </p>*@
-
-                    <tr>
-                        <th>
-                            Költség neve
-                        </th>
-
-                        <th>
-                            Költség értéke
-                        </th>
-
-                        <th>
-                            Költség leírása
-                        </th>
-
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model.KoltsegekLista)
+                    if (TempData["Users"] != null)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KoltsegNeve)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KoltsegErteke)
-                            </td>
-
-                            <td>
-                                @Html.DisplayFor(modelItem => item.KoltsegLeirasa)
-                            </td>
-
-
-                            @* ATADNI A MUNKALAP ID-ja *@
-                            @{
-                                string KoltsegIDMunkalapID = $"{item.ID}_{Model.ID}";
-                            }
-
-                            @if (!(Model.JovahagyvaCB))
-                            {
-                                <td>
-                                    @{
-                                        //string tempJogosultsagKoltseg = "";
-
-                                        //if (TempData["Users"] != null)
-                                        //{
-                                        //    tempJogosultsagKoltseg = TempData["Users"].ToString();
-                                        //    //TempData.Keep();
-                                        //}
-
-                                        //var kitIrokKiKoltseg = Model.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-                                        //$"{Model.Users.VezetekNev} {Model.Users.KeresztNev}");
-
-                                        if (!(Model.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
-                                        {
-                                            <a href="@Url.Action("Edit", "Koltsegek", routeValues: new { id = KoltsegIDMunkalapID })">
-                                                @* text space *@
-                                                <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
-                                            </a>
-
-                                        }
-                                    }
-                                    &nbsp;
-                                    @{
-
-                                        if (!(Model.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
-                                        {
-
-                                            <a href="@Url.Action("Delete", "Koltsegek", routeValues: new { id = KoltsegIDMunkalapID })">
-                                                @* text space *@
-                                                <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
-                                            </a>
-                                        }
-                                    }
-
-                                </td>
-                            }
-
-                        </tr>
+                        tempJogosultsagKoltseg = TempData["Users"].ToString();
+                        //TempData.Keep();
                     }
 
+                    var temp = Model.FeladatokLista.FirstOrDefault(x => x.ID == Model.FeladatID);
 
-                </table>
+                    var kitIrokKiKoltseg = Model.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
+                                    $"{Model.User.VezetekNev} {Model.User.KeresztNev}");
 
-            </div>
+                    if (!(temp.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
+                    {
+                        <a href="@Url.Action("Create", "Koltsegek", routeValues: new { id = Model.ID })">
+                            @* text space *@
+                            <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új költség hozzáadása"></span>
+                        </a>
+                    }
+                }
+
+                @* ICON-ra cserelve *@
+
+                <tr>
+                    <th>
+                        Költség neve
+                    </th>
+
+                    <th>
+                        Költség értéke
+                    </th>
+
+                    <th>
+                        Költség leírása
+                    </th>
+
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.KoltsegekLista)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KoltsegNeve)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KoltsegErteke)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KoltsegLeirasa)
+                        </td>
+
+
+                        @* ATADNI A MUNKALAP ID-ja *@
+                        @{
+                            string KoltsegIDMunkalapID = $"{item.ID}_{Model.ID}";
+                        }
+
+                        @if (!(Model.JovahagyvaCB))
+                        {
+                            <td>
+                                @{
+
+                                    if (!(Model.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
+                                    {
+                                        <a href="@Url.Action("Edit", "Koltsegek", routeValues: new { id = KoltsegIDMunkalapID })">
+                                            @* text space *@
+                                            <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
+                                        </a>
+                                    }
+                                }
+                                &nbsp;
+                                @{
+                                    if (!(Model.JovahagyvaCB) && (kitIrokKiKoltseg.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsagKoltseg == "ADMIN"))
+                                    {
+                                        <a href="@Url.Action("Delete", "Koltsegek", routeValues: new { id = KoltsegIDMunkalapID })">
+                                            @* text space *@
+                                            <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
+                                        </a>
+                                    }
+                                }
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+
         </div>
 
-
     </dl>
-</div>
 
-<div class="form-group">
-    <div>
+    <div class="form-group">
+        <div>
+            @{
+                string tempJogosultsag = "";
 
-        @{
-            string tempJogosultsag = "";
+                if (TempData["Users"] != null)
+                {
+                    tempJogosultsag = TempData["Users"].ToString();
+                }
 
-            if (TempData["Users"] != null)
-            {
-                tempJogosultsag = TempData["Users"].ToString();
-                //TempData.Keep();
-            }
+                var kitIrokKiMunkalap = Model.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
+                $"{Model.User.VezetekNev} {Model.User.KeresztNev}");
 
-            var kitIrokKiMunkalap = Model.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-            $"{Model.Users.VezetekNev} {Model.Users.KeresztNev}");
-
-            @*if (Model.Atiranyitott == 0)
-            {
                 if (!(Model.JovahagyvaCB) && (kitIrokKiMunkalap.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsag == "ADMIN"))
                 {
-                    <input type="button" value="Módosít" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
+                    <input type="button" value="Módosít" class="btn  btn-default btn-santa"
+                           onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
                 }
-                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Munkalapok")'" />
+                <input type="button" value="Vissza" class="btn  btn-default btn-santa"
+                       onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
             }
-            else
-            {*@
-                if (!(Model.JovahagyvaCB) && (kitIrokKiMunkalap.Elerhetosegek.Email == User.Identity.Name) || (tempJogosultsag == "ADMIN"))
-                {
-                    <input type="button" value="Módosít" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Edit", "Munkalapok", routeValues: new { id = $"{Model.ID}_{Model.FeladatID}" })'" />
-                }
-                <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
-            @*}*@
-        }
-
+        </div>
     </div>
 </div>
+

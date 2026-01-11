@@ -36,7 +36,7 @@
     </div>
 
     <dl class="dl-horizontal">
-        <table class="table">
+        <table class="table-responsive table-santa">
             <content class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
                 <dt>
                     @Html.DisplayNameFor(model => model.Nev)
@@ -62,16 +62,6 @@
                     @Html.DisplayFor(model => model.FeladatLeirasa)
                 </dd>
 
-
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.Viszony.Nev)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Viszony.Nev)
-                </dd>*@
-
-
                 <dt>
                     @Html.DisplayNameFor(model => model.VarhatoKezdes)
                 </dt>
@@ -96,14 +86,6 @@
                     @Html.DisplayFor(model => model.BecsultMunkaOra)
                 </dd>
 
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.Atiranyitott)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Atiranyitott)
-                </dd>*@
-
                 <dt>
                     @Html.DisplayNameFor(model => model.FeladatTipusok.Nev)
                 </dt>
@@ -111,7 +93,6 @@
                 <dd>
                     @Html.DisplayFor(model => model.FeladatTipusok.Nev)
                 </dd>
-
 
             </content>
 
@@ -122,14 +103,10 @@
                 <dt>
                     Feladat eszközei
                 </dt>
-                @*</b>
-                    </p>*@
 
                 @* A feladatba resztvevok neveinek listaja *@
                 @*<div>*@
                 <dd>
-
-
 
                     @foreach (var item in Model.ElvihetoEszkozokLista.OrderBy(x => x.Nev))
                     {
@@ -154,7 +131,6 @@
                     @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
                     @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
                 </dd>
-
 
                 <dt>
                     Cím

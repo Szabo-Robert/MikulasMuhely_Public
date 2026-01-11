@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-
 @using PagedList.Mvc;
 @using PagedList;
-
 
 <div class="row">
     <div class="col-sm-12 col-xs-12">
@@ -23,20 +21,7 @@
     </div>
 </div>
 
-@*CSAK a FELADATnal lehet uj anyagot hozzadni!
-
-        <div class="row">
-        <div class="col-sm-12 col-xs-12">
-
-            <a href="@Url.Action("Create", "FelhasznaltAnyagok")">
-
-                <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új létrehozása"></span>
-            </a>
-
-        </div>
-    </div>*@
-
-<table class="table">
+<table class="table-responsive table-santa">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().Nev)
@@ -61,14 +46,7 @@
             </td>
 
             <td>
-                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
                 @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
-                @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
-
-                @* CSAK a FELADATnal lehet torolni!
-
-                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })*@
             </td>
 
         </tr>

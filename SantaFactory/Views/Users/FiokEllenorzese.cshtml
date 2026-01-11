@@ -5,7 +5,6 @@
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
-
     <div class="alert alert-success">
 
         <strong>Sikeres befejezés!</strong>
@@ -13,14 +12,12 @@
         @Html.ActionLink("ide.", "Bejelentkezes", "Users")
 
     </div>
-
 }
 else
 {
     <div class="alert alert-danger">
         <strong>Hiba!</strong> @ViewBag.Message
     </div>
-
 }
 
 @if (TempData["ErrorMessage"] != null)

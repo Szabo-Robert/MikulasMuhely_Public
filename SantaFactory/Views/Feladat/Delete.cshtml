@@ -36,171 +36,132 @@
     </div>
 
     <dl class="dl-horizontal">
-        <table class="table">
+        <table class="table-responsive table-santa">
             <content class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Nev)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nev)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Nev)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Nev)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Projektek.AzonositoKod)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Projektek.AzonositoKod)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Projektek.AzonositoKod)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Projektek.AzonositoKod)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FeladatLeirasa)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FeladatLeirasa)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FeladatLeirasa)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FeladatLeirasa)
+        </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.VarhatoKezdes)
+        </dt>
 
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.Viszony.Nev)
-                </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VarhatoKezdes)
+        </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Viszony.Nev)
-                </dd>*@
+        <dt>
+            @Html.DisplayNameFor(model => model.VarhatoBefejezes)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.VarhatoBefejezes)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.VarhatoKezdes)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.BecsultMunkaOra)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.VarhatoKezdes)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.BecsultMunkaOra)
+        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.VarhatoBefejezes)
-                </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FeladatTipusok.Nev)
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.VarhatoBefejezes)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.BecsultMunkaOra)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.BecsultMunkaOra)
-                </dd>
-
-                @*<dt>
-                    @Html.DisplayNameFor(model => model.Atiranyitott)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Atiranyitott)
-                </dd>*@
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.FeladatTipusok.Nev)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.FeladatTipusok.Nev)
-                </dd>
+        <dd>
+            @Html.DisplayFor(model => model.FeladatTipusok.Nev)
+        </dd>
 
 
-            </content>
+        </content>
 
-            <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+        <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
+        <dt>
+            Feladat résztvevői
+        </dt>
 
-                @*<p>
-                    <b>*@
-                <dt>
-                    Feladat résztvevői
-                </dt>
-                @*</b>
-                    </p>*@
+        @* A feladatba resztvevok neveinek listaja *@
+        <dd>
+            @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.User.VezetekNev))
+            {
+                <p>
+                    - @Html.DisplayFor(modelItem => item.User.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.User.KeresztNev)
+                </p>
+            }
+        </dd>
 
-                @* A feladatba resztvevok neveinek listaja *@
-                @*<div>*@
-                <dd>
+        </content>
 
+        <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
 
+        <dt>
+            Feladat eszközei
+        </dt>
 
-                    @foreach (var item in Model.UsersFeladatokLista.OrderBy(x => x.User.VezetekNev))
-                    {
+        @* A feladatba resztvevok neveinek listaja *@
+        <dd>
+            @foreach (var item in Model.ElvihetoEszkozokLista.OrderBy(x => x.Nev))
+            {
+                <p>
+                    - @Html.DisplayFor(modelItem => item.Nev)
+                </p>
+            }
+        </dd>
 
-                        <p>
-                            - @Html.DisplayFor(modelItem => item.User.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.User.KeresztNev)
-                        </p>
-                    }
-                </dd>
-                @*</div>*@
+        </content>
 
-            </content>
+        <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <dt>
+            Elérhetőségek
+        </dt>
 
-            <content class="col-xs-6 col-sm6 col-md-6 col-lg-6">
-
-                @*<p>
-                    <b>*@
-                <dt>
-                    Feladat eszközei
-                </dt>
-                @*</b>
-                    </p>*@
-
-                @* A feladatba resztvevok neveinek listaja *@
-                @*<div>*@
-                <dd>
-
-
-
-                    @foreach (var item in Model.ElvihetoEszkozokLista.OrderBy(x => x.Nev))
-                    {
-
-                        <p>
-                            - @Html.DisplayFor(modelItem => item.Nev)
-                        </p>
-                    }
-                </dd>
-                @*</div>*@
-
-            </content>
-
-            <content class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <dt>
-                    Elérhetőségek
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
-                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
-                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
-                    @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
-                </dd>
+        <dd>
+            @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam1) <br />
+            @Html.DisplayFor(modelItem => Model.Elerhetosegek.Telszam2) <br />
+            @Html.DisplayFor(modelItem => Model.Elerhetosegek.Email) <br />
+            @Html.DisplayFor(modelItem => Model.Elerhetosegek.WEB)
+        </dd>
 
 
-                <dt>
-                    Cím
-                </dt>
+        <dt>
+            Cím
+        </dt>
 
-                <dd>
-                    @Html.DisplayFor(modelItem => Model.Cimek.Orszag),&nbsp;
-                    @Html.DisplayFor(modelItem => Model.Cimek.Varos)<br />
-                    @Html.DisplayFor(modelItem => Model.Cimek.Utca) u.,&nbsp;
-                    @Html.DisplayFor(modelItem => Model.Cimek.Szam) sz.
-                    @Html.DisplayFor(modelItem => Model.Cimek.Egyeb)
-                    @Html.DisplayFor(modelItem => Model.Cimek.Megjegyzes)
-                </dd>
+        <dd>
+            @Html.DisplayFor(modelItem => Model.Cimek.Orszag),&nbsp;
+            @Html.DisplayFor(modelItem => Model.Cimek.Varos)<br />
+            @Html.DisplayFor(modelItem => Model.Cimek.Utca) u.,&nbsp;
+            @Html.DisplayFor(modelItem => Model.Cimek.Szam) sz.
+            @Html.DisplayFor(modelItem => Model.Cimek.Egyeb)
+            @Html.DisplayFor(modelItem => Model.Cimek.Megjegyzes)
+        </dd>
 
-            </content>
+        </content>
 
         </table>
-        
+
     </dl>
 
     @using (Html.BeginForm())

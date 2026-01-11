@@ -21,7 +21,6 @@
         }
 
     </div>
-
 </div>
 
 <div>
@@ -33,7 +32,6 @@
         @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
-
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 alert alert-danger" id="red">
 
                 <h4>Biztosan szeretné törölni a következő elemet?</h4>
@@ -73,7 +71,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Töröl" class="btn  btn-default btn-santa" />
-            <input type="button" value="Mégse" class="btn  btn-default btn-santa" 
+            <input type="button" value="Mégse" class="btn  btn-default btn-santa"
                    onclick="location.href='@Url.Action("Details", "Munkalapok", routeValues: new { id = Model.MunkalapID })'" />
 
         </div>

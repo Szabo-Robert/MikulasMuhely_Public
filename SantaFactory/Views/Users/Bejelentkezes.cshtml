@@ -17,7 +17,6 @@
 }
 else
 {
-
     if (ViewBag.Message != null)
     {
         <div class="alert alert-danger">
@@ -33,7 +32,6 @@ else
     </div>
 }
 
-
 <div class="form-horizontal">
 
     <div class="santa-letter-container">
@@ -43,7 +41,7 @@ else
         @using (Html.BeginForm("TempCreateFromLetter", "Feladat", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-            
+
             @* Üzenet mező *@
             <div class="form-group">
                 @* A name="Uzenet" helyett használd a modell mezőjét! *@
@@ -87,7 +85,6 @@ else
         }
     </div>
 </div>
-
 
 @section Scripts{
     <script src="~/Scripts/jquery.validate.min.js"></script>

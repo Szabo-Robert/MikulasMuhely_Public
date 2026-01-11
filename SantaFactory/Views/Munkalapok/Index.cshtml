@@ -13,17 +13,6 @@
 
         <h2>Munkalapok listája</h2>
 
-
-        @*<a href="@Url.Action("Create", "Munkalapok")">
-
-                <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új munkalap létrehozása"></span>
-            </a>*@
-
-        @*<a href="@Url.Action("ExportToExcel", "Munkalapok")">
-
-                <span class="glyphicon glyphicon-download" style="font-size:25px;" title="XLS letöltése"></span>
-            </a>*@
-
         @if (TempData["ErrorMessage"] != null)
         {
             <div class="alert alert-danger">
@@ -33,127 +22,52 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-sm-12 col-xs-12">
-
-        @*@Html.HiddenFor(model => model.ViszonyID, new { @Value = 2 })
-
-            <div class="form-group">
-                    @Html.LabelFor(model => model.userID, htmlAttributes: new { @class = "control-label col-md-3 col-lg-3" })
-                    <div class="col-md-9">
-                        @Html.DropDownListFor(model => model.XLS_id, new SelectList(Model.First().MunkasokLista, "ID", "Nev"), "Kérem válasszon!", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.XLS_id, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
 
         @{ string tempJogosultsag = "";
 
             if (TempData["Users"] != null)
             {
                 tempJogosultsag = TempData["Users"].ToString();
-                //TempData.Keep();
             }
 
-            //if (tempJogosultsag != "Alkalmazott")
-            //{
-            <table class="table">
+            <table class="table-responsive table-santa">
                 <tr>
-
                     @{
                         var munkasLista = Model.First().MunkasokLista;
 
 
                         foreach (var item in Model)
                         {
-
-                            //@Html.DropDownListFor(m => m.SelectedVendor, Model.Vendor, "Select Manufacurer")
-                            //@Html.HiddenFor(m => m.SelectedvendorText)
-
-
                             <td>
-
-                                @*<form id="form" runat="server">
-                                        <input id="donkey" type="text" placeholder="-" runat="server" />
-                                    </form>*@
-
-
-
-
-                                @*<input type="text" name="XLS" id="txt" />*@
-
-                                @*@Html.DropDownListFor(model => item.XLS_UserID, new SelectList(Model.First().MunkasokLista, "UserID", "Nev"),
-                                                     "Alkalmazott neve", htmlAttributes: new { @class = "form-control", @onChange = "selectedUser(this)" })
-                                    @Html.ValidationMessageFor(model => item.XLS_UserID, "", new { @class = "text-danger" })*@
-
                                 @Html.DropDownListFor(model => item.evek, new SelectList(Model.First().evek, "Id"),
                                                  "Kilistázandó év", htmlAttributes: new { @class = "form-control", @onChange = "selectedY(this, item)" })
-
-
                             </td>
 
                             <td>
-
-                                @*<form id="form" runat="server">
-                                        <input id="donkey" type="text" placeholder="-" runat="server" />
-                                    </form>*@
-
-
-                                @*<input type="text" name="XLS" id="txt" />*@
-
                                 @Html.DropDownListFor(model => item.XLS_UserID, new SelectList(Model.First().honapok, "Id"),
                                                  "Kilistázandó hónap", htmlAttributes: new { @class = "form-control", @onChange = "selectedM(this, item)" })
-
-
-
                             </td>
-
-                            @*<input type="date" name="HiddenDate" id="HiddenDate" readonly="readonly" />
-
-                                @Html.EditorFor(model => item.XLS_Datum, new { htmlAttributes = new { @type = "date", @class = "form-control", @onChange = "selectedDate(this)" } })
-                                @Html.ValidationMessageFor(model => item.XLS_Datum, "", new { @class = "text-danger" })*@
-
-                            //jQueri_user = txt.value;
-
-                            //XLS_id_string = Request.Form["donkey"]; //$"{item.XLS_UserID}_{item.XLS_Datum}";
-
-
-                            //<br />
 
                             <td>
                                 <form>
                                     <input id="donkey1" type="hidden" name="test" />
                                     <input id="donkey2" type="hidden" name="test" />
                                     <input id="donkey3" type="hidden" name="test" />
-                                    @*<input id="donkey4" type="text" name="test" />*@
-                                    @*<button type="submit">
-                                            <span class="glyphicon glyphicon-download" style="font-size:25px;" title="XLS letöltése"></span>
-                                        </button>*@
                                     <input type="submit" value="XLS letöltése" />
                                 </form>
                             </td>
 
-                            @*<input type="submit" value="XLS" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("ExportToExcel", "Munkalapok")'" />*@
-
-                            @*<a id="test" href="@Url.Action("ExportToExcel", "Munkalapok", new { id = $"{item.XLS_UserID}" })">
-                                    <span class="glyphicon glyphicon-download" style="font-size:25px;" title="XLS letöltése"></span>
-                                </a>*@
-
                             break;
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.use)
-                                </th>*@
                         }
-
                     }
                 </tr>
             </table>
-            //}
         }
     </div>
 
-
-    <table class="table">
+    <table class="table-responsive table-santa">
         <tr>
 
             <th>
@@ -161,12 +75,10 @@
             </th>
 
             <th>
-                @*@Html.DisplayNameFor(model => model.First().Feladatok.Projektek.AzonositoKod)*@
                 Proj.Kód
             </th>
 
             <th>
-                @*@Html.DisplayNameFor(model => model.First().MunkaDatuma)*@
                 M. dátuma
             </th>
 
@@ -185,7 +97,6 @@
                 if (TempData["Users"] != null)
                 {
                     tempJogosultsag = TempData["Users"].ToString();
-                    //TempData.Keep();
                 }
 
                 if (tempJogosultsag != "Alkalmazott")
@@ -195,15 +106,6 @@
                     </th>
                 }
             }
-
-            @*<th>
-                    Alk. Neve
-                </th>*@
-
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Megtekintve)
-                </th>*@
-
 
             <th></th>
         </tr>
@@ -218,7 +120,6 @@
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Feladatok.Projektek.AzonositoKod)
-                    @*@Html.DisplayFor(modelItem => item.Feladatok.Nev)*@
                 </td>
 
                 <td>
@@ -241,26 +142,15 @@
                     if (TempData["Users"] != null)
                     {
                         tempJogosultsag = TempData["Users"].ToString();
-                        //TempData.Keep();
                     }
 
                     if (tempJogosultsag != "Alkalmazott")
                     {
                         <td>
-                            @Html.DisplayFor(modelItem => item.Users.VezetekNev) @Html.DisplayFor(modelItem => item.Users.KeresztNev)
+                            @Html.DisplayFor(modelItem => item.User.VezetekNev) @Html.DisplayFor(modelItem => item.User.KeresztNev)
                         </td>
                     }
                 }
-
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Users.VezetekNev)&nbsp;@Html.DisplayFor(modelItem => item.Users.KeresztNev)
-                    </td>*@
-
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Megtekintve)
-                    </td>*@
-
-
                 <td>
                     @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
                     @if (item.FeladatID != 0)
@@ -270,7 +160,7 @@
                         {
 
                             var kitIrokKi = item.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-                            $"{item.Users.VezetekNev} {item.Users.KeresztNev}");
+                            $"{item.User.VezetekNev} {item.User.KeresztNev}");
 
                             if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN") || (kitIrokKi.Elerhetosegek.Email == User.Identity.Name))
                             {
@@ -280,24 +170,15 @@
                         }
                     }
                     &nbsp;
-                    @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
-
                     @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                    @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
 
                     @if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN"))
                     {
-
                         @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                        @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
                     }
-
                 </td>
-
             </tr>
-
         }
-
     </table>
 
 
@@ -310,45 +191,23 @@
         <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
         <script>
-
-            //var ID = "";
-            //function selectedUser(userIDInput) {
-
-            //    var userID = userIDInput.value;
-
-            //    //var seltext = userIDInput.options[userIDInput.selectedIndex].innerHTML;
-
-            //    $('#donkey2').val(userID);
-
-            //    $('#donkey1').val($('#donkey2').val() + "_" + $('#donkey3').val());
-
-            //}
-
             function selectedY(userIDInput) {
 
                 var userID = userIDInput.value;
 
-                //var seltext = userIDInput.options[userIDInput.selectedIndex].innerHTML;
-
                 $('#donkey2').val(userID);
 
                 $('#donkey1').val($('#donkey2').val() + "_" + $('#donkey3').val());
-
             }
-
 
             function selectedM(userDateInput) {
 
                 var userDate = userDateInput.value;
 
-                //var seltext = userDateInput.options[userDateInput.selectedIndex].innerHTML;
-
                 $('#donkey3').val(userDate);
 
                 $('#donkey1').val($('#donkey2').val() + "_" + $('#donkey3').val());
-
             }
 
         </script>
-
     }

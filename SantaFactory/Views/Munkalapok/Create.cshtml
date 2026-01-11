@@ -73,7 +73,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             @Html.LabelFor(model => model.MegtettKM, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -88,7 +87,7 @@
 
                 <div class="form-actions no-color">
                     <input type="submit" value="Létrehoz" class="btn  btn-default btn-santa" onClick='return confirmSubmit()' />
-                    <input type="button" value="Mégse" class="btn  btn-default btn-santa" 
+                    <input type="button" value="Mégse" class="btn  btn-default btn-santa"
                            onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
 
                 </div>

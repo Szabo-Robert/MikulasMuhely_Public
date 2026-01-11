@@ -19,11 +19,6 @@
                 <p id="red">@TempData["ErrorMessage"]</p>
             </div>
         }
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-12 col-xs-12">
 
         <a href="@Url.Action("TempCreate", "Feladat")">
             @* text space *@
@@ -33,118 +28,99 @@
     </div>
 </div>
 
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>
-                ID.
-            </th>
 
-            <th>
-                Projekt kód
-            </th>
+<table class="table-responsive table-santa">
+    <tr>
+        @*<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">*@
+        <th>
+            ID.
+        </th>
 
-            <th>
-                Feladat Neve
-            </th>
+        @*<th class="col-xs-1 col-sm-1 col-md-1 col-lg-2">*@
+        <th>
+            Projekt kód
+        </th>
 
-            <th>
-                V.Kezdés
-            </th>
+        @*<th class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
+        <th>
+            Feladat Neve
+        </th>
 
-            <th>
+        <th>
+            V.Kezdés
+        </th>
+
+        @*<th>
                 V.Befejezés
-            </th>
+            </th>*@
 
-            <th>
-                Napi munkaóra
-            </th>
+        @*<th class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
+        <th>
+            Létrehozó
+        </th>
 
-            <th>
-                Létrehozó
-            </th>
+        <th></th>
+    </tr>
 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
 
+            @*<td class="col-xs-1 col-sm-1 col-md-1 col-lg-2">*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+            </td>
 
-            <th></th>
-        </tr>
+            @*<td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VarhatoKezdes)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nev)
-                </td>
-
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.VarhatoKezdes)
-                </td>
-
-                <td>
+            @*<td>
                     @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-                </td>
+                </td>*@
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BecsultMunkaOra) óra
-                </td>
+            @*<td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
+            <td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">
+                @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
-                </td>
+            <td>
+                @{
+                    var tempJogosultsag = "";
 
-                <td>
-                    @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
-
-
-                    @*@Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;*@
-                    @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
-
-                    @*@Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;*@
-                    @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
-
-                    @{
-                        var tempJogosultsag = "";
-
-                        if (TempData["Users"] != null)
-                        {
-                            tempJogosultsag = TempData["Users"].ToString();
-                            //TempData.Keep();
-                        }
-
-                        if (tempJogosultsag == "ADMIN")
-                        {
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) //&nbsp;
-
-                            <text>&nbsp;</text>
-
-                            @Html.ActionLink(" ", "TempDelete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-                        }
-                        @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
+                    if (TempData["Users"] != null)
+                    {
+                        tempJogosultsag = TempData["Users"].ToString();
                     }
-                </td>
-            </tr>
-        }
 
-    </table>
+                    if (tempJogosultsag == "ADMIN")
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
 
+                        <text>&nbsp;</text>
 
-    @* LAPOZO *@
+                        @Html.ActionLink(" ", "TempDelete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+                    }
+                }
+            </td>
+        </tr>
+    }
 
-    @Html.PagedListPager(Model, pn => Url.Action("TempIndex", "Feladat",
-        new { pn, searcs = Request.QueryString["search"] }))
+</table>
 
-</div>
+@* LAPOZO *@
+
+@Html.PagedListPager(Model, pn => Url.Action("TempIndex", "Feladat",
+    new { pn, searcs = Request.QueryString["search"] }))

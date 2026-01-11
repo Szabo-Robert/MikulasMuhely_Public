@@ -19,116 +19,98 @@
                 <p id="red">@TempData["ErrorMessage"]</p>
             </div>
         }
+
+        @if (Model.First().LogUserJogosultsaga == "Vezetőség" || Model.First().LogUserJogosultsaga == "ADMIN")
+        {
+            <a href="@Url.Action("Create", "Feladat")">
+                @* text space *@
+                <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új felhasználó hozzáadása"></span>
+            </a>
+        }
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12 col-xs-12">
+<table class="table-responsive table-santa">
+    <tr>
+        <th>
+            ID.
+        </th>
 
-        <a href="@Url.Action("Create", "Feladat")">
-            @* text space *@
-            <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új feladat létrehozása"></span>
-        </a>
+        <th>
+            Projekt kód
+        </th>
 
-    </div>
-</div>
+        <th>
+            Feladat Neve
+        </th>
 
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="table-responsive">
-        <table class="table">
-            <tr>
-                <th>
-                    ID.
-                </th>
+        <th>
+            Feladat típusa
+        </th>
 
-                <th>
-                    Projekt kód
-                </th>
+        <th>
+            V.Befejezés
+        </th>
 
-                <th>
-                    Feladat Neve
-                </th>
+        <th>
+            JH.
+        </th>
 
-                <th>
-                    Feladat típusa
-                </th>
+        <th></th>
+    </tr>
 
-                <th>
-                    V.Befejezés
-                </th>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
 
-                <th>
-                    JH.
-                </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+            </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.Nev)
+            </td>
 
+            <td>
+                @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+            </td>
 
-                <th></th>
-            </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+            </td>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ID)
-                    </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JovahagyvaCB)
+            </td>
 
-                    <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-                    </td>
+            <td>
+                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
 
-                    <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                        @Html.DisplayFor(modelItem => item.Nev)
-                    </td>
+                @{
+                    var tempJogosultsag = "";
 
+                    if (TempData["Users"] != null)
+                    {
+                        tempJogosultsag = TempData["Users"].ToString();
+                        //TempData.Keep();
+                    }
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
-                    </td>
+                    if (tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség")
+                    {
+                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                    }
+                }
+            </td>
+        </tr>
+    }
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JovahagyvaCB)
-                    </td>
-
-                    <td>
-                        @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
-                        @*@Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;*@
-                        @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
-
-                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                        @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
-
-                        @{
-                            var tempJogosultsag = "";
-
-                            if (TempData["Users"] != null)
-                            {
-                                tempJogosultsag = TempData["Users"].ToString();
-                                //TempData.Keep();
-                            }
-
-                            if (tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség")
-                            {
-                                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                            }
-                            @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
-                        }
-                    </td>
-                </tr>
-            }
-
-        </table>
+</table>
 
 
-        @* LAPOZO *@
+@* LAPOZO *@
 
-        @Html.PagedListPager(Model, pn => Url.Action("Index", "Feladat",
-            new { pn, searcs = Request.QueryString["search"] }))
-
-    </div>
-</div>
+@Html.PagedListPager(Model, pn => Url.Action("Index", "Feladat",
+    new { pn, searcs = Request.QueryString["search"] }))

@@ -19,7 +19,7 @@
 </div>
 
 <div class="table-responsive">
-    <table class="table">
+    <table class="table-responsive table-santa">
         <tr>
             <th>
                 ID.
@@ -57,39 +57,39 @@
                 textColor = "limegreen";
             }
 
-    <tr style="color:@textColor; font-weight: bold">
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
+            <tr style="color:@textColor; font-weight: bold">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Nev)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
 
 
-        <td>
-            @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+                </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.JovahagyvaCB)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JovahagyvaCB)
+                </td>
 
-        <td>
-            <a href="@Url.Action("Details", "Feladat", routeValues: new { id = item.ID })">
-                @* text space *@
-                <span class="glyphicon glyphicon-list" style="font-size:25px;" title="Részletek" aria-hidden="true"></span>
-            </a>
-        </td>
-    </tr>
+                <td>
+                    <a href="@Url.Action("Details", "Feladat", routeValues: new { id = item.ID })">
+                        @* text space *@
+                        <span class="glyphicon glyphicon-list" style="font-size:25px;" title="Részletek" aria-hidden="true"></span>
+                    </a>
+                </td>
+            </tr>
         }
 
     </table>
@@ -97,7 +97,6 @@
 
 <div class="form-group">
     <div>
-
         <input type="button" value="Vissza" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Index", "Projekt")'" />
     </div>
 </div>

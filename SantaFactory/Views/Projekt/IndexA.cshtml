@@ -4,10 +4,8 @@
     ViewBag.Title = "IndexA";
 }
 
-
 @using PagedList.Mvc;
 @using PagedList;
-
 
 <div class="row">
     <div class="col-sm-12 col-xs-12">
@@ -23,7 +21,7 @@
     </div>
 </div>
 
-<table class="table">
+<table class="table-responsive table-santas">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().AzonositoKod)
@@ -47,13 +45,11 @@
                 @Html.DisplayFor(modelItem => item.Nev)
             </td>
 
-
             <td>
-
-                @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID }, new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
-                @Html.ActionLink(" ", "DetailsA", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                
-
+                @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID },
+                        new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
+                @Html.ActionLink(" ", "DetailsA", new { id = item.ID },
+                        new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
             </td>
 
         </tr>

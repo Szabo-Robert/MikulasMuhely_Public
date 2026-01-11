@@ -24,8 +24,6 @@
 
 </div>
 
-
-
 <div>
 
     <hr />
@@ -58,8 +56,8 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Töröl" class="btn  btn-default btn-santa" />
-            <input type="button" value="Mégse" class="btn  btn-default btn-santa" onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
-
+            <input type="button" value="Mégse" class="btn  btn-default btn-santa" 
+                   onclick="location.href='@Url.Action("Details", "Feladat", routeValues: new { id = Model.FeladatID })'" />
         </div>
     }
 </div>

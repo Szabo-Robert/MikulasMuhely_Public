@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using OfficeOpenXml;
 using PagedList;
 using SantaFactory.Models;
@@ -36,17 +35,19 @@ namespace SantaFactory.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
+                List<Feladatok> model = new List<Feladatok>();
+
                 int tempID = db.FeladatTipusok.FirstOrDefault(x => x.Nev.ToUpper() == "IDEIGLENES").ID;
 
-                List<Feladatok> userFeladatokListaja = db.Feladatok
+                model = db.Feladatok
                     .Where(x => x.FeladatTipusaID != tempID)
                     .OrderByDescending(x => x.VarhatoBefejezes).ToList();
 
-                List<Feladatok> haveAtiranyitott = userFeladatokListaja.Where(f => f.Atiranyitott != 0).ToList();
+                List<Feladatok> haveAtiranyitott = model.Where(f => f.Atiranyitott != 0).ToList();
 
-                if (userFeladatokListaja.Count() != 0 && haveAtiranyitott.Count() != 0)
+                if (model.Count() != 0 && haveAtiranyitott.Count() != 0)
                 {
-                    foreach (var item in userFeladatokListaja)
+                    foreach (var item in model)
                     {
                         if (item.Atiranyitott != 0)
                         {
@@ -60,7 +61,9 @@ namespace SantaFactory.Controllers
                     }
                 }
 
-                return View(userFeladatokListaja.OrderBy(x => x.JovahagyvaCB).ToPagedList(pn ?? 1, 10));
+                model.First().LogUserJogosultsaga = tempUser.Jogosultsag.Nev;
+
+                return View(model.OrderBy(x => x.JovahagyvaCB).ToPagedList(pn ?? 1, 10));
             }
             catch (Exception e)
             {
@@ -207,9 +210,7 @@ namespace SantaFactory.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-
         #endregion
-
 
         #region Nemjovahagyott
 
@@ -502,7 +503,6 @@ namespace SantaFactory.Controllers
 
         #region Create GET
 
-
         // GET: Viszonyok/Create
         public ActionResult Create()
         {
@@ -544,7 +544,6 @@ namespace SantaFactory.Controllers
                     }
 
                     model.KiirniEszkozokLista.Add(elvittEszkozokFeladatokOsszefuggesItem);
-
                 }
 
                 //megvedi a CREATE fulet az ERROR-tol, ha ures lenne a lista!!!
@@ -576,20 +575,19 @@ namespace SantaFactory.Controllers
                     feladatokUsersOsszefuggesItem.UsersNeve = $"{item.VezetekNev} {item.KeresztNev}";
 
                     //egy beelső módosított változó létrehozása
-                    if (model.feladatokUsersLista == null)
+                    if (model.FeladatokUsersLista == null)
                     {
-                        model.feladatokUsersLista = new List<FeladatokUsersOsszefugges>();
+                        model.FeladatokUsersLista = new List<FeladatokUsersOsszefugges>();
                     }
 
-                    model.feladatokUsersLista.Add(feladatokUsersOsszefuggesItem);
-
+                    model.FeladatokUsersLista.Add(feladatokUsersOsszefuggesItem);
                 }
 
                 //erre csak akkor lett volna szukseg, ha feladaton belül lehet ESZKÖZÖKET a feladathoz rendelni
                 //...de macerás megoldani, úgyhogy először a feladatot kell létrehozni
 
                 //megvedi a CREATE fulet az ERROR-tol, ha ures lenne a lista!!!
-                if (model.feladatokUsersLista == null)
+                if (model.FeladatokUsersLista == null)
                 {
                     FeladatokUsersOsszefugges TEMP = new FeladatokUsersOsszefugges();
 
@@ -598,9 +596,9 @@ namespace SantaFactory.Controllers
                     TEMP.UserKivalasztva = false;
                     TEMP.ExUsersFeladatokID = 0;
 
-                    model.feladatokUsersLista = new List<FeladatokUsersOsszefugges>();
+                    model.FeladatokUsersLista = new List<FeladatokUsersOsszefugges>();
 
-                    model.feladatokUsersLista.Add(TEMP);
+                    model.FeladatokUsersLista.Add(TEMP);
                 }
 
                 ///aki letrehozza a feladatot kezdetben az O elerhetosege kerul be kontakt infonak
@@ -636,7 +634,7 @@ namespace SantaFactory.Controllers
                     feladat.ProjektekLista = db.Projektek.OrderBy(x => x.AzonositoKod).ToList();
 
                     //FELHASZNALOK nevenek ujrafeltoltese
-                    foreach (var nevvelFeltoltendoItem in feladat.feladatokUsersLista)
+                    foreach (var nevvelFeltoltendoItem in feladat.FeladatokUsersLista)
                     {
                         nevvelFeltoltendoItem.UsersNeve = $"{db.Users.FirstOrDefault(x => x.UserID == nevvelFeltoltendoItem.UsersID).VezetekNev} " +
                             $"{db.Users.FirstOrDefault(x => x.UserID == nevvelFeltoltendoItem.UsersID).KeresztNev}";
@@ -675,7 +673,7 @@ namespace SantaFactory.Controllers
                     var feladatBefejezesHonap = (DateTime)(feladat.VarhatoBefejezes);
 
                     ///megvizsgaljuk, hogy az adott idoben a kivalasztott szemelyeknek van e mas feladatuk
-                    var kivalasztottUserLista = feladat.feladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
+                    var kivalasztottUserLista = feladat.FeladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
 
                     for (int i = (napKezdes.Day); i <= napVege.Day; i++)
                     {
@@ -1100,7 +1098,7 @@ namespace SantaFactory.Controllers
 
 
                 //belső módosított változó létrehozása
-                model.feladatokUsersLista = new List<FeladatokUsersOsszefugges>();
+                model.FeladatokUsersLista = new List<FeladatokUsersOsszefugges>();
                 int i = 0;
 
                 foreach (var item in model.UsersLista)
@@ -1115,7 +1113,7 @@ namespace SantaFactory.Controllers
                         feladatokUsersOsszefuggesITEM.UserKivalasztva = true;
                         feladatokUsersOsszefuggesITEM.ExUsersFeladatokID = model.UsersFeladatokLista[i].ID;
 
-                        model.feladatokUsersLista.Add(feladatokUsersOsszefuggesITEM);
+                        model.FeladatokUsersLista.Add(feladatokUsersOsszefuggesITEM);
 
                         i++;
                     }
@@ -1129,15 +1127,15 @@ namespace SantaFactory.Controllers
                         feladatokUsersOsszefuggesITEM.UsersNeve = $"{item.VezetekNev} {item.KeresztNev}";
                         feladatokUsersOsszefuggesITEM.UserKivalasztva = false;
 
-                        model.feladatokUsersLista.Add(feladatokUsersOsszefuggesITEM);
+                        model.FeladatokUsersLista.Add(feladatokUsersOsszefuggesITEM);
 
                     }
 
                 }
 
-                var temp = model.feladatokUsersLista.OrderBy(x => x.UsersNeve).ToList();
+                var temp = model.FeladatokUsersLista.OrderBy(x => x.UsersNeve).ToList();
 
-                model.feladatokUsersLista = temp;
+                model.FeladatokUsersLista = temp;
 
 
                 //Elviheto ESZKOZOK listaja
@@ -1214,7 +1212,7 @@ namespace SantaFactory.Controllers
                 feladatok.ProjektekLista = db.Projektek.OrderBy(x => x.AzonositoKod).ToList();
 
                 //FELHASZNALOK nevenek ujrafeltoltese
-                foreach (var nevvelFeltoltendoItem in feladatok.feladatokUsersLista)
+                foreach (var nevvelFeltoltendoItem in feladatok.FeladatokUsersLista)
                 {
                     nevvelFeltoltendoItem.UsersNeve = $"{db.Users.FirstOrDefault(x => x.UserID == nevvelFeltoltendoItem.UsersID).VezetekNev} " +
                         $"{db.Users.FirstOrDefault(x => x.UserID == nevvelFeltoltendoItem.UsersID).KeresztNev}";
@@ -1265,7 +1263,7 @@ namespace SantaFactory.Controllers
 
 
                     ///megvizsgaljuk, hogy az adott idoben a kivalasztott szemelyeknek van e mas feladatuk
-                    var kivalasztottUsersLista = feladatok.feladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
+                    var kivalasztottUsersLista = feladatok.FeladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
 
                     for (int i = (napKezdes.Day); i <= napVege.Day; i++)
                     {
@@ -1440,12 +1438,12 @@ namespace SantaFactory.Controllers
 
 
                     //belső módosított változó létrehozása
-                    model.feladatokUsersLista = feladatok.feladatokUsersLista;
+                    model.FeladatokUsersLista = feladatok.FeladatokUsersLista;
 
                     //Feladathoz rendelt MUNKALAPOK
                     model.MunkalapokListaja = db.Munkalapok.Where(x => x.FeladatID == id).ToList();
 
-                    foreach (var item in model.feladatokUsersLista)
+                    foreach (var item in model.FeladatokUsersLista)
                     {
 
                         Feladat_User_ID feladat_User_ID_Item = new Feladat_User_ID();
@@ -1496,7 +1494,7 @@ namespace SantaFactory.Controllers
                             //MUNKALAPOK
 
                             //miutan letrehoztam a feladatot fontos, hogy letrehozzam melle a szukseges MUNKALAPOKAT, de csak akkor, ha van hozza rendelve alkalmazott!
-                            if ((model.VarhatoKezdes != null || model.VarhatoBefejezes != null) && model.feladatokUsersLista.Count() != 0)
+                            if ((model.VarhatoKezdes != null || model.VarhatoBefejezes != null) && model.FeladatokUsersLista.Count() != 0)
                             {
                                 vanKijeloltAlkalmazott = true;
                                 //kinyerem a ket datum kozti kulonbseget, de az adott napot nem adja hozza igy az utolag kell potolni
@@ -1613,7 +1611,7 @@ namespace SantaFactory.Controllers
                         Feladat_User_ID feladat_User_ID_Item = new Feladat_User_ID();
 
 
-                        model.feladatokUsersLista = feladatok.feladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
+                        model.FeladatokUsersLista = feladatok.FeladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
 
                         //inkabb toroljuk, mert sok vele a macera :(
                         var torlendoMunkalapok = db.Munkalapok.Where(x => x.FeladatID == model.ID).Where(x => x.Megtekintve == false).ToList();
@@ -1638,14 +1636,14 @@ namespace SantaFactory.Controllers
 
                         int LetrehozandoMunkalapokCount = 0;
 
-                        if (model.feladatokUsersLista.Count() >= 2)
+                        if (model.FeladatokUsersLista.Count() >= 2)
                         {
                             LetrehozandoMunkalapokCount = ((((TimeSpan)(model.VarhatoBefejezes - model.VarhatoKezdes)).Days + 1 /*ez a 0. napot mutatja -> AZNAP*/)
-                                * model.feladatokUsersLista.Count());
+                                * model.FeladatokUsersLista.Count());
                         }
                         else
                         {
-                            LetrehozandoMunkalapokCount = (1 + ((TimeSpan)(model.VarhatoBefejezes - model.VarhatoKezdes)).Days * model.feladatokUsersLista.Count());
+                            LetrehozandoMunkalapokCount = (1 + ((TimeSpan)(model.VarhatoBefejezes - model.VarhatoKezdes)).Days * model.FeladatokUsersLista.Count());
                         }
 
                         if (LetrehozandoMunkalapokCount /*- kitoroltMunkalapokSzama*/ > 0)
@@ -1654,7 +1652,7 @@ namespace SantaFactory.Controllers
                             List<Feladat_User_ID> temp_Feladat_User_ID_LISTA = new List<Feladat_User_ID>();
                             feladat_User_ID_Item = new Feladat_User_ID();
 
-                            foreach (var item in model.feladatokUsersLista)
+                            foreach (var item in model.FeladatokUsersLista)
                             {
                                 if (temp_Feladat_User_ID_LISTA.Count() != 0)
                                 {
@@ -1682,11 +1680,11 @@ namespace SantaFactory.Controllers
                                 //Feladathoz rendelt MUNKALAPOK
                                 //MUNKALAPOK
                                 //miutan letrehoztam a feladatot fontos, hogy letrehozzam melle a szukseges MUNKALAPOKAT, de csak akkor, ha van hozza rendelve alkalmazott!
-                                if ((model.VarhatoKezdes != null || model.VarhatoBefejezes != null) && model.feladatokUsersLista.Count() != 0)
+                                if ((model.VarhatoKezdes != null || model.VarhatoBefejezes != null) && model.FeladatokUsersLista.Count() != 0)
                                 {
                                     ///kinyerem a ket datum kozti kulonbseget, de az adott napot nem adja hozza igy az utolag kell potolni
                                     ///a kulonbsegbol megkapom, hogy hany naprol van szo, de startbol az adott napot hozza kell adni
-                                    byte letrehozandoMunkalapSzam = (byte)(LetrehozandoMunkalapokCount / model.feladatokUsersLista.Count());
+                                    byte letrehozandoMunkalapSzam = (byte)(LetrehozandoMunkalapokCount / model.FeladatokUsersLista.Count());
 
                                     if (letrehozandoMunkalapSzam != 0)
                                     {

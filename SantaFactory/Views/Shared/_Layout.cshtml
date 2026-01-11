@@ -37,8 +37,6 @@
                         @*<a href="javascript:document.getElementById('logoutForm').submit()">Kijelentkezés</a>*@
                     }
                 }
-
-
             </div>
 
             @{
@@ -84,7 +82,6 @@
                                     <li id="Feladatok">@Html.ActionLink("Nem jóváhagyott", "Nemjovahagyott", "Feladat")</li>
                                     <li id="Feladatok">@Html.ActionLink("Feladat tipusok", "Index", "FeladatTipusok")</li>
                                     <li id="Feladatok">@Html.ActionLink("Folyamat státuszok", "Index", "Viszonyok")</li>
-                                    @*<li id="Feladatok">@Html.ActionLink("Feladatok ARCHIV", "IndexA", "Feladat")</li>*@
 
                                 </ul>
                             </li>
@@ -96,7 +93,6 @@
                                     <li id="Munkalap">@Html.ActionLink("Munkalapok listája", "Index", "Munkalapok")</li>
                                     <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
                                     <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
-                                    @*<li id="Munkalap">@Html.ActionLink("Munkalapok ARCHIV", "IndexA", "Munkalapok")</li>*@
 
 
                                 </ul>
@@ -163,7 +159,6 @@
                                     <li id="Feladatok">@Html.ActionLink("Nem jóváhagyott", "Nemjovahagyott", "Feladat")</li>
                                     <li id="Feladatok">@Html.ActionLink("Feladat tipusok", "Index", "FeladatTipusok")</li>
                                     <li id="Feladatok">@Html.ActionLink("Folyamat státuszok", "Index", "Viszonyok")</li>
-                                    @*<li id="Feladatok">@Html.ActionLink("Feladatok ARCHIV", "IndexA", "Feladat")</li>*@
 
                                 </ul>
                             </li>
@@ -175,8 +170,6 @@
                                     <li id="Munkalap">@Html.ActionLink("Munkalapok listája", "Index", "Munkalapok")</li>
                                     <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
                                     <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
-                                    @*<li id="Munkalap">@Html.ActionLink("Munkalapok ARCHIV", "IndexA", "Munkalapok")</li>*@
-
 
                                 </ul>
                             </li>
@@ -238,7 +231,6 @@
                                     <li id="Munkalap">@Html.ActionLink("Felhasznált anyagok", "Index", "FelhasznaltAnyagok")</li>
                                     <li id="Munkalap">@Html.ActionLink("Költségek", "Index", "Koltsegek")</li>
 
-
                                 </ul>
                             </li>
 
@@ -246,7 +238,6 @@
                                 <a href="@Url.Action("Index", "Users")" role="button"
                                    aria-haspopup="true" aria-expanded="true"><span>Profilom</span></a>
                             </li>
-
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -257,14 +248,10 @@
                                 </a>
                             </li>
                         </ul>
-
                     </div>
                 }
                 else if (User.Identity.IsAuthenticated == false)
                 {
-
-
-
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="navbar-form-santa">
@@ -285,15 +272,12 @@
                                     </div>
                                 }
                             </li>
-
                         </ul>
                     </div>
                 }
             }
-
         </div>
     </div>
-
 
     <div class="container body-content">
         @RenderBody()
@@ -303,7 +287,6 @@
             <p>Szabó Róbert Csaba</p>
         </footer>
     </div>
-
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

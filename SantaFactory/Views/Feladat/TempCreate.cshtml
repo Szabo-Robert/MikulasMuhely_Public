@@ -30,10 +30,6 @@
 
         <hr />
 
-        @*@Html.HiddenFor(model => model.ProjektekLista)
-            @Html.HiddenFor(model => model.FeladatTipusokLista)
-            @Html.HiddenFor(model => model.feladatokUsersLista)
-            @Html.HiddenFor(model => model.KiirniEszkozokLista)*@
         @Html.HiddenFor(model => model.ViszonyID, new { @Value = Model.ViszonyLista.First(x => x.Nev.ToUpper() == "NEM JÓVÁHAGYOTT").ID })
 
         @* Automatikusan azt a feladatTipusID-kapja, aminek az erteke TEMP *@
@@ -41,7 +37,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-            <table class="table">
+            <table class="table-responsive table-santa">
 
                 @* Bal oszlop *@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -168,7 +164,7 @@
 
             </table>
 
-            <table class="table">
+            <table class="table-responsive table-santa">
                 @*Cim adatok*@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 

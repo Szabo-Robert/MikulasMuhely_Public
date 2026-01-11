@@ -30,8 +30,9 @@ namespace SantaFactory.Models
         public List<Feladat_ElvittEszkoz_ID> FeladatokElvittEszkozokIDjaLista { get; set; }
 
         [Display(Name = "Résztvevő(k):")]
-        public List<FeladatokUsersOsszefugges> feladatokUsersLista { get; set; }
+        public List<FeladatokUsersOsszefugges> FeladatokUsersLista { get; set; }
 
+        public string LogUserJogosultsaga { get; set; }
 
         //MUNKALAPOK listaja a feladathoz
         public List<Munkalapok> MunkalapokListaja { get; set; }

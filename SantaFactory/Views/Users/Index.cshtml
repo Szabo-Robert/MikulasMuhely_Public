@@ -20,31 +20,13 @@
             </div>
         }
 
-        @{
-            //string tempUser = User.Identity.Name;
-
-            //var tempJogosultsag = Model.FirstOrDefault(x => x.Elerhetosegek.Email == tempUser);
-
-            //foreach (var item in Model)
-            //{
-            //    if (item.Elerhetosegek.Email == tempUser)
-            //    {
-            //        tempJogosultsag = item;
-            //        break;
-            //    }
-
-            //}
-
-            if (Model.First().logUserJogosultsaga == "Vezetőség" || Model.First().logUserJogosultsaga == "ADMIN")
-            {
-                <a href="@Url.Action("Registration", "Users")">
-                    @* text space *@
-                    <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új felhasználó hozzáadása"></span>
-                </a>
-            }
+        @if (Model.First().logUserJogosultsaga == "Vezetőség" || Model.First().logUserJogosultsaga == "ADMIN")
+        {
+            <a href="@Url.Action("Registration", "Users")">
+                @* text space *@
+                <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új felhasználó hozzáadása"></span>
+            </a>
         }
-
-
     </div>
 </div>
 
@@ -69,11 +51,6 @@
         <th>
             @Html.DisplayNameFor(model => model.First().Jogosultsag.Nev)
         </th>
-
-        @*<th>
-                @Html.DisplayNameFor(model => model.Viszony.Nev)
-            </th>*@
-
 
         <th></th>
     </tr>
@@ -101,45 +78,31 @@
                 @Html.DisplayFor(modelItem => item.Jogosultsag.Nev)
             </td>
 
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Viszony.Nev)
-                </td>*@
-
             <td>
-                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
 
                 @{
                     @*//ha nem ADMIN, akkor ne tudjon torolni es modositani ADMIN-t!*@
 
-                    //string tempUser = User.Identity.Name;
-
-                    //var tempJogosultsag = Model.FirstOrDefault(x => x.Elerhetosegek.Email == tempUser);
-
                     if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
                     {
                         @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-                        @*@Html.ActionLink("Módosít", "Edit", new { id = item.ID }) |*@
                     }
                 }&nbsp;
 
                 @Html.ActionLink(" ", "Details", new { id = item.UserID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                @*@Html.ActionLink("Részletek", "Details", new { id = item.ID }) |*@
 
                 @{
                     if (Model.First().logUserJogosultsaga == "ADMIN")
                     {
                         @Html.ActionLink(" ", "Delete", new { id = item.UserID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                        @*@Html.ActionLink("Töröl", "Delete", new { id = item.ID })*@
                     }
                 }
-
 
             </td>
         </tr>
     }
 
 </table>
-
 
 @* LAPOZO *@
 

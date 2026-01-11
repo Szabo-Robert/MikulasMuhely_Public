@@ -22,7 +22,6 @@
     </div>
 </div>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -34,9 +33,8 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @* Munkalap ID-janak atadasa *@
-        
-        @Html.HiddenFor(model => model.MunkalapID)
 
+        @Html.HiddenFor(model => model.MunkalapID)
 
         <div class="form-group required">
 
@@ -74,13 +72,11 @@
             </div>
         </div>
 
-
-
         <div class="form-group">
             <div>
                 <p class="text-danger">* A mező kitöltése kötelező!</p>
                 <input type="submit" value="Létrehoz" class="btn  btn-default btn-santa" />
-                <input type="button" value="Mégse" class="btn  btn-default btn-santa" 
+                <input type="button" value="Mégse" class="btn  btn-default btn-santa"
                        onclick="location.href='@Url.Action("Details", "Munkalapok", routeValues: new { id = Model.MunkalapID })'" />
             </div>
         </div>

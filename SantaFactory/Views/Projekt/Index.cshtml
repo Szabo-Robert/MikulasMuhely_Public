@@ -4,10 +4,8 @@
     ViewBag.Title = "Index";
 }
 
-
 @using PagedList.Mvc;
 @using PagedList;
-
 
 <div class="row">
     <div class="col-sm-12 col-xs-12">
@@ -23,13 +21,12 @@
     </div>
 </div>
 
-
 <a href="@Url.Action("Create", "Projekt")">
     @* text space *@
     <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új projekt"></span>
 </a>
 
-<table class="table">
+<table class="table-responsive table-santa">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.First().AzonositoKod)
@@ -57,21 +54,13 @@
             <td>
 
                 @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID }, new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
-
-                @*<a id="test" href="@Url.Action("ExportToExcel", "Munkalapok", new { id = $"{item.XLS_UserID}" })">
-                        <span class="glyphicon glyphicon-download" style="font-size:25px;" title="XLS letöltése"></span>
-                    </a>*@
-
-                @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-
+                
                 @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
 
                 @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
                 
-
                 @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
             </td>
-
         </tr>
     }
 
