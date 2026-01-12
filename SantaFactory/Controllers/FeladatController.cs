@@ -1261,7 +1261,6 @@ namespace SantaFactory.Controllers
                     ///ellenorizzuk, hogy van e mar felhasznalo foglalkoztatva ebben az idoszakban
                     IQueryable<Munkalapok> meglevoMunkalapok = db.Munkalapok.Where(x => !(x.JovahagyvaCB));
 
-
                     ///megvizsgaljuk, hogy az adott idoben a kivalasztott szemelyeknek van e mas feladatuk
                     var kivalasztottUsersLista = feladatok.FeladatokUsersLista.Where(x => x.UserKivalasztva).ToList();
 

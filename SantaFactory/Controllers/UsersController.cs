@@ -41,7 +41,7 @@ namespace SantaFactory.Controllers
 
                 model.Add(tempUser);
 
-                model.AddRange(db.Users.Where(x => x.Elerhetosegek.Email != tempUser.Elerhetosegek.Email).OrderByDescending(x => x.JogosultsagID).ToList());
+                model.AddRange(db.Users.Where(x => x.Elerhetosegek.Email != tempUser.Elerhetosegek.Email).OrderBy(x => x.JogosultsagID).ToList());
 
                 for (int i = 0; i < model.Count(); i++)
                 {
@@ -176,54 +176,6 @@ namespace SantaFactory.Controllers
 
                 db.Elerhetosegek.Attach(ElerhetosegekModel);
                 db.Entry(ElerhetosegekModel).State = System.Data.Entity.EntityState.Modified;
-                //db.SaveChanges();
-
-
-                ////Ceg adatok mappolasa az CEGADATOK tablaban
-                //tempTablaId = (int)model.CegAdatokID;
-                //var CegAdatokModel = db.CegAdatok.FirstOrDefault(x => x.ID == tempTablaId);
-
-                //CegAdatokModel.Nev = felhasznalo.CegAdatok.Nev;
-                //CegAdatokModel.AdoSzam = felhasznalo.CegAdatok.AdoSzam;
-                //CegAdatokModel.SzamlaSzam = felhasznalo.CegAdatok.SzamlaSzam;
-                //CegAdatokModel.Meghatalmazott = felhasznalo.CegAdatok.Meghatalmazott;
-
-                //db.CegAdatok.Attach(CegAdatokModel);
-                //db.Entry(CegAdatokModel).State = System.Data.Entity.EntityState.Modified;
-                ////db.SaveChanges();
-
-
-                ////Ceg cimenek mappolasa az CEGADATOK.CIMEK tablaban
-                //tempTablaId = (int)model.CegAdatok.CimID;
-                //var CegAdatokCimeModel = db.Cimek.FirstOrDefault(x => x.ID == tempTablaId);
-
-                //CegAdatokCimeModel.Orszag = felhasznalo.CegAdatok.Cimek.Orszag;
-                //CegAdatokCimeModel.Varos = felhasznalo.CegAdatok.Cimek.Varos;
-                //CegAdatokCimeModel.Utca = felhasznalo.CegAdatok.Cimek.Utca;
-                //CegAdatokCimeModel.Szam = felhasznalo.CegAdatok.Cimek.Szam;
-                //CegAdatokCimeModel.Egyeb = felhasznalo.CegAdatok.Cimek.Egyeb;
-
-                //db.Cimek.Attach(CegAdatokCimeModel);
-                //db.Entry(CegAdatokCimeModel).State = System.Data.Entity.EntityState.Modified;
-                ////db.SaveChanges();
-
-
-                ////Ceg elerhetosegeinek mappolasa az CEGADATOK.CIMEK tablaban
-                //tempTablaId = (int)model.CegAdatok.ElerhetosegekID;
-                //var CegAdatokElerhetosegeModel = db.Elerhetosegek.FirstOrDefault(x => x.ID == tempTablaId);
-
-                //CegAdatokElerhetosegeModel.Telszam1 = felhasznalo.CegAdatok.Elerhetosegek.Telszam1;
-                //CegAdatokElerhetosegeModel.Telszam2 = felhasznalo.CegAdatok.Elerhetosegek.Telszam2;
-                //CegAdatokElerhetosegeModel.Email = felhasznalo.CegAdatok.Elerhetosegek.Email;
-                //CegAdatokElerhetosegeModel.WEB = felhasznalo.CegAdatok.Elerhetosegek.WEB;
-                //CegAdatokElerhetosegeModel.Megjegyzes = felhasznalo.CegAdatok.Elerhetosegek.Megjegyzes;
-
-                //db.Elerhetosegek.Attach(CegAdatokElerhetosegeModel);
-                //db.Entry(CegAdatokElerhetosegeModel).State = System.Data.Entity.EntityState.Modified;
-                ////db.SaveChanges();
-
-                ////ha valamikor elmaradt volna az ertekadas!!! FONTOS!
-                //model.CegAdatok.IsUser = true;
 
                 #region //Password hashing
 
@@ -238,7 +190,7 @@ namespace SantaFactory.Controllers
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Users");
 
             }
             catch (Exception e)
@@ -398,8 +350,6 @@ namespace SantaFactory.Controllers
                         {
                             #region Send Email to User
 
-                            felhasznalo.JogosultsagID = 19; //alkalmazott ID-ja
-
                             EllenorzoLinkKuldese(felhasznalo.Elerhetosegek.Email, felhasznalo.AktivaloKod.ToString());
                             message = "A regisztrálás sikeres volt! A fiókot aktiváló link" +
                                 " el lett küldve az Ön e-mail címére: " + felhasznalo.Elerhetosegek.Email;
@@ -526,11 +476,10 @@ namespace SantaFactory.Controllers
             {
                 bool Status = false;
                 string message = "";
+                Users BelepettFelhasznalo = new Users();
 
                 using (db_a6b688_sf2025Entities db = new db_a6b688_sf2025Entities())
                 {
-                    Users BelepettFelhasznalo = new Users();
-
                     BelepettFelhasznalo = db.Users.Where(x => x.Elerhetosegek.Email == belep.Email).FirstOrDefault();
 
                     #region SUPER ADMIN
@@ -595,20 +544,6 @@ namespace SantaFactory.Controllers
                         db.SaveChanges();
 
                         BelepettFelhasznalo.JogosultsagID = jogosultsagModel.ID;
-
-                        //JOGOSULTSAG letrehozasa az jogosultsag tablaban
-                        //SZERINTEM ERRE NINCS SZÜKSÉG
-                        /*Viszony viszonyModel = new Viszony();
-
-                        viszonyModel.Nev = "SZUPER";
-
-                        db.Viszony.Add(viszonyModel);
-                        db.SaveChanges();
-
-                        BelepettFelhasznalo.ViszonyID = viszonyModel.ID;
-
-                        db.Users.Add(BelepettFelhasznalo);
-                        db.SaveChanges();*/
                     }
 
                     #endregion
@@ -640,20 +575,54 @@ namespace SantaFactory.Controllers
                         }
                         else
                         {
+                            FormsAuthentication.SignOut();
+
+                            TempData["Users"] = "";
+
+                            var osszesAjandek = db.FeladatTipusok.ToList();
+                            int harmad = (int)Math.Ceiling(osszesAjandek.Count / 3.0);
+
+                            BelepettFelhasznalo = new Users();
+
+                            // Első harmad (pl. 1-10)
+                            BelepettFelhasznalo.Ajandek1 = osszesAjandek.Skip(1).Take(harmad).ToList();
+
+                            // Második harmad (pl. 11-20)
+                            BelepettFelhasznalo.Ajandek2 = osszesAjandek.Skip(harmad).Take(harmad).ToList();
+
+                            // Harmadik harmad (pl. 21-től a végéig)
+                            BelepettFelhasznalo.Ajandek3 = osszesAjandek.Skip(2 * harmad).ToList();
+
                             message = "Érvénytelen belépés!";
                         }
                     }
                     else
                     {
+                        FormsAuthentication.SignOut();
+
+                        TempData["Users"] = "";
+
+                        var osszesAjandek = db.FeladatTipusok.ToList();
+                        int harmad = (int)Math.Ceiling(osszesAjandek.Count / 3.0);
+
+                        BelepettFelhasznalo = new Users();
+
+                        // Első harmad (pl. 1-10)
+                        BelepettFelhasznalo.Ajandek1 = osszesAjandek.Skip(1).Take(harmad).ToList();
+
+                        // Második harmad (pl. 11-20)
+                        BelepettFelhasznalo.Ajandek2 = osszesAjandek.Skip(harmad).Take(harmad).ToList();
+
+                        // Harmadik harmad (pl. 21-től a végéig)
+                        BelepettFelhasznalo.Ajandek3 = osszesAjandek.Skip(2 * harmad).ToList();
                         message = "Érvénytelen belépés!";
                     }
 
                 }
-
                 ViewBag.Message = message;
                 ViewBag.Status = Status;
 
-                return View();
+                return View(BelepettFelhasznalo);
             }
             catch (Exception e)
             {

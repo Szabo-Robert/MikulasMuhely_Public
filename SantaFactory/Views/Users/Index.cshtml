@@ -83,7 +83,8 @@
                 @{
                     @*//ha nem ADMIN, akkor ne tudjon torolni es modositani ADMIN-t!*@
 
-                    if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
+                    //if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
+                    if ((Model.First().JogosultsagID >= item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
                     {
                         @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
                     }

@@ -17,10 +17,12 @@ namespace SantaFactory.Models
         public List<Viszony> ViszonyokLista { get; set; }
 
         //Ajandekok
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Levél")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "A mező megadása kötelező")]
         [MaxLength(500, ErrorMessage = "Nem lehet hosszabb 500 karakternél!")]
         public string LevelUzenete { get; set; }
+
         public List<FeladatTipusok> Ajandek1 { get; set; }
         public List<FeladatTipusok> Ajandek2 { get; set; }
         public List<FeladatTipusok> Ajandek3 { get; set; }
@@ -79,7 +81,6 @@ namespace SantaFactory.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "A mező megadása kötelező")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy.MM.dd}", ApplyFormatInEditMode = true)]
-
         public System.DateTime SzuletesiDatum { get; set; }
 
         [Display(Name = "Születési hely:")]

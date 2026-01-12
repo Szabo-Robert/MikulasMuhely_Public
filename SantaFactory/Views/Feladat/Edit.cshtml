@@ -137,7 +137,7 @@
 
                         <p>
                             <b>
-                                @Html.DisplayNameFor(model => model.feladatokUsersLista)
+                                @Html.DisplayNameFor(model => model.FeladatokUsersLista)
                             </b>
                         </p>
 
@@ -145,15 +145,15 @@
 
                         <div>
 
-                            @Html.ValidationMessageFor(model => model.feladatokUsersLista, "", new { @class = "text-danger" })
-                            @for (int i = 0; i < Model.feladatokUsersLista.Count; i++)
+                            @Html.ValidationMessageFor(model => model.FeladatokUsersLista, "", new { @class = "text-danger" })
+                            @for (int i = 0; i < Model.FeladatokUsersLista.Count; i++)
                             {
                                 <div>
 
-                                    @Html.CheckBoxFor(modelItem => Model.feladatokUsersLista[i].UserKivalasztva)
-                                    @Html.DisplayFor(modelItem => Model.feladatokUsersLista[i].UsersNeve)
-                                    @Html.HiddenFor(modelItem => Model.feladatokUsersLista[i].UsersID)
-                                    @Html.HiddenFor(modelItem => Model.feladatokUsersLista[i].ExUsersFeladatokID)
+                                    @Html.CheckBoxFor(modelItem => Model.FeladatokUsersLista[i].UserKivalasztva)
+                                    @Html.DisplayFor(modelItem => Model.FeladatokUsersLista[i].UsersNeve)
+                                    @Html.HiddenFor(modelItem => Model.FeladatokUsersLista[i].UsersID)
+                                    @Html.HiddenFor(modelItem => Model.FeladatokUsersLista[i].ExUsersFeladatokID)
                                 </div>
 
                             }

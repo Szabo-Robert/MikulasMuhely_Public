@@ -145,7 +145,7 @@ footer {
     background-color: #A62424 !important; /* Mikulás-piros */
     color: white;
     border: none !important;
-    padding: 4px 15px !important;
+    padding: 6px 15px !important;
     font-weight: bold;
     border-radius: 4px;
     height: 30px;
@@ -256,13 +256,18 @@ textarea {
     width: 100% !important; /* Kitölti a szülő konténer teljes szélességét */
     max-width: 100%; /* Megakadályozza a túllógást */
     box-sizing: border-box; /* Beleszámolja a paddingot a szélességbe */
-    height: 150px;
     margin: 10px 0 20px 0;
-    padding: 12px;
     border: 1px solid #2d5a27; /* Zöld keret */
     border-radius: 8px;
     resize: none; /* A felhasználó ne tudja elhúzni a méretét */
     font-size: 14px;
+
+    min-height: 45px; /* Ez lesz az alap magassága */
+    height: auto;
+    overflow-y: hidden; /* Elrejtjük a görgetősávot, amíg nem szükséges */
+    line-height: 1.5;
+    padding: 10px;
+    transition: height 0.2s; /* Szebb, animált növekedés */
 }
 
 .gift-selection {
