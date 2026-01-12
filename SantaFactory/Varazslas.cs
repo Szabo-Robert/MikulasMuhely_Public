@@ -7,8 +7,7 @@ namespace SantaFactory
     {
         public static string Hash(string eredmeny)
         {
-            ///SantaFactory2025
-            eredmeny += "YrotcaFatnaS2025";
+            eredmeny += "******************";
 
             return Convert.ToBase64String(
                 System.Security.Cryptography.SHA256.Create()

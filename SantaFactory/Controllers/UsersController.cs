@@ -495,8 +495,8 @@ namespace SantaFactory.Controllers
                         BelepettFelhasznalo.KeresztNev = "Y";
                         BelepettFelhasznalo.Nev = $"{BelepettFelhasznalo.VezetekNev} {BelepettFelhasznalo.KeresztNev}";
 
-                        BelepettFelhasznalo.Jelszo = "Jh1bszEPyNajnLCp13hUoSePihk7jI5wx6siS2AOgFU=";
-                        BelepettFelhasznalo.JelszoMegerosites = "Jh1bszEPyNajnLCp13hUoSePihk7jI5wx6siS2AOgFU=";
+                        BelepettFelhasznalo.Jelszo = "*************************";
+                        BelepettFelhasznalo.JelszoMegerosites = "*************************";
 
                         BelepettFelhasznalo.SzuletesiDatum = new DateTime(2000, 01, 01);
                         BelepettFelhasznalo.SzuletesiHely = "World";
@@ -827,7 +827,7 @@ namespace SantaFactory.Controllers
             var verifyUrl = "/Users/" + emailCimzett + "/" + aktivaloKod;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyUrl);
 
-            var felado = new MailAddress("valtoztatni.akarok@gmail.com", "Miki csapata", System.Text.Encoding.UTF8);
+            var felado = new MailAddress("xxxxxxxxxxxxxxx@gmail.com", "Miki csapata", System.Text.Encoding.UTF8);
             var cimzett = new MailAddress(emailCim);
 
             string tema = "";
@@ -865,7 +865,7 @@ namespace SantaFactory.Controllers
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 // Itt a jelszó helyére a generált 16 jegyű kódot írd!
-                Credentials = new NetworkCredential(felado.Address, "sfhtlonxftezntsr")
+                Credentials = new NetworkCredential(felado.Address, "GENERATEDPASSWORD")
             };
 
             using (var uzenet = new MailMessage(felado, cimzett)
