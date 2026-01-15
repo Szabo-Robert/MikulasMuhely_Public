@@ -21,38 +21,40 @@
     </div>
 </div>
 
-<table class="table-responsive table-santa">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Nev)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().FeladatNeve)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nev)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FeladatNeve)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().FeladatNeve)
+            </th>
 
-            <td>
-                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
-            </td>
-
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeladatNeve)
+                </td>
+
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
 
 @* LAPOZO *@
 

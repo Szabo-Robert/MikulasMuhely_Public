@@ -26,46 +26,47 @@
     <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új projekt"></span>
 </a>
 
-<table class="table-responsive table-santa">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().AzonositoKod)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().Nev)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AzonositoKod)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().AzonositoKod)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Nev)
+            </th>
 
-
-            <td>
-
-                @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID }, new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
-                
-                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
-
-                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-                
-                @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AzonositoKod)
+                </td>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+
+                <td>
+
+                    @Html.ActionLink(" ", "ExportToExcel", new { id = item.ID }, new { @class = "glyphicon glyphicon-download", style = "font-size:25px;", title = "XLS letöltése" }) &nbsp;
+
+                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
+
+                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+
+                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 @* LAPOZO *@
 
 @Html.PagedListPager(Model, pn => Url.Action("Index", "Projekt",

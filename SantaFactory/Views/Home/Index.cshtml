@@ -17,71 +17,85 @@
 }
 
 <br />
-- Üdv @HttpContext.Current.User.Identity.Name
+
+@{
+    string felhasznaloNeve = "Vendég";
+    if (Request.IsAuthenticated)
+    {
+        var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+        if (authCookie != null)
+        {
+            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+            felhasznaloNeve = ticket.UserData; // Ez lesz az, amit az 1. lépésben elmentettél
+        }
+    }
+}
+
+
+<span>- Üdv @felhasznaloNeve!</span>
 <br />
 @DateTime.Today.Year .@DateTime.Today.Month .@DateTime.Today.Day -ig nem jóváhagyott feladatok
-<br />
 
-<table class="table-responsive table-santa">
-    <tr>
-        <th>
-            ID.
-        </th>
-
-        <th>
-            Projekt kód
-        </th>
-
-        <th>
-            Feladat Neve
-        </th>
-
-        <th>
-            Feladat típusa
-        </th>
-
-        <th>
-            V.Befejezés
-        </th>
-
-        <th></th>
-    </tr>
-
-    <br />
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class=" table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
+            <th>
+                ID.
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-            </td>
+            <th>
+                Projekt kód
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
+            <th>
+                Feladat Neve
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
-            </td>
+            <th>
+                Feladat típusa
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-            </td>
+            <th>
+                V.Befejezés
+            </th>
 
-            <td>
-
-                @Html.ActionLink(" ", "Details", "Feladat", new { id = item.ID }, 
-               new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+                </td>
+
+                <td>
+
+                    @Html.ActionLink(" ", "Details", "Feladat", new { id = item.ID },
+                   new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 
 @* LAPOZO *@
 

@@ -21,63 +21,65 @@
     </div>
 </div>
 
-<table class="table-responsive table-santa">
-    <tr>
-        <th>
-            ID.
-        </th>
-
-        <th>
-            Projekt kód
-        </th>
-
-        <th>
-            Feladat Neve
-        </th>
-
-        <th>
-            Feladat típusa
-        </th>
-
-        <th>
-            V.Befejezés
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
+            <th>
+                ID.
+            </th>
 
-            <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-            </td>
+            <th>
+                Projekt kód
+            </th>
 
-            <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
+            <th>
+                Feladat Neve
+            </th>
 
-            <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
-            </td>
+            <th>
+                Feladat típusa
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-            </td>
+            <th>
+                V.Befejezés
+            </th>
 
-            <td>
-                @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
 
-    @* LAPOZO *@
+                <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+                </td>
 
-    @Html.PagedListPager(Model, pn => Url.Action("Nemjovahagyott", "Feladat",
-        new { pn, searcs = Request.QueryString["search"] }))
+                <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+                <td class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    @Html.DisplayFor(modelItem => item.FeladatTipusok.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+                </td>
+
+                <td>
+                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@* LAPOZO *@
+
+@Html.PagedListPager(Model, pn => Url.Action("Nemjovahagyott", "Feladat",
+    new { pn, searcs = Request.QueryString["search"] }))

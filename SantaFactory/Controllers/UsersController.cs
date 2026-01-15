@@ -557,7 +557,14 @@ namespace SantaFactory.Controllers
                             TempData.Keep();
 
                             int timeout = belep.BelepveMarad ? 43200 : 20; //525600 min = 1 year
-                            var ticket = new FormsAuthenticationTicket(belep.Email, belep.BelepveMarad, timeout);
+                            var ticket = new FormsAuthenticationTicket(
+                                1,                                   // Verzió
+                                belep.Email,                         // Felhasználónév (email)
+                                DateTime.Now,                        // Kiállítás ideje
+                                DateTime.Now.AddMinutes(timeout),    // Lejárat
+                                belep.BelepveMarad,                  // Perzisztens-e
+                                $"{BelepettFelhasznalo.KeresztNev} " // ITT ADOM ÁT A NEVET!
+                                );
                             string encryted = FormsAuthentication.Encrypt(ticket);
                             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryted);
                             cookie.Expires = DateTime.Now.AddMinutes(timeout);

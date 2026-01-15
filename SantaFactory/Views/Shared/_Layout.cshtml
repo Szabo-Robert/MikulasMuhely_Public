@@ -116,10 +116,27 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-logout-wrapper">
-                                <a href="javascript:document.getElementById('logoutForm').submit()"
-                                   class="nav-logout-btn">
-                                    Kijelentkezés
-                                </a>
+                                @{
+                                    string felhasznaloNeve = "Vendég";
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                                        if (authCookie != null)
+                                        {
+                                            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                                            felhasznaloNeve = ticket.UserData; // Ez lesz az, amit az 1. lépésben elmentettél
+                                        }
+                                    }
+                                }
+
+                                <div class="nav-auth-section">
+                                    <span class="nav-welcome-text">Üdv, @felhasznaloNeve!</span>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"
+                                       class="nav-logout-btn">
+                                        Kijelentkezés
+                                    </a>
+                                </div>
+
                             </li>
                         </ul>
 
@@ -192,10 +209,27 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-logout-wrapper">
-                                <a href="javascript:document.getElementById('logoutForm').submit()"
-                                   class="nav-logout-btn">
-                                    Kijelentkezés
-                                </a>
+                                @{
+                                    string felhasznaloNeve = "Vendég";
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                                        if (authCookie != null)
+                                        {
+                                            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                                            felhasznaloNeve = ticket.UserData; // Ez lesz az, amit az 1. lépésben elmentettél
+                                        }
+                                    }
+                                }
+
+                                <div class="nav-auth-section">
+                                    <span class="nav-welcome-text">Üdv, @felhasznaloNeve!</span>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"
+                                       class="nav-logout-btn">
+                                        Kijelentkezés
+                                    </a>
+                                </div>
+
                             </li>
                         </ul>
                     </div>
@@ -241,10 +275,26 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-logout-wrapper">
-                                <a href="javascript:document.getElementById('logoutForm').submit()"
-                                   class="nav-logout-btn">
-                                    Kijelentkezés
-                                </a>
+                                @{
+                                    string felhasznaloNeve = "Vendég";
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                                        if (authCookie != null)
+                                        {
+                                            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                                            felhasznaloNeve = ticket.UserData; // Ez lesz az, amit az 1. lépésben elmentettél
+                                        }
+                                    }
+                                }
+
+                                <div class="nav-auth-section">
+                                    <span class="nav-welcome-text">Üdv, @felhasznaloNeve!</span>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"
+                                       class="nav-logout-btn">
+                                        Kijelentkezés
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -340,10 +390,26 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-logout-wrapper">
-                                <a href="javascript:document.getElementById('logoutForm').submit()"
-                                   class="nav-logout-btn">
-                                    Kijelentkezés
-                                </a>
+                                @{
+                                    string felhasznaloNeve = "Vendég";
+                                    if (Request.IsAuthenticated)
+                                    {
+                                        var authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+                                        if (authCookie != null)
+                                        {
+                                            var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                                            felhasznaloNeve = ticket.UserData; // Ez lesz az, amit az 1. lépésben elmentettél
+                                        }
+                                    }
+                                }
+
+                                <div class="nav-auth-section">
+                                    <span class="nav-welcome-text">Üdv, @felhasznaloNeve!</span>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"
+                                       class="nav-logout-btn">
+                                        Kijelentkezés
+                                    </a>
+                                </div>
                             </li>
                         </ul>
                     </div>

@@ -27,33 +27,35 @@
         <span class="glyphicon glyphicon-plus" style="font-size:25px;" title="Új viszony hozzáadása"></span>
     </a>
 
-    <table class="table-responsive table-santa">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nev)
-            </th>
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="table-responsive">
+        <table class="table-santa">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nev)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nev)
+                </th>
 
-
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, 
-                            new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
-                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, 
-                            new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                </td>
-
+                <th></th>
             </tr>
-        }
-    </table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nev)
+                    </td>
+
+
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.ID },
+                                new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" }) &nbsp;
+                        @Html.ActionLink(" ", "Delete", new { id = item.ID },
+                                new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
 
     @section Scripts {
         <script src="~/Scripts/jquery.validate.min.js"></script>

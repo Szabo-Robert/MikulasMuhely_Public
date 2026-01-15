@@ -30,80 +30,82 @@
     </div>
 </div>
 
-<table class="table-responsive table-santa">
-    <tr>
-        <th>
-            Vezeték név
-        </th>
-
-        <th>
-            Kereszt név
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().Elerhetosegek.Email)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().Elerhetosegek.Telszam1)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().Jogosultsag.Nev)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.VezetekNev)
-            </td>
+            <th>
+                Vezeték név
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.KeresztNev)
-            </td>
+            <th>
+                Kereszt név
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Elerhetosegek.Email)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Elerhetosegek.Telszam1)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Elerhetosegek.Telszam1)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Jogosultsag.Nev)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Jogosultsag.Nev)
+            </th>
 
-            <td>
-
-                @{
-                    @*//ha nem ADMIN, akkor ne tudjon torolni es modositani ADMIN-t!*@
-
-                    //if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
-                    if ((Model.First().JogosultsagID >= item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
-                    {
-                        @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-                    }
-                }&nbsp;
-
-                @Html.ActionLink(" ", "Details", new { id = item.UserID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
-
-                @{
-                    if (Model.First().logUserJogosultsaga == "ADMIN")
-                    {
-                        @Html.ActionLink(" ", "Delete", new { id = item.UserID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                    }
-                }
-
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VezetekNev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeresztNev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Elerhetosegek.Telszam1)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jogosultsag.Nev)
+                </td>
+
+                <td>
+
+                    @{
+                        @*//ha nem ADMIN, akkor ne tudjon torolni es modositani ADMIN-t!*@
+
+                        //if (!(Model.First().logUserID > item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
+                        if ((Model.First().JogosultsagID >= item.JogosultsagID) || Model.First().logUserJogosultsaga == "ADMIN")
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.UserID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+                        }
+                    }&nbsp;
+
+                    @Html.ActionLink(" ", "Details", new { id = item.UserID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+
+                    @{
+                        if (Model.First().logUserJogosultsaga == "ADMIN")
+                        {
+                            @Html.ActionLink(" ", "Delete", new { id = item.UserID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                        }
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 
 @* LAPOZO *@
 

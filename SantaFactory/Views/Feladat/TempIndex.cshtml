@@ -28,98 +28,91 @@
     </div>
 </div>
 
-
-<table class="table-responsive table-santa">
-    <tr>
-        @*<th class="col-xs-1 col-sm-1 col-md-1 col-lg-1">*@
-        <th>
-            ID.
-        </th>
-
-        @*<th class="col-xs-1 col-sm-1 col-md-1 col-lg-2">*@
-        <th>
-            Projekt kód
-        </th>
-
-        @*<th class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
-        <th>
-            Feladat Neve
-        </th>
-
-        <th>
-            V.Kezdés
-        </th>
-
-        @*<th>
-                V.Befejezés
-            </th>*@
-
-        @*<th class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
-        <th>
-            Létrehozó
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
+            <th>
+                ID.
+            </th>
 
-            @*<td class="col-xs-1 col-sm-1 col-md-1 col-lg-2">*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
-            </td>
+            <th>
+                Projekt kód
+            </th>
 
-            @*<td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Nev)
-            </td>
+            <th>
+                Feladat Neve
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.VarhatoKezdes)
-            </td>
+            <th>
+                V.Kezdés
+            </th>
 
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
-                </td>*@
+            <th>
+                V.Befejezés
+            </th>
 
-            @*<td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">*@
-            <td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">
-                @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
-            </td>
+            <th>
+                Létrehozó
+            </th>
 
-            <td>
-                @{
-                    var tempJogosultsag = "";
-
-                    if (TempData["Users"] != null)
-                    {
-                        tempJogosultsag = TempData["Users"].ToString();
-                    }
-
-                    if (tempJogosultsag == "ADMIN")
-                    {
-                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-
-                        <text>&nbsp;</text>
-
-                        @Html.ActionLink(" ", "TempDelete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                    }
-                    else
-                    {
-                        @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-                    }
-                }
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.Projektek.AzonositoKod)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoKezdes)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.VarhatoBefejezes)
+                </td>
+
+                <td class="col-xs-1 col-sm-1 col-md-3 col-lg-3">
+                    @Html.DisplayFor(modelItem => item.Elerhetosegek.Email)
+                </td>
+
+                <td>
+                    @{
+                        var tempJogosultsag = "";
+
+                        if (TempData["Users"] != null)
+                        {
+                            tempJogosultsag = TempData["Users"].ToString();
+                        }
+
+                        if (tempJogosultsag == "ADMIN" || tempJogosultsag == "Vezetőség")
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+
+                            <text>&nbsp;</text>
+
+                            @Html.ActionLink(" ", "TempDelete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                        }
+                        else if (item.Sajat)
+                        {
+                            @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 @* LAPOZO *@
 
 @Html.PagedListPager(Model, pn => Url.Action("TempIndex", "Feladat",
