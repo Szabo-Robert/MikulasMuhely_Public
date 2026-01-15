@@ -108,8 +108,13 @@ footer {
     transition: 0.3s;
 }
 
-/* A NAV-ban lévő űrlap elrendezése */
-.navbar-form-santa {
+.nav-auth-section {
+    color: white;
+    margin-right: 10px;
+    font-weight: bold;
+}
+    /* A NAV-ban lévő űrlap elrendezése */
+    .navbar-form-santa {
     display: flex;
     align-items: center;
     padding: 0 15px;
@@ -284,6 +289,10 @@ textarea {
 /* MOBIL NÉZET (767px alatt) */
 
 @media (max-width: 767px) {
+    table-santa {
+        overflow-x: auto !important; 
+    }
+
     /* Mobilon a gomb teljes szélességű legyen */
     .santa-letter-container {
         margin: 10px;
@@ -323,5 +332,48 @@ textarea {
         background-color: #7D1B1B; /* Sötétebb piros */
         color: #FFD700; /* Arany színű szöveg rámutatáskor */
         cursor: pointer;
+    }
+
+    .nav-auth-section {
+        color: white;
+        margin-right: 10px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column; /* Egymás alá kerülnek mobilon */
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    /*kisházikó HOME*/
+    .navbar-nav li:first-child {
+        display: block !important;
+        width: 100% !important;
+        float: none !important;
+        clear: both;
+
+    }
+
+    /* A házikó linkje (a) ne ússzon semerre, kerüljön középre vagy bal szélre */
+    .navbar-brand {
+        display: inline-block !important;
+        float: none !important;
+        margin: 15px 15px 0px 15px !important;
+        padding: 0 !important;
+    }
+
+    /* A többi menüpont (Projektek, stb.) maradjon a helyén, de ne csússzanak fel */
+    .navbar-nav li.dropdown {
+        display: block !important;
+        clear: both;
+    }
+
+    #ProjektekGomb{
+        padding: 0px 15px 10px 15px !important; 
+    }
+
+    .nav-auth-section{
+        padding: 0px !important;
+        float: left !important;
+        margin-left: 15px !important;
     }
 }

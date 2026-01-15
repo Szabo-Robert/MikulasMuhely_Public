@@ -32,110 +32,68 @@
                 tempJogosultsag = TempData["Users"].ToString();
             }
 
-            <table class="table-responsive table-santa">
-                <tr>
-                    @{
-                        var munkasLista = Model.First().MunkasokLista;
+            <div class="table-responsive">
+                <table class="table-santa">
+                    <tr>
+                        @{
+                            var munkasLista = Model.First().MunkasokLista;
 
 
-                        foreach (var item in Model)
-                        {
-                            <td>
-                                @Html.DropDownListFor(model => item.evek, new SelectList(Model.First().evek, "Id"),
-                                                 "Kilistázandó év", htmlAttributes: new { @class = "form-control", @onChange = "selectedY(this, item)" })
-                            </td>
+                            foreach (var item in Model)
+                            {
+                                <td>
+                                    @Html.DropDownListFor(model => item.evek, new SelectList(Model.First().evek, "Id"),
+                                                     "Kilistázandó év", htmlAttributes: new { @class = "form-control", @onChange = "selectedY(this, item)" })
+                                </td>
 
-                            <td>
-                                @Html.DropDownListFor(model => item.XLS_UserID, new SelectList(Model.First().honapok, "Id"),
-                                                 "Kilistázandó hónap", htmlAttributes: new { @class = "form-control", @onChange = "selectedM(this, item)" })
-                            </td>
+                                <td>
+                                    @Html.DropDownListFor(model => item.XLS_UserID, new SelectList(Model.First().honapok, "Id"),
+                                                     "Kilistázandó hónap", htmlAttributes: new { @class = "form-control", @onChange = "selectedM(this, item)" })
+                                </td>
 
-                            <td>
-                                <form>
-                                    <input id="donkey1" type="hidden" name="test" />
-                                    <input id="donkey2" type="hidden" name="test" />
-                                    <input id="donkey3" type="hidden" name="test" />
-                                    <input type="submit" value="XLS letöltése" />
-                                </form>
-                            </td>
+                                <td>
+                                    <form>
+                                        <input id="donkey1" type="hidden" name="test" />
+                                        <input id="donkey2" type="hidden" name="test" />
+                                        <input id="donkey3" type="hidden" name="test" />
+                                        <input type="submit" value="XLS letöltése" />
+                                    </form>
+                                </td>
 
-                            break;
+                                break;
+                            }
                         }
-                    }
-                </tr>
-            </table>
+                    </tr>
+                </table>
+            </div>
         }
     </div>
 
-    <table class="table-responsive table-santa">
-        <tr>
-
-            <th>
-                ID.
-            </th>
-
-            <th>
-                Proj.Kód
-            </th>
-
-            <th>
-                M. dátuma
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.First().KIdo)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.First().MunkaOra)
-            </th>
-
-            @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
-            @{
-                tempJogosultsag = "";
-
-                if (TempData["Users"] != null)
-                {
-                    tempJogosultsag = TempData["Users"].ToString();
-                }
-
-                if (tempJogosultsag != "Alkalmazott")
-                {
-                    <th>
-                        Alk. Neve
-                    </th>
-                }
-            }
-
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <div class="table-responsive">
+        <table class="table-santa">
             <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.ID)
-                </td>
+                <th>
+                    ID.
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Feladatok.Projektek.AzonositoKod)
-                </td>
+                <th>
+                    Proj.Kód
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.MunkaDatuma)
-                </td>
+                <th>
+                    M. dátuma
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.KIdo)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().KIdo)
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.MunkaOra) óra
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().MunkaOra)
+                </th>
 
                 @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
-
                 @{
                     tempJogosultsag = "";
 
@@ -146,41 +104,86 @@
 
                     if (tempJogosultsag != "Alkalmazott")
                     {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User.VezetekNev) @Html.DisplayFor(modelItem => item.User.KeresztNev)
-                        </td>
+                        <th>
+                            Alk. Neve
+                        </th>
                     }
                 }
-                <td>
-                    @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
-                    @if (item.FeladatID != 0)
-                    {
 
+                <th></th>
+            </tr>
 
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Feladatok.Projektek.AzonositoKod)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MunkaDatuma)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KIdo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MunkaOra) óra
+                    </td>
+
+                    @* Ha ADMIN vagy vezetoseg, akkor jelezze, hogy kirol van szo, maskulonben egyertelmu :P *@
+
+                    @{
+                        tempJogosultsag = "";
+
+                        if (TempData["Users"] != null)
                         {
+                            tempJogosultsag = TempData["Users"].ToString();
+                        }
 
-                            var kitIrokKi = item.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
-                            $"{item.User.VezetekNev} {item.User.KeresztNev}");
-
-                            if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN") || (kitIrokKi.Elerhetosegek.Email == User.Identity.Name))
-                            {
-
-                                @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
-                            }
+                        if (tempJogosultsag != "Alkalmazott")
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.VezetekNev) @Html.DisplayFor(modelItem => item.User.KeresztNev)
+                            </td>
                         }
                     }
-                    &nbsp;
-                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+                    <td>
+                        @*<span class='glyphicon glyphicon-trash glyphicon-link-big' title='Feladat szerkesztése'></span>*@
+                        @if (item.FeladatID != 0)
+                        {
 
-                    @if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN"))
-                    {
-                        @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
-                    }
-                </td>
-            </tr>
-        }
-    </table>
 
+                            {
+
+                                var kitIrokKi = item.MunkasokLista.FirstOrDefault(x => $"{x.VezetekNev} {x.KeresztNev}" ==
+                                $"{item.User.VezetekNev} {item.User.KeresztNev}");
+
+                                if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN") || (kitIrokKi.Elerhetosegek.Email == User.Identity.Name))
+                                {
+
+                                    @Html.ActionLink(" ", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil", style = "font-size:25px;", title = "Módosít" })
+                                }
+                            }
+                        }
+                        &nbsp;
+                        @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "glyphicon glyphicon-list", style = "font-size:25px;", title = "Részletek" }) &nbsp;
+
+                        @if (!(item.JovahagyvaCB) && (tempJogosultsag == "ADMIN"))
+                        {
+                            @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash", style = "font-size:25px;", title = "Töröl" })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
 
     @* LAPOZO *@
 

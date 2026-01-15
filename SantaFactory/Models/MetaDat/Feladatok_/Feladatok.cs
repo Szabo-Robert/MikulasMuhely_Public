@@ -37,6 +37,8 @@ namespace SantaFactory.Models
         //MUNKALAPOK listaja a feladathoz
         public List<Munkalapok> MunkalapokListaja { get; set; }
         public List<FelhasznaltAnyagok> FelhasznaltAnyagokLista { get; set; }
+
+        public bool Sajat { get; set; }
     }
 
     public class FeladatokMetadata

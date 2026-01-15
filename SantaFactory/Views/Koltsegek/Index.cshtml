@@ -16,89 +16,90 @@
     </div>
 }
 
-<table class="table-responsive table-santa">
-    <tr>
-
-        <th>
-            Feladat:
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().KoltsegNeve)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().KoltsegErteke)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().SzamlaDatuma)
-        </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.First().KoltsegLeirasa)
-        </th>
-
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="table-responsive">
+    <table class="table-santa">
         <tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.feladatItem.Nev)
-            </td>
+            <th>
+                Feladat:
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.KoltsegNeve)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().KoltsegNeve)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.KoltsegErteke)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().KoltsegErteke)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.SzamlaDatuma)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().SzamlaDatuma)
+            </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.KoltsegLeirasa)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.First().KoltsegLeirasa)
+            </th>
 
-            <td>
-                @{
-                    string tempJogosultsagKoltseg = "";
-
-                    if (TempData["Users"] != null)
-                    {
-                        tempJogosultsagKoltseg = TempData["Users"].ToString();
-                    }
-
-                    if (!(item.feladatItem.JovahagyvaCB) || (tempJogosultsagKoltseg == "ADMIN"))
-                    {
-                        <a href="@Url.Action("Edit", "Koltsegek", routeValues: new { id = item.ID })">
-                            @* text space *@
-                            <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
-                        </a>
-                    }
-                }
-                &nbsp;
-                @{
-                    if (!(item.feladatItem.JovahagyvaCB) || (tempJogosultsagKoltseg == "ADMIN"))
-                    {
-                        <a href="@Url.Action("Delete", "Koltsegek", routeValues: new { id = item.ID })">
-                            @* text space *@
-                            <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
-                        </a>
-                    }
-                }
-            </td>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.feladatItem.Nev)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KoltsegNeve)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KoltsegErteke)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.SzamlaDatuma)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KoltsegLeirasa)
+                </td>
+
+                <td>
+                    @{
+                        string tempJogosultsagKoltseg = "";
+
+                        if (TempData["Users"] != null)
+                        {
+                            tempJogosultsagKoltseg = TempData["Users"].ToString();
+                        }
+
+                        if (!(item.feladatItem.JovahagyvaCB) || (tempJogosultsagKoltseg == "ADMIN"))
+                        {
+                            <a href="@Url.Action("Edit", "Koltsegek", routeValues: new { id = item.ID })">
+                                @* text space *@
+                                <span class="glyphicon glyphicon-pencil" style="font-size:25px;" title="Módosít" aria-hidden="true"></span>
+                            </a>
+                        }
+                    }
+                    &nbsp;
+                    @{
+                        if (!(item.feladatItem.JovahagyvaCB) || (tempJogosultsagKoltseg == "ADMIN"))
+                        {
+                            <a href="@Url.Action("Delete", "Koltsegek", routeValues: new { id = item.ID })">
+                                @* text space *@
+                                <span class="glyphicon glyphicon-trash" style="font-size:25px;" title="Töröl" aria-hidden="true"></span>
+                            </a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
 @* LAPOZO *@
 
 @Html.PagedListPager(Model, pn => Url.Action("Index", "Koltsegek",
